@@ -1,6 +1,6 @@
 {
   "name": "@knitkode/core-barba",
-  "version": "0.0.65",
+  "version": "0.0.66",
   "author": "KnitKode <knitkode@gmail.com> (https://knitkode.github.io)",
   "license": "ISC",
   "repository": {
@@ -12,10 +12,10 @@
     "access": "public"
   },
   "dependencies": {
-    "@knitkode/core-dom": "file:../dom",
-    "@knitkode/core-scroll": "file:../scroll",
     "@barba/core": "^2.9.7",
-    "@barba/router": "^2.1.10"
+    "@barba/router": "^2.1.10",
+    "@knitkode/core-dom": "file:../dom",
+    "@knitkode/core-scroll": "file:../scroll"
   },
   "sideEffects": false
 }
