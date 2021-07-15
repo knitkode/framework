@@ -22,7 +22,6 @@
     "@knitkode/core-auth": "file:../auth",
     "@knitkode/core-barba": "file:../barba",
     "@knitkode/core-buttons": "file:../buttons",
-    "@knitkode/core-checkout": "file:../checkout",
     "@knitkode/core-collapsable": "file:../collapsable",
     "@knitkode/core-cookies": "file:../cookies",
     "@knitkode/core-data": "file:../data",
