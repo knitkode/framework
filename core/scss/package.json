@@ -12,7 +12,6 @@
     "access": "public"
   },
   "dependencies": {
-    "@knitkode/components-header": "file:../../components/Header",
     "@knitkode/core-buttons": "file:../buttons",
     "@knitkode/core-dialog": "file:../dialog",
     "@knitkode/core-forms": "file:../forms",
