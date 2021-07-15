@@ -1,7 +1,7 @@
 {
   "npmClient": "npm",
   "version": "independent",
-  "packages": ["components/*", "core/*", "workflow/*"],
+  "packages": ["core/*"],
   "command": {
     "publish": {
       "ignoreChanges": ["ignored-file", "*.md"],
