@@ -1,0 +1,172 @@
+//
+// Forms vertical spacing
+//
+// @param {number} $value
+// -----------------------------------------------------------------------------
+@mixin Forms-vertical-spacing($value) {
+  // .input .formLabel,
+  // .select .formLabel {
+  //   top: value;
+  // }
+  .input,
+  .select,
+  .checkbox,
+  .textarea {
+    padding-top: round(math.div($value, 2));
+    margin-bottom: 0;
+  }
+  .textarea,
+  .file {
+    margin-top: round(math.div($value, 3));
+  }
+}
+
+//
+// Forms placeholder
+//
+// -----------------------------------------------------------------------------
+@mixin Forms-placeholder(
+  $default: $Forms-color-placeholder,
+  $invalid: $Forms-invalid-color-placeholder
+) {
+  ::placeholder {
+    color: $default;
+  }
+
+  @if $Forms-validation {
+    .invalid ::placeholder {
+      color: $invalid;
+    }
+  }
+}
+
+//
+// Forms invalid color
+//
+// -----------------------------------------------------------------------------
+@mixin Forms-invalid-color($color) {
+  // TextField-validation-color($color);
+  .invalid .formControl {
+    border-color: $color;
+  }
+
+  .invalid .formLabel,
+  .invalid .formControl,
+  .invalid ::placeholder {
+    color: $color;
+  }
+  .invalid .formUnderline {
+    background-color: $color;
+  }
+
+  // Checkbox-validation-color($color);
+  .invalid .state .label:before {
+    border-color: $color;
+  }
+  .invalid input:focus + .state .label:before {
+    box-shadow: 0 0 0 1px $color;
+  }
+  .invalid .checkboxLabel {
+    color: $color;
+  }
+}
+
+//
+// Forms color
+// FIXME: this is whole to re-think
+//
+// -----------------------------------------------------------------------------
+@mixin Forms-color($color) {
+  // $_rootSel: '';
+  // @if $Forms-validation {
+  //   $_rootSel: ':not(.invalid)';
+  // }
+  .formRoot:not(.invalid) .formLabel,
+  .formRoot:not(.invalid) .formToggle .dfn,
+  .formRoot:not(.invalid) .formToggleLabel,
+  .formToggleLabel a,
+  .formControl {
+    color: Color($color);
+  }
+  .formRoot:not(.invalid) .formControl,
+  .formRoot:not(.invalid) .select .formControl {
+    border-color: Color($color);
+  }
+  .formRoot:not(.invalid) input:focus ~ .label .dfn,
+  .formRoot:not(.invalid) .formToggle .dfn {
+    @if $FormToggle-use-shadow-for-border {
+      box-shadow: 0 0 0 $FormToggle-border-thickness $color;
+    } @else {
+      border-color: $FormToggle-border-color;
+    }
+  }
+  .checkbox input:checked ~ .label .dfn {
+    // $FormToggle-checked-bg-image: "viewBox='0 0 24 24'><circle fill='#{$FormToggle-checked-color}' cx='12' cy='12' r='4.5'";
+    @if ($FormToggle-checked-bg-image--use-rounded) {
+      @include Svg-bg(
+        "viewBox='0 0 24 24'><circle fill='#{$color}' cx='12' cy='12' r='4.5'"
+      );
+    } @else {
+      @include Svg-bg(
+        "viewBox='0 0 24 24'><path fill='#{$color}' d='M9 16.172l10.594-10.594 1.406 1.406-12 12-5.578-5.578 1.406-1.406z'"
+      );
+    }
+  }
+  .select .formBox:before {
+    // $FormSelect-arrow-image: "viewBox='0 0 384 768'><path fill='#{$FormSelect-arrow-color}' d='M45 274.5l147 147 147-147 45 45-192 192-192-192z'" !default;
+    @include Svg-bg(
+      "viewBox='0 0 384 768'><path fill='#{$color}' d='M45 274.5l147 147 147-147 45 45-192 192-192-192z'"
+    );
+  }
+  .formRoot:not(.invalid) .formUnderline {
+    background: Color($color);
+  }
+}
+
+//
+// Forms iconed
+//
+// -----------------------------------------------------------------------------
+@mixin _Forms-icon(
+  $preOrPost: "pre",
+  $size: $FormsIcon-size,
+  $margin: $Forms-padding-x
+) {
+  .formBox {
+    display: inline-flex;
+    align-items: center;
+    @if $preOrPost == "post" {
+      flex-direction: row-reverse;
+    }
+  }
+
+  .formTexts {
+    flex: 1;
+  }
+
+  .icon {
+    width: $size;
+    height: $size;
+    @if $preOrPost == "pre" {
+      margin-right: $margin;
+    } @else {
+      margin-left: $margin;
+    }
+  }
+}
+
+//
+// Forms icon post
+//
+// -----------------------------------------------------------------------------
+@mixin Forms-icon-pre($size: $FormsIcon-size, $margin: $Forms-padding-x) {
+  @include _Forms-icon("pre", $size, $margin);
+}
+
+//
+// Forms icon pre
+//
+// -----------------------------------------------------------------------------
+@mixin Forms-icon-post($size: $FormsIcon-size, $margin: $Forms-padding-x) {
+  @include _Forms-icon("post", $size, $margin);
+}

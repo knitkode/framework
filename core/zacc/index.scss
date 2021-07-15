@@ -1,0 +1,21 @@
+[data-zacc-head] {
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
+
+  .icon {
+    transition: transform $Transition;
+  }
+}
+
+[data-zacc-wrap] {
+  will-change: display;
+}
+
+[data-zacc-body] {
+  will-change: margin-top;
+  transition-property: margin-top;
+  transition-timing-function: $Transition-timing-function;
+}

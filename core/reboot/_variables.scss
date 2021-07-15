@@ -1,0 +1,23 @@
+// map custom variables to bootstrap' needed ones, no override allowed here
+$black: Color(black);
+$font-family-base: $Typography-font-base;
+$font-size-base: $Typography-font-size;
+$font-weight-base: $Typography-font-weight;
+$line-height-base: $Typography-line-height;
+$headings-margin-bottom: $Typography-headings-margin-bottom;
+$paragraph-margin-bottom: $Spacer;
+$body-color: $Color-body;
+$body-bg: $Color-body-bg;
+$link-color: $Color-links;
+$link-decoration: $Typography-link-decoration;
+$link-hover-color: $Color-links-hover;
+$link-hover-decoration: $Typography-link-hover-decoration;
+// harcoded ones, no need to customize every single variables...
+$dt-font-weight: bold;
+$font-weight-bolder: bolder;
+$font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
+  "Liberation Mono", "Courier New", monospace !default;
+$table-caption-color: Color(black);
+$table-cell-padding: math.div($Spacer, 2);
+$label-margin-bottom: $Forms-label-spacer-bottom;
+$enable-pointer-cursor-for-buttons: true;

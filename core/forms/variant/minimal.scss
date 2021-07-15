@@ -1,0 +1,44 @@
+@import "common";
+
+// Form element: root
+// -----------------------------------------------------------------------------
+%formRoot--minimal {
+  @extend %formRoot;
+
+  @if $Forms-validation {
+    &.invalid .formControl {
+      border-color: $Forms-invalid-color-border;
+    }
+    &.invalid .formUnderline {
+      background: $Forms-invalid-color-border;
+      width: 100%;
+    }
+  }
+}
+
+// Form element: underline
+// -----------------------------------------------------------------------------
+%formUnderline--minimal {
+  @extend %formUnderline;
+  bottom: 0;
+  left: 0;
+
+  .formControl:focus + & {
+    width: 100%;
+  }
+}
+
+// Form element: control
+// -----------------------------------------------------------------------------
+%formControl--minimal {
+  @extend %formControl;
+  width: 100%;
+  // no x padding here
+  background: transparent;
+  padding: $Forms-padding-y 0;
+  border: 0;
+  border-bottom: $Forms-border-thickness solid $Forms-color-border;
+  // no border radius for minimal controls as they just have an underline
+  border-radius: 0;
+  -webkit-border-radius: 0;
+}

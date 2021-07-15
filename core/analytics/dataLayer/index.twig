@@ -1,0 +1,1 @@
+<script>window.dataLayer = window.dataLayer || {% if analytics.dataLayer %}{{ analytics.dataLayer | json_encode | raw }}{% else %}[]{% endif %};</script>

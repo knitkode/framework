@@ -1,0 +1,193 @@
+// Form element: root
+// -----------------------------------------------------------------------------
+%formRoot {
+  position: relative;
+  margin-bottom: $Forms-spacer-y;
+  @if $Forms-font-size != inherit {
+    font-size: $Forms-font-size;
+  }
+
+  @if $Forms-validation {
+    &.invalid .formLabel {
+      color: $Forms-invalid-color;
+    }
+
+    @if ($Forms-validation-icons) {
+      &.invalid .formControl,
+      &.valid .formControl {
+        background-size: $Forms-validation-icon-width;
+        background-repeat: no-repeat;
+        background-position-x: calc(100% - #{$Forms-validation-icon-gutter-x});
+        background-position-y: center;
+        padding-right: $Forms-validation-icon-width +
+          ($Forms-validation-icon-gutter-x * 2);
+      }
+      &.invalid .formControl {
+        @include Svg-bg($Forms-validation-icon-invalid);
+      }
+      &.valid .formControl {
+        @include Svg-bg($Forms-validation-icon-valid);
+      }
+    }
+  }
+}
+
+// Form element: box
+// -----------------------------------------------------------------------------
+%formBox {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+// Form element: control
+// -----------------------------------------------------------------------------
+%formControl {
+  position: relative;
+  color: $Forms-color;
+  -webkit-appearance: none;
+
+  &:focus {
+    outline: none;
+    @if $Forms-border-thickness {
+      border-color: $Forms-color-border;
+    }
+  }
+  &:hover {
+    outline: none;
+  }
+
+  @if $Forms-disabled-state {
+    &[disabled] {
+      pointer-events: none;
+      @if $Forms-disabled-opacity != false {
+        opacity: $Forms-disabled-opacity;
+      }
+
+      @if $Forms-disabled-bg != transparent {
+        background: $Forms-disabled-bg;
+      }
+
+      &:focus {
+        @if $Forms-border-thickness {
+          border-color: inherit;
+        }
+      }
+
+      @if $Forms-disabled-opacity-label != false {
+        & ~ .formLabel {
+          opacity: 0.5;
+        }
+      }
+    }
+  }
+}
+
+// Form element: underline
+// -----------------------------------------------------------------------------
+%formUnderline {
+  position: absolute;
+  height: $Forms-border-thickness-focus;
+  background: $Forms-color-border-focus;
+  transition: width $Transition;
+  width: 0;
+}
+
+// Form element: label
+// -----------------------------------------------------------------------------
+%formLabel {
+  @if $Forms-label-font-size != inherit {
+    font-size: $Forms-label-font-size;
+  }
+  @if $Forms-color-label != $Forms-color {
+    color: $Forms-color-label;
+  } @else {
+    color: $Forms-color;
+  }
+}
+
+// Form element: feedback
+// -----------------------------------------------------------------------------
+%formFeedback {
+  // nothing for now, a dummy real to be able to extend it without !optional
+  color: inherit;
+}
+
+// Form root: select
+// Native select but with custom dropdown icon
+// -----------------------------------------------------------------------------
+%select {
+  @extend %formRoot;
+
+  .formBox {
+    position: relative;
+    @extend %formBox;
+  }
+
+  .selectArrow {
+    z-index: 1;
+    position: absolute;
+    bottom: 50%;
+    margin-bottom: -(math.div($FormSelect-arrow-height, 2));
+    right: $Forms-padding-x - math.div($FormSelect-arrow-width, 2);
+    height: $FormSelect-arrow-height;
+    width: $FormSelect-arrow-width;
+    @include Svg-bg($FormSelect-arrow-image);
+    background-position: right center;
+    background-repeat: no-repeat;
+    background-size: $FormSelect-arrow-width $FormSelect-arrow-height;
+    pointer-events: none;
+  }
+
+  .formControl {
+    @extend %formControl;
+    padding-right: $Forms-padding-x + $FormSelect-arrow-width !important;
+
+    @if $Forms-disabled-state {
+      &[disabled] + .selectArrow {
+        display: none;
+      }
+    }
+  }
+
+  option {
+    background: $Forms-bg;
+    color: $Forms-color;
+  }
+  option:first-of-type {
+    color: rgba($Forms-color-placeholder, 0.7);
+  }
+
+  .formFeedback {
+    @extend %formFeedback;
+  }
+}
+
+// Form root: file
+// -----------------------------------------------------------------------------
+%file {
+  display: inline-flex;
+  padding-bottom: $Forms-spacer-y;
+  cursor: pointer;
+  @if $Forms-font-size != inherit {
+    font-size: $Forms-font-size;
+  }
+
+  @if $Forms-validation {
+    &.invalid .formBox {
+      color: $Forms-invalid-color;
+    }
+  }
+
+  .formTexts {
+    display: flex;
+    align-items: center;
+  }
+
+  .formControl {
+    @extend %Invisible;
+  }
+
+  .formFeedback {
+    @extend %formFeedback;
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "name": "@knitkode/core-glide",
+  "version": "0.0.66",
+  "author": "KnitKode <knitkode@gmail.com> (https://knitkode.github.io)",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:knitkode/framework.git",
+    "directory": "core/glide"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "to-update-glidejs": "cd ./fork && npm run build && cp dist/glide.modular.esm.js ../"
+  },
+  "dependencies": {
+    "@knitkode/core-dom": "file:../dom",
+    "@knitkode/core-helpers": "file:../helpers",
+    "@knitkode/core-lazy": "file:../lazy",
+    "@types/glidejs__glide": "^3.4.0"
+  },
+  "sideEffects": [
+    "**/*.scss",
+    "arrows/**",
+    "bullets/**",
+    "**"
+  ]
+}

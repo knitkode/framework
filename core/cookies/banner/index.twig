@@ -1,0 +1,14 @@
+<div id="cookiesBanner" class="cookies">{#- -#}
+  <div class="cookiesContainer {{ classContainer | default('container-lg') }}">{#- -#}
+    <div class="cookiesInner">{#- -#}
+      <div class="cookiesText">{#- -#}
+        {{- 'cookies.text' | _ | replace({ '<a>': '<a href="'~privacyLink | default('privacypolicy' | page) ~'" target="_blank" rel="noopener">' }) | raw -}}
+      </div>{#- -#}
+      <div class="cookiesActions">{#- -#}
+        <span class="cookiesAccept btn{% if classBtn %} {{ classBtn }}{% endif %}">
+          {{ 'cookies.OK' | _ | raw }}
+        </span>{#- -#}
+      </div>{#- -#}
+    </div>{#- -#}
+  </div>{#- -#}
+</div>{#- -#}

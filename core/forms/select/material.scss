@@ -1,0 +1,24 @@
+@import "../variant/material";
+
+.select {
+  @extend %select;
+  @extend %formRoot--material;
+
+  .formBox {
+    @extend %formBox--material;
+  }
+
+  .formLabel {
+    @extend %formLabel--material;
+    pointer-events: none;
+  }
+
+  .formUnderline {
+    @extend %formUnderline--material;
+  }
+
+  .formControl {
+    @extend %formControl--material;
+    cursor: pointer;
+  }
+}

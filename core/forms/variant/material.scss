@@ -1,0 +1,47 @@
+@import "minimal";
+
+$scaleFactor: 0.8;
+
+// Form element: root
+// -----------------------------------------------------------------------------
+%formRoot--material {
+  @extend %formRoot--minimal;
+  padding-top: 1em; // make space to the floating label
+}
+
+// Form element: box
+// -----------------------------------------------------------------------------
+%formBox--material {
+  @extend %formBox;
+  position: relative;
+}
+
+// Form element: underline
+// -----------------------------------------------------------------------------
+%formUnderline--material {
+  @extend %formUnderline--minimal;
+}
+
+// Form element: label
+// -----------------------------------------------------------------------------
+%formLabel--material {
+  @extend %formLabel;
+  position: absolute;
+  top: $Forms-padding-y;
+  left: 0;
+  margin: 0;
+  transform-origin: left top;
+  transition: transform $Transition;
+
+  .formControl:focus ~ &,
+  .formControl.notempty ~ & {
+    transform: translateY(-120%) scale($scaleFactor);
+  }
+}
+
+// Form element: control
+// -----------------------------------------------------------------------------
+%formControl--material {
+  @extend %formControl--minimal;
+  background: $Forms-bg;
+}

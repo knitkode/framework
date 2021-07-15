@@ -1,0 +1,20 @@
+{
+  "name": "@knitkode/core-video",
+  "version": "0.0.16",
+  "author": "KnitKode <knitkode@gmail.com> (https://knitkode.github.io)",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:knitkode/framework.git",
+    "directory": "core/video"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@knitkode/core-media": "file:../media"
+  },
+  "sideEffects": [
+    "**"
+  ]
+}

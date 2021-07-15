@@ -1,0 +1,32 @@
+@import "../variant/material";
+
+.file {
+  @extend %file;
+  @extend %formRoot--material;
+
+  .formTexts {
+    position: relative;
+    flex-direction: column;
+    position: relative;
+    align-items: flex-start;
+  }
+
+  .formBox {
+    @extend %formControl--material;
+  }
+
+  .formLabel {
+    @extend %formLabel--material;
+    position: relative;
+    top: 0;
+  }
+
+  .formControl:focus ~ .formLabel,
+  .formControl.notempty ~ .formLabel {
+    margin-bottom: -1.3em;
+  }
+
+  .formUnderline {
+    @extend %formUnderline--material;
+  }
+}

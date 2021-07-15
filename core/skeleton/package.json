@@ -1,0 +1,15 @@
+{
+  "name": "@knitkode/core-skeleton",
+  "version": "0.0.2",
+  "author": "KnitKode <knitkode@gmail.com> (https://knitkode.github.io)",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:knitkode/framework.git",
+    "directory": "core/skeleton"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "sideEffects": false
+}

@@ -1,0 +1,128 @@
+$Typography-line-height: 1.53 !default;
+$Typography-headings-line-height: 1.4 !default;
+$Typography-headings-margin-bottom: math.div($Spacer, 2) !default;
+$Typography-headings-font-family: null !default;
+$Typography-headings-font-weight: bold !default;
+$Typography-font-size: 16px !default; // 1rem
+$Typography-font-weight: normal !default;
+$Typography-font-size-h1: $Typography-font-size * 2.5 !default;
+$Typography-font-size-h2: $Typography-font-size * 2 !default;
+$Typography-font-size-h3: $Typography-font-size * 1.75 !default;
+$Typography-font-size-h4: $Typography-font-size * 1.5 !default;
+$Typography-font-size-h5: $Typography-font-size * 1.25 !default;
+$Typography-font-size-h6: $Typography-font-size !default;
+$Typography-font-sans-base: -apple-system, BlinkMacSystemFont, "Segoe UI",
+  Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji",
+  "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
+$Typography-font-serif-base: serif, Times, "Times New Roman", "Times-Roman" !default;
+$Typography-font-sans-custom: -apple-system !default;
+$Typography-font-serif-custom: serif !default;
+$Typography-font-sans: #{$Typography-font-sans-custom},
+  #{$Typography-font-sans-base} !default;
+$Typography-font-serif: #{$Typography-font-serif-custom},
+  #{$Typography-font-serif-base} !default;
+$Typography-font-base: $Typography-font-sans !default;
+$Typography-link-decoration: none !default;
+$Typography-link-hover-decoration: underline !default;
+$Typography-custom: () !default;
+$Typography-defaults: (
+  small: (
+    // <small>
+    regular:
+      (
+        fontSize: 11px,
+        lineHeight: 17px,
+      ),
+    uppercase: (
+      fontSize: 11px,
+      lineHeight: 15px,
+    ),
+  ),
+  p: (
+    // <p>
+    regular:
+      (
+        fontSize: 15px,
+        lineHeight: 23px,
+      ),
+    uppercase: (
+      fontSize: 15px,
+      lineHeight: 21px,
+    ),
+  ),
+  h6: (
+    // <h6>
+    regular:
+      (
+        fontSize: 18px,
+        lineHeight: 26px,
+      ),
+    uppercase: (
+      fontSize: 18px,
+      lineHeight: 23px,
+    ),
+  ),
+  h5: (
+    // <h5>
+    regular:
+      (
+        fontSize: 26px,
+        lineHeight: 33px,
+      ),
+    uppercase: (
+      fontSize: 26px,
+      lineHeight: 28px,
+    ),
+  ),
+  h4: (
+    // <h4>
+    regular:
+      (
+        fontSize: 30px,
+        lineHeight: 36px,
+      ),
+    uppercase: (
+      fontSize: 30px,
+      lineHeight: 33px,
+    ),
+  ),
+  h3: (
+    // <h3>
+    regular:
+      (
+        fontSize: 36px,
+        lineHeight: 42px,
+      ),
+    uppercase: (
+      fontSize: 36px,
+      lineHeight: 40px,
+    ),
+  ),
+  h2: (
+    // <h2>
+    regular:
+      (
+        fontSize: 49px,
+        lineHeight: 56px,
+      ),
+    uppercase: (
+      fontSize: 49px,
+      lineHeight: 53px,
+    ),
+  ),
+  h1: (
+    // <h1>
+    regular:
+      (
+        fontSize: 72px,
+        lineHeight: 84px,
+      ),
+    uppercase: (
+      fontSize: 72px,
+      lineHeight: 79px,
+    ),
+  ),
+);
+
+$Typography: map-deep-merge($Typography-defaults, $Typography-custom) !default;
+$Typography-enable-responsive-p: false;

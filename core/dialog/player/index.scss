@@ -1,0 +1,26 @@
+.dialogPlayer {
+  .dialog {
+    &Centerer {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      @include Mobile() {
+        padding: 0;
+      }
+    }
+
+    &Wrap {
+      width: 100%;
+    }
+
+    &Content {
+      padding: 0;
+    }
+  }
+
+  .video-js {
+    max-width: 100%;
+    background: transparent;
+  }
+}

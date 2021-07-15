@@ -1,0 +1,22 @@
+{
+  "name": "@knitkode/core-auth",
+  "version": "0.0.73",
+  "author": "KnitKode <knitkode@gmail.com> (https://knitkode.github.io)",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:knitkode/framework.git",
+    "directory": "core/auth"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@knitkode/core-ajax": "file:../ajax",
+    "@knitkode/core-data": "file:../data",
+    "@knitkode/core-dom": "file:../dom",
+    "@knitkode/core-forms": "file:../forms",
+    "@knitkode/core-helpers": "file:../helpers"
+  },
+  "sideEffects": false
+}

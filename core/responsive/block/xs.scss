@@ -1,0 +1,7 @@
+.block\: {
+  &xs {
+    @include Down(xs) {
+      @include Block();
+    }
+  }
+}

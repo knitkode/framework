@@ -1,0 +1,19 @@
+{
+  "name": "@knitkode/core-img",
+  "version": "0.0.28",
+  "author": "KnitKode <knitkode@gmail.com> (https://knitkode.github.io)",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:knitkode/framework.git",
+    "directory": "core/img"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@knitkode/core-media": "file:../media",
+    "object-fit-images": "3.2.4"
+  },
+  "sideEffects": true
+}

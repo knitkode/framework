@@ -1,0 +1,13 @@
+{
+  "folders": [
+    {
+      "name": "framework",
+      "path": "."
+    },
+    {
+      "name": "framework-laravel-test",
+      "path": "../framework-laravel-test"
+    }
+  ],
+  "settings": {}
+}

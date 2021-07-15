@@ -1,0 +1,20 @@
+{
+  "name": "@knitkode/core-expander",
+  "version": "0.0.21",
+  "author": "KnitKode <knitkode@gmail.com> (https://knitkode.github.io)",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:knitkode/framework.git",
+    "directory": "core/expander"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@knitkode/core-dom": "file:../dom"
+  },
+  "sideEffects": [
+    "**/*.scss"
+  ]
+}

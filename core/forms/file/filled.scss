@@ -1,0 +1,21 @@
+@import "../variant/filled";
+
+.file {
+  @extend %file;
+  @extend %formRoot--filled;
+
+  .formBox {
+    @extend %formControl--filled;
+  }
+
+  .formUnderline {
+    @extend %formUnderline--filled;
+  }
+
+  .fileName {
+    font-size: 0.8em;
+    &:not(:empty) {
+      margin-left: 1em;
+    }
+  }
+}

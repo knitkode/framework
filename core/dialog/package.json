@@ -1,0 +1,23 @@
+{
+  "name": "@knitkode/core-dialog",
+  "version": "0.0.64",
+  "author": "KnitKode <knitkode@gmail.com> (https://knitkode.github.io)",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:knitkode/framework.git",
+    "directory": "core/dialog"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@knitkode/core-dom": "file:../dom",
+    "@knitkode/core-helpers": "file:../helpers",
+    "@knitkode/core-icon": "file:../icon",
+    "@knitkode/core-scroll": "file:../scroll"
+  },
+  "sideEffects": [
+    "**/*.scss"
+  ]
+}

@@ -1,0 +1,7 @@
+//
+// Collapsable hidden
+//
+@mixin Collapsable-hidden() {
+  overflow: hidden;
+  height: 0;
+}

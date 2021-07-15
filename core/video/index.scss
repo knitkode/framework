@@ -1,0 +1,12 @@
+//
+// Media: video
+//
+
+.media--video {
+  .mediaElement {
+    @extend %Overlay;
+    overflow: visible;
+    background: $Media-bg;
+    min-width: 100%; // it seems Firefox needs this
+  }
+}

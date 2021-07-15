@@ -1,0 +1,31 @@
+{
+  "name": "@knitkode/core-forms",
+  "version": "0.0.50",
+  "author": "KnitKode <knitkode@gmail.com> (https://knitkode.github.io)",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:knitkode/framework.git",
+    "directory": "core/forms"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@knitkode/core-dom": "file:../dom",
+    "@knitkode/core-polyfills": "file:../polyfills"
+  },
+  "sideEffects": [
+    "**/*.scss",
+    "checkbox/*.js",
+    "file/*.js",
+    "group/*.js",
+    "input/*.js",
+    "label/*.js",
+    "radio/*.js",
+    "select/*.js",
+    "textarea/*.js",
+    "toggle/*.js",
+    "variant/*.js"
+  ]
+}

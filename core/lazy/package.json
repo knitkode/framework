@@ -1,0 +1,19 @@
+{
+  "name": "@knitkode/core-lazy",
+  "version": "0.0.52",
+  "author": "KnitKode <knitkode@gmail.com> (https://knitkode.github.io)",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:knitkode/framework.git",
+    "directory": "core/lazy"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@knitkode/core-dom": "file:../dom",
+    "@knitkode/core-helpers": "file:../helpers"
+  },
+  "sideEffects": true
+}

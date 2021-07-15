@@ -1,0 +1,15 @@
+// exports some SCSS variables to JavaScript
+// -----------------------------------------------------------------------------
+:export {
+  // headerHeightUncollapsed: strip-unit($Header-height-uncollapsed);
+  // headerHeight: strip-unit($Header-height);
+  gridGutter: strip-unit($Grid-gutter);
+  @each $key, $size in $Grid-breakpoints {
+    breakpoint#{$key}: strip-unit($size);
+  }
+  breakpointboxed: map-get($Container-widths, $Container-boxed-breakpoint);
+
+  @each $key, $size in $Container-widths {
+    container#{$key}: strip-unit($size);
+  }
+}

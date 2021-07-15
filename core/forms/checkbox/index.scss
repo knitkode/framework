@@ -1,0 +1,27 @@
+@import "../variant/common";
+
+// to use in combination with class .formToggle
+.checkbox {
+  margin-bottom: $Forms-spacer-y;
+
+  @if $Forms-validation {
+    &.invalid .checkboxLabel {
+      color: $Forms-invalid-color-label;
+    }
+  }
+
+  // Checkbox element: label
+  // ---------------------------------------------------------------------------
+  &Label {
+  }
+
+  // Checkbox state: checked
+  // ---------------------------------------------------------------------------
+  input:checked ~ .label .dfn {
+    background-color: $Forms-bg;
+    @include Svg-bg($Checkbox-checked-bg-image);
+    @if $FormToggle-checked-border != $FormToggle-border-color {
+      border-color: $FormToggle-checked-border;
+    }
+  }
+}

@@ -1,0 +1,151 @@
+//
+// @file Spacing proportinal mixins
+//
+
+//
+// Spacing (all sides)
+//
+// -----------------------------------------------------------------------------
+@mixin Spacing(
+  $size: sm,
+  $factor: 1,
+  $property: "padding",
+  $devices: $Devices,
+  $dictionary: $Spacing
+) {
+  @include Spacing-top($size, $factor, $property);
+  @include Spacing-bottom($size, $factor, $property);
+  @include Spacing-left($size, $factor, $property);
+  @include Spacing-right($size, $factor, $property);
+}
+
+//
+// Spacing vertical (top and bottom sides)
+//
+// -----------------------------------------------------------------------------
+@mixin Spacing-vertical(
+  $size: sm,
+  $factor: 1,
+  $property: "padding",
+  $devices: $Devices,
+  $dictionary: $Spacing
+) {
+  @include Spacing-top($size, $factor, $property, $devices, $dictionary);
+  @include Spacing-bottom($size, $factor, $property, $devices, $dictionary);
+}
+
+//
+// Spacing horizontal (left and right sides)
+//
+// -----------------------------------------------------------------------------
+@mixin Spacing-horizontal(
+  $size: sm,
+  $factor: 1,
+  $property: "padding",
+  $devices: $Devices,
+  $dictionary: $Spacing
+) {
+  @include Spacing-left($size, $factor, $property, $devices, $dictionary);
+  @include Spacing-right($size, $factor, $property, $devices, $dictionary);
+}
+
+//
+// Spacing top
+//
+// -----------------------------------------------------------------------------
+@mixin Spacing-top(
+  $size: sm,
+  $factor: 1,
+  $property: "padding",
+  $devices: $Devices,
+  $dictionary: $Spacing
+) {
+  @include _Spacing($size, $factor, $property, "top", $devices, $dictionary);
+}
+
+//
+// Spacing bottom
+//
+// -----------------------------------------------------------------------------
+@mixin Spacing-bottom(
+  $size: sm,
+  $factor: 1,
+  $property: "padding",
+  $devices: $Devices,
+  $dictionary: $Spacing
+) {
+  @include _Spacing($size, $factor, $property, "bottom", $devices, $dictionary);
+}
+
+//
+// Spacing left
+//
+// -----------------------------------------------------------------------------
+@mixin Spacing-left(
+  $size: sm,
+  $factor: 1,
+  $property: "padding",
+  $devices: $Devices,
+  $dictionary: $Spacing
+) {
+  @include _Spacing($size, $factor, $property, "left", $devices, $dictionary);
+}
+
+//
+// Spacing right
+//
+// -----------------------------------------------------------------------------
+@mixin Spacing-right(
+  $size: sm,
+  $factor: 1,
+  $property: "padding",
+  $devices: $Devices,
+  $dictionary: $Spacing
+) {
+  @include _Spacing($size, $factor, $property, "right", $devices, $dictionary);
+}
+
+//
+// Spacing private mixin
+//
+// @private
+//
+// -----------------------------------------------------------------------------
+@mixin _Spacing(
+  $size: sm,
+  $factor: 1,
+  $property: "padding",
+  $direction: "top",
+  $devices: $Devices,
+  $dictionary: $Spacing
+) {
+  $prop: "#{$property}-#{$direction}";
+
+  @if $property == top or $property == bottom {
+    $prop: $property;
+  }
+
+  // allow devices to be just "mobile" as a string not as a list
+  @if $devices == mobile {
+    @include Mobile() {
+      #{$prop}: map-find($dictionary, $devices, $size) * $factor;
+    }
+    // otherwise loop through devices and create media queried styles
+  } @else {
+    @each $device in $devices {
+      @if $device == mobile {
+        #{$prop}: map-find($dictionary, $device, $size) * $factor;
+      }
+      @if $device == tablet {
+        @include Tablet() {
+          #{$prop}: map-find($dictionary, $device, $size) * $factor;
+        }
+      }
+      @if $device == desktop {
+        @include Desktop() {
+          #{$prop}: map-find($dictionary, $device, $size) * $factor;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,82 @@
+@import "variables";
+
+//
+// Player icon tweaker
+//
+// use it on the vjs class you want to change icon's
+// It uses `webpack-icon-loader` under the hood, you pass a name of an icon
+// from the /assets/svgicons/.. folder and it will be inlined in css.
+//
+// -----------------------------------------------------------------------------
+@mixin Player-svgicon($name: $Player-big-play-button-icon) {
+  &:before {
+    font-icon: url("#{$SRC_SVGICONS}/#{$name}.svg");
+  }
+}
+
+//
+// Big play button scoped styler
+//
+// Example usage:
+// ```
+// @include Player-big-play-button((
+//   icon: "play-thin",
+//   color: Color(white),
+//   size: 112px,
+//   rounded: true,
+// ));
+// ```
+//
+// -----------------------------------------------------------------------------
+@mixin Player-big-play-button($opts: ()) {
+  $opts: withDefaults(
+    $opts,
+    (
+      icon: $Player-big-play-button-icon,
+      size: 6em,
+      rounded: true,
+      color: $Player-primary-fg,
+      bg: transparent,
+      bgHover: rgba(0, 0, 0, 0.2),
+    )
+  );
+
+  .vjs-big-play-button {
+    font-size: map-get($opts, size);
+    @if map-get($opts, icon) {
+      @include Player-svgicon(map-get($opts, icon));
+    }
+    @if map-get($opts, color) != $Player-primary-fg {
+      color: map-get($opts, color);
+    }
+
+    @if map-get($opts, rounded) {
+      &:before {
+        border-radius: 100%;
+      }
+    }
+    @if map-get($opts, bg) != transparent {
+      &:after {
+        content: "";
+        z-index: -1;
+        content: "";
+        width: 100%;
+        height: 100%;
+        display: inline-block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        transform: scale(0.6);
+        background: map-get($opts, bg);
+        @if map-get($opts, rounded) {
+          border-radius: 100%;
+        }
+      }
+    }
+  }
+
+  // .video-js:hover .vjs-big-play-button:before {
+  .vjs-big-play-button:hover:before {
+    box-shadow: inset 0 0 0 map-get($opts, size) map-get($opts, bgHover);
+  }
+}

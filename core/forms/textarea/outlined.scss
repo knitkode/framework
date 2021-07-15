@@ -1,0 +1,58 @@
+@import "../variant/outlined";
+
+.textarea {
+  @extend %formRoot--outlined;
+
+  .formBox {
+    @extend %formBox;
+  }
+
+  .formLabel {
+    @extend %formLabel--outlined;
+
+    ._middle {
+      align-self: flex-start;
+      // TODO: either fix it or delete it:
+      // // add an extra bit of border-top on the right hand side otherwise on
+      // // focus there will be too much space between the end of the label and
+      // // the beginning of the top right field border
+      // transform-origin: left center;
+      //
+      // &:after {
+      //   content: "";
+      //   display: block;
+      //   position: absolute;
+      //   top: 50%;
+      //   left: 130%; // don't show it now, just on focus/notempty
+      //   right: -30%; // a bit more than the scale down factor
+      //   height: $Forms-border-thickness;
+      //   margin-left: $Forms-padding-x;
+      //   margin-top: -(math.div($Forms-border-thickness, 2));
+      //   background: $Forms-color-border-focus;
+      //   // add a delay so the junction border won't be visible during the
+      //   // translate/scaling animation of the label
+      //   transition: left $Transition $Transition-duration * 0.9;
+      // }
+    }
+  }
+
+  .formUnderline {
+    @extend %formUnderline--outlined;
+  }
+
+  .formControl {
+    @extend %formControl--outlined;
+
+    // TODO: either fix it or delete it:
+    // &.notempty {
+    //   // add an extra bit of border-top on the right hand side
+    //   .formLabel--middle:after {
+    //     left: 100%;
+    //   }
+    // }
+  }
+
+  .formFeedback {
+    @extend %formFeedback;
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "name": "@knitkode/framework",
+  "private": true,
+  "author": "KnitKode <knitkode@gmail.com> (https://knitkode.github.io)",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:knitkode/framework.git"
+  },
+  "scripts": {
+    "postinstall": "npx lerna bootstrap && husky install",
+    "start": "npm run watch-docs",
+    "watch-docs": "cd docs && npm start",
+    "publish": "npx lerna publish",
+    "link": "npx lerna exec -- npm link && npx lerna exec -- rm -rf ./package-lock.json",
+    "clean": "npx lerna exec -- rm -rf ./package-lock.json",
+    "unlink": "npx lerna exec -- npm unlink",
+    "prettier": "prettier **/*.{js,json,ts,tsx,css,scss,md,yml,yaml,php} --write",
+    "docs:core:dom--readme": "npx documentation readme core/dom/index.ts --section API",
+    "docs:core:dom--doc": "npx documentation build core/dom/index.ts --output docs/docs/core/dom.md --format md --markdown-toc false",
+    "docs:core:dom": "npx docs:core:dom--readme && npx docs:core:dom--doc",
+    "docs:core": "npx documentation build core/**/*.{js,ts} --output docs/docs/core/API.md --format md --markdown-toc false",
+    "check:json": "node scripts/check.js",
+    "all:bump": "node scripts/bump.js",
+    "all:self-install": "pip install mu-repo",
+    "all:init": "mu set-var serial=1 && mu sh npx knitkode init",
+    "all:sync": "mu set-var serial=1 && mu checkout master && mu pull origin master",
+    "all:commit": "mu set-var serial=0 && mu commit -am '[skip ci] chore(framework-update)'",
+    "all:dev": "mu set-var serial=1 && mu push origin master",
+    "all:staging": "mu set-var serial=1 && mu checkout staging && mu merge master && mu push origin staging && mu checkout master",
+    "all:production": "mu set-var serial=1 && mu checkout production && mu merge master && mu push origin production && mu checkout master",
+    "all:upgrade": "npm run all:npm && npm run all:composer",
+    "all:npm-full": "mu set-var serial=1 && mu sh npm install --prefer-offline --no-audit --quiet",
+    "all:npm": "mu set-var serial=1 && mu sh npm install --prefer-offline --no-audit --quiet --package-lock-only --ignore-scripts",
+    "yes:composer": "npm run all:sync && npm run all:bump && npm run all:composer && npm run all:commit && npm run all:sync && npm run all:dev",
+    "yes": "npm run all:sync && npm run all:bump && npm run all:npm-full && npm run all:composer && npm run all:commit && npm run all:sync && npm run all:dev"
+  },
+  "workspaces": [
+    "components/*",
+    "core/*",
+    "workflow/*"
+  ],
+  "engines": {
+    "node": ">=10.13.0"
+  },
+  "devDependencies": {
+    "@prettier/plugin-php": "^0.17.2",
+    "@rollup/plugin-node-resolve": "^13.0.0",
+    "@rollup/plugin-sucrase": "^3.1.0",
+    "@rollup/plugin-typescript": "^8.2.1",
+    "documentation": "^13.2.5",
+    "edit-json-file": "^1.6.0",
+    "gh-pages": "^3.2.3",
+    "glob": "^7.1.7",
+    "husky": "^7.0.1",
+    "latest-version": "^5.1.0",
+    "lerna": "^4.0.0",
+    "lerna-changelog": "^1.0.1",
+    "lint-staged": "^11.0.1",
+    "prettier": "^2.3.2",
+    "rollup": "^2.53.2",
+    "rollup-plugin-scss": "^3.0.0",
+    "rollup-plugin-terser": "^7.0.2",
+    "tslib": "^2.3.0"
+  },
+  "lint-staged": {
+    "**/*.{js,json,ts,tsx,css,scss,md,yml,yaml,php}": "prettier --write"
+  },
+  "prettier": {
+    "overrides": [
+      {
+        "files": "*.php",
+        "options": {
+          "singleQuote": true
+        }
+      }
+    ]
+  }
+}

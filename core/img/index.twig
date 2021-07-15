@@ -1,0 +1,68 @@
+{%- set _hideProgress = immediate or (progress is defined and progress == false) -%}
+{%- set _fit = fit ? fit : 'cover' -%}
+
+{%- if simple -%}
+
+<img draggable="false" class="mediaSimple img fit-{{ _fit }}{% if not immediate and not manualLoad %} lazy{% endif %}{%- if classElement %} {{ classElement }}{% endif -%}"{{ ' ' -}}
+  style="
+    {%- if bgColor %}background-color:{{ bgColor }};{% endif -%}
+    {%- if fullMax %}width:100%;max-width:{{ width }}px;height:auto;
+    {%- elseif fullwidth %}width:100%;height:auto;
+    {%- elseif fixed %}width:{{ width }}px;max-width:100%;
+    {%- elseif width -%}max-width:{{ width }}px;height:auto;{% endif -%}
+    {{- styles -}}
+  "{{ ' ' -}}
+  alt="{{ alt }}"{{ ' ' -}}
+  src="{{ immediate ? img.src : 'data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==' }}"
+  {%- if img.src and not immediate %} data-src="{{- img.src -}}"{% endif -%}
+  {%- if width %} width="{{ width }}"{% endif -%}
+  {%- if height %} height="{{ height }}"{% endif -%}
+  {%- if manualLoad %} data-manual-src="{{ img.src }}"{% endif -%}
+  {%- if attrsElement %} {{ attrsElement | raw }}{% endif -%}
+>{# -#}
+
+{%- else -%}
+
+  <span class="media media--img{%- if classRoot %} {{ classRoot }}{% endif -%}"{{ ' ' -}}
+    style="
+      {%- if bgColor %}background-color:{{ bgColor }};{% endif -%}
+      {%- if fullMax %}width:100%;max-width:{{ width }}px;
+      {%- elseif fullwidth %}width:100%;
+      {%- elseif fixed %}width:{{ width }}px;max-width:100%;
+      {%- elseif width -%}max-width:{{ width }}px;{% endif -%}
+      {{- styles -}}
+    "{#- -#}
+    {%- if attrsRoot %} {{ attrsRoot | raw }}{% endif -%}
+  >{# -#}
+    <span class="mediaProportion" style="padding-top:{{ (height * 100) / width }}%"></span>{# -#}
+    <picture class="mediaCenterer">{# -#}
+      <noscript>{# -#}
+        <img draggable="false" class="mediaElement img fit-{{ _fit }}{%- if classElement %} {{ classElement }}{% endif -%}"{{ ' ' -}}
+          alt="{{ alt }}"
+          {%- if img.src %} src="{{ img.src }}"{% endif -%}
+          {%- if width %} width="{{ width }}"{% endif -%}
+          {%- if height %} height="{{ height }}"{% endif -%}
+          {%- if attrsElement %} {{ attrsElement | raw }}{% endif -%}
+        >{# -#}
+      </noscript>
+      {%- if img.hasWebp -%}
+      <source type="image/webp" {% if img.src %} data-srcset="{{- img.src | replace({ 'jpg': 'webp' }) | replace({ 'png': 'webp' }) | replace({ 'jpeg': 'webp' }) -}}"{% endif -%}>
+      {%- endif -%}
+      <img draggable="false" class="mediaElement img fit-{{ _fit }}{% if not immediate and not manualLoad %} lazy{% endif %}{%- if classElement %} {{ classElement }}{% endif -%}"{{ ' ' -}}
+        alt="{{ alt }}"{{ ' ' -}}
+        src="{{ immediate ? img.src : 'data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==' }}"
+        {%- if img.src and not immediate %} data-src="{{- img.src -}}"{% endif -%}
+        {% if width %} width="{{ width }}"{% endif -%}
+        {% if height %} height="{{ height }}"{% endif -%}
+        {% if attrsElement %} {{ attrsElement | raw }}{% endif -%}
+      >
+      {%- if not _hideProgress -%}
+        {% partial "progress/circular" center=true %}
+      {%- endif -%}
+      {%- if mask -%}
+        <canvas class="mediaMask"{% if attrsMask %} {{ attrsMask | raw }}{% endif -%}></canvas>
+      {%- endif -%}
+    </picture>{# -#}
+  </span>{# -#}
+
+{%- endif -%}

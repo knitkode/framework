@@ -1,0 +1,33 @@
+$Grid-classes: false !default;
+$Grid-gutter: 30px !default;
+$Grid-gutter-half: math.div($Grid-gutter, 2) !default;
+$Grid-gutter-double: $Grid-gutter * 2 !default;
+$Grid-columns: 12 !default;
+$Grid-row-columns: 6 !default;
+$Grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1260px,
+  // xxl: 1440px
+) !default;
+$Container-widths: (
+  // sm: 540px,
+  // md: 720px,
+  // lg: 960px,
+  xl: 1200px
+) !default;
+$Container-boxed-breakpoint: getLastKey($Container-widths) !default;
+
+@include _assert-ascending($Grid-breakpoints, "$Grid-breakpoints");
+@include _assert-starts-at-zero($Grid-breakpoints, "$Grid-breakpoints");
+@include _assert-ascending($Container-widths, "$Container-widths");
+
+// map custom variables to bootstrap' needed ones, no override allowed here
+$enable-grid-classes: $Grid-classes;
+$grid-gutter-width: $Grid-gutter;
+$grid-breakpoints: $Grid-breakpoints;
+$grid-columns: $Grid-columns;
+$grid-row-columns: $Grid-row-columns;
+$container-max-widths: $Container-widths;

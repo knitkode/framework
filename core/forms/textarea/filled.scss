@@ -1,0 +1,25 @@
+@import "../variant/filled";
+
+.textarea {
+  @extend %formRoot--filled;
+
+  .formBox {
+    @extend %formBox;
+  }
+
+  .formUnderline {
+    @extend %formUnderline--filled;
+  }
+
+  .formLabel {
+    @extend %formLabel--filled;
+  }
+
+  .formControl {
+    @extend %formControl--filled;
+  }
+
+  .formFeedback {
+    @extend %formFeedback;
+  }
+}

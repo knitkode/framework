@@ -1,0 +1,13 @@
+@import "../variant/minimal";
+
+.file {
+  @extend %file;
+
+  .fileName {
+    font-size: 0.8em;
+
+    &:not(:empty) {
+      margin-left: 1em;
+    }
+  }
+}

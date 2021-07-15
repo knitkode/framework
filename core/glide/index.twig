@@ -1,0 +1,21 @@
+<div class="glide">
+  <div data-glide-el="controls">
+    <button class="glide-prev" data-glide-dir="<"></button>
+    <button class="glide-next" data-glide-dir=">"></button>
+  </div>
+  <div class="glide__track" data-glide-el="track">
+    <ul class="glide__slides">
+      {% for slide in slides %}
+        <li class="glide__slide">
+        
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+  <div class="glide__bullets" data-glide-el="controls[nav]">
+    {% for slide in slider %}
+      <button class="glide__bullet" data-glide-dir="={{ loop.index - 1 }}">
+      </button>
+    {% endfor %}
+  </div>
+</div>

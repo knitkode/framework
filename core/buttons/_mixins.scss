@@ -1,0 +1,38 @@
+// Button reset
+//
+// Resets the default browser's `<button>` element styling
+//
+// -----------------------------------------------------------------------------
+@mixin Buttons-reset() {
+  display: inline-block;
+  vertical-align: middle;
+  user-select: none;
+  text-decoration: none;
+  -webkit-appearance: none;
+  border-radius: $Buttons-border-radius;
+}
+
+//
+// Button base
+//
+// Apply a default button styling based on the `$Buttons-` SCSS variables
+// globally set. This is usually just used on a global `.btn` class name but it
+// can be reused in other circumstances
+//
+// -----------------------------------------------------------------------------
+@mixin Buttons-base() {
+  @include Buttons-reset();
+  padding: $Buttons-padding-y $Buttons-padding-x;
+  border: $Buttons-border-thickness solid $Buttons-border-color;
+  font-family: $Buttons-font-family;
+  font-weight: $Buttons-font-weight;
+  @if $Buttons-font-size != inherit {
+    font-size: $Buttons-font-size;
+  }
+  @if $Buttons-text-transform != none {
+    text-transform: $Buttons-text-transform;
+  }
+  &:not([disabled]) {
+    cursor: pointer;
+  }
+}

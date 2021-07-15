@@ -1,0 +1,53 @@
+@if $Typography-enable-responsive-p {
+  p,
+  .p {
+    @include Spacing-bottom(sm, 1, margin);
+  }
+}
+
+// taken from "bootstrap/type"
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  // @extend %heading;
+  margin-bottom: $Typography-headings-margin-bottom;
+  font-family: $Typography-headings-font-family;
+  font-weight: $Typography-headings-font-weight;
+  line-height: $Typography-headings-line-height;
+  color: $Color-headings;
+}
+
+// taken from "bootstrap/type"
+h1,
+.h1 {
+  @include font-size($Typography-font-size-h1);
+}
+h2,
+.h2 {
+  @include font-size($Typography-font-size-h2);
+}
+h3,
+.h3 {
+  @include font-size($Typography-font-size-h3);
+}
+h4,
+.h4 {
+  @include font-size($Typography-font-size-h4);
+}
+h5,
+.h5 {
+  @include font-size($Typography-font-size-h5);
+}
+h6,
+.h6 {
+  @include font-size($Typography-font-size-h6);
+}

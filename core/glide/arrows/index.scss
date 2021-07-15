@@ -1,0 +1,56 @@
+// TODO: arrow as custom svg icon
+// @import "../variables";
+// @import "../mixins";
+
+.glide {
+  &__arrow {
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    opacity: $Glide-opacity;
+    display: block;
+    padding: 0;
+    border: none;
+    outline: none;
+    font-size: 0;
+    color: transparent;
+    cursor: pointer;
+    width: $Glide__arrow-size;
+    background-color: transparent;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: $Glide__arrow-icon-size;
+
+    &:hover,
+    &:focus {
+      outline: none;
+      color: transparent;
+      opacity: $Glide-opacity--hover;
+    }
+
+    &.is-disabled {
+      opacity: $Glide-opacity--disabled;
+    }
+
+    &.is-prev {
+      @include Glide-arrow(180);
+
+      left: $Glide__arrow-spacer-x;
+      [dir="rtl"] & {
+        left: auto;
+        right: $Glide__arrow-spacer-x;
+      }
+    }
+
+    &.is-next {
+      right: $Glide__arrow-spacer-x;
+      @include Glide-arrow(0);
+
+      [dir="rtl"] & {
+        left: $Glide__arrow-spacer-x;
+        right: auto;
+      }
+    }
+  }
+}

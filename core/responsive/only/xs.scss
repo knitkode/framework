@@ -1,0 +1,8 @@
+.only\: {
+  // an alias for only:down:sm
+  &xs\: {
+    @include Up(sm) {
+      display: none !important;
+    }
+  }
+}

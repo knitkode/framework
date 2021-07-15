@@ -1,0 +1,19 @@
+<div class="checkbox formRoot{% if classRoot %} {{ classRoot }}{% endif %}{% if error %} invalid{% endif %}">{# -#}
+  <div class="formToggle">{# -#}
+    <input{{ ' ' -}}
+      class="formControl{% if classElement %} {{ classElement }}{% endif %}"{{ ' ' -}}
+      type="{{ type|default('checkbox')}}"{{ ' ' -}}
+      id="{{ id|default('input-'~name) }}"{{ ' ' -}}
+      name="{{ name }}"
+      {%- if value %} value="{{ value }}"{% endif -%}
+      {%- if valueTrue %} data-value-true="{{ valueTrue }}"{% endif -%}
+      {%- if required %} required{% endif -%}
+      {%- if attrs %} {{ attrs | raw }}{% endif -%}
+    >{# -#}
+    <label class="label" for="{{ id|default('input-'~name) }}">{# -#}
+      <dfn class="dfn"></dfn>{# -#}
+      <span class="formToggleLabel checkboxLabel">{{ label | raw }}</span>{# -#}
+    </label>{# -#}
+  </div>
+  {%- if error %}<div class="formFeedback">{{ error }}</div>{% endif -%}
+</div>{# -#}

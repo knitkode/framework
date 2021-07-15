@@ -1,0 +1,67 @@
+//
+// @file Ratio mixins
+//
+// Controls the aspect ratio of elements
+//
+
+//
+// Ratio
+//
+// Basic caluclation applied to padding-top, which is the usual property in
+// charge of keeping an aspect ratio.
+// -----------------------------------------------------------------------------
+@mixin Ratio($width, $height) {
+  padding-top: math.div($height, $width) * 100%;
+}
+
+//
+// Fixed ratio
+//
+// Lock the current selector to a fixed ratio height. Its content is supposed
+// to be absolutely positioned inside it.
+// -----------------------------------------------------------------------------
+@mixin Ratio-fixed($width, $height) {
+  &:before {
+    content: "";
+    display: block;
+    width: 100%;
+    padding-top: math.div($height, $width) * 100%;
+  }
+}
+
+//
+// Minimum ratio
+//
+// Helps keeping a container to a minimum height in respect to its width, but
+// let the inner elements grow the container if they need space. This creates
+// a sort of thin invisible stripe on the left that mantains a minimum aspect
+// ratio
+// -----------------------------------------------------------------------------
+@mixin Ratio-min($width, $height) {
+  &:before {
+    content: "";
+    display: block;
+    width: 1px;
+    float: left;
+    padding-top: math.div($height, $width) * 100%;
+  }
+}
+
+//
+// Ratio structure
+//
+// Shortcut to create a structural fixed ratio with a content contained in it
+// -----------------------------------------------------------------------------
+@mixin Ratio-structure($width, $height, $innerSelector: "> .content") {
+  position: relative;
+
+  @include Ratio($width, $height);
+
+  #{$innerSelector} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+}

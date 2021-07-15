@@ -1,0 +1,46 @@
+//
+// Zacc reset head
+//
+// It resets the style applied by zacc on elements with attribute `[zacc-head]`.
+// Used in situations where the accordion is meant to apply only on certain
+// screen sizes and resets on others
+//
+// -----------------------------------------------------------------------------
+@mixin Zacc-reset-head() {
+  pointer-events: none;
+  cursor: default;
+  .icon {
+    display: none;
+  }
+}
+
+//
+// Zacc reset wrap
+//
+// It resets the style applied by zacc on elements with attribute `[zacc-wrap]`.
+// Used in situations where the accordion is meant to apply only on certain
+// screen sizes and resets on others
+//
+// -----------------------------------------------------------------------------
+@mixin Zacc-reset-wrap($display: block) {
+  display: $display !important;
+  max-height: none !important;
+  overflow: visible !important;
+}
+
+//
+// Zacc destroy wrap
+//
+// It resets the style applied by zacc on elements with attribute `[zacc-wrap]`.
+// Used in situations where the accordion is meant to apply only on certain
+// screen sizes and resets on others
+//
+// -----------------------------------------------------------------------------
+@mixin Zacc-destroy-wrap($display: block) {
+  @include Zacc-reset-wrap($display);
+
+  [data-zacc-body] {
+    margin-top: unset !important;
+    transition: none !important;
+  }
+}

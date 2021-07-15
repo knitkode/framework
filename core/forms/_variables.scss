@@ -1,0 +1,97 @@
+// generic
+// -----------------------------------------------------------------------------
+$Forms-bg: transparent !default;
+$Forms-spacer-y: 30px !default;
+$Forms-padding: 10px !default;
+$Forms-padding-y: $Forms-padding !default;
+$Forms-padding-x: $Forms-padding !default;
+$Forms-border-thickness: 1px !default;
+$Forms-border-thickness-focus: $Forms-border-thickness * 2 !default;
+$Forms-border-radius: 0 !default;
+$Forms-color: $Color-body !default;
+$Forms-color-placeholder: $Forms-color !default;
+$Forms-color-border: $Forms-color !default;
+$Forms-color-border-focus: $Forms-color !default;
+$Forms-color-label: $Forms-color !default;
+$Forms-label-spacer-bottom: math.div($Forms-spacer-y, 3) !default;
+$Forms-font-size: inherit !default;
+$Forms-label-font-size: inherit !default;
+$Forms-disabled-state: false !default;
+$Forms-disabled-bg: transparent !default;
+$Forms-disabled-opacity: 0.7 !default;
+$Forms-disabled-opacity-label: 0.5 !default;
+
+// formGroup
+// -----------------------------------------------------------------------------
+$FormsGroup-padding-x: 0 !default;
+
+// select form fields
+// -----------------------------------------------------------------------------
+$FormSelect-arrow-color: $Forms-color !default;
+$FormSelect-arrow-width: 12px !default;
+$FormSelect-arrow-height: $FormSelect-arrow-width !default;
+// $FormSelect-arrow-image: "viewBox='0 0 24 24'><path fill='#{$FormSelect-arrow-color}' d='M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z'" !default;
+$FormSelect-arrow-image: "viewBox='0 0 384 768'><path fill='#{$FormSelect-arrow-color}' d='M45 274.5l147 147 147-147 45 45-192 192-192-192z'" !default;
+
+// formToggle (both radio and checkbox defaults) some variables are here just to
+// be used more meaningfully, e.g. I need to override cookiBot checkox, I use
+// these variable names instead of the generic $Form ones. Consider that the
+// actual visible size is increased if $FormToggle-use-shadow-for-border is true
+// -----------------------------------------------------------------------------
+$FormToggle-size: 18px !default;
+$FormToggle-bg: $Forms-bg !default;
+$FormToggle-color: $Forms-color-label !default;
+$FormToggle-border-color: $Forms-color-border !default;
+$FormToggle-border-thickness: $Forms-border-thickness !default;
+$FormToggle-border-thickness-focus: $Forms-border-thickness-focus !default;
+$FormToggle-border-radius: $Forms-border-radius !default;
+$FormToggle-border-color-focus: $Forms-color-border-focus !default;
+$FormToggle-checked-bg: $Forms-color-border-focus !default;
+$FormToggle-checked-color: $Forms-color !default;
+$FormToggle-checked-border: $FormToggle-border-color !default;
+$FormToggle-checked-bg-image--use-rounded: false !default;
+$FormToggle-checked-bg-image: "viewBox='0 0 24 24'><path fill='#{$FormToggle-checked-color}' d='M9 16.172l10.594-10.594 1.406 1.406-12 12-5.578-5.578 1.406-1.406z'" !default;
+$FormToggle-checked-bg-image--rounded: "viewBox='0 0 24 24'><path fill='#{$FormToggle-checked-color}' d='m21 6.285l-11.16 12.733-6.84-6.018 1.319-1.49 5.341 4.686 9.865-11.196 1.475 1.285z'" !default;
+$FormToggle-disabled-bg: #ececec !default;
+$FormToggle-disabled-opacity: 0.5 !default;
+$FormToggle-line-height: $Typography-line-height !default;
+$FormToggle-label-gutter-x: $Forms-padding-x !default;
+$FormToggle-top: 8 !default;
+$FormToggle-top-offset: 0 !default; // calc((0% - (100% - 1em)) - #{$FormToggle-top * 1%});
+$FormToggle-use-shadow-for-border: true !default;
+
+// checkbox and radio: allow to override some values for them
+// -----------------------------------------------------------------------------
+$Checkbox-checked-bg-image: $FormToggle-checked-bg-image !default;
+$Radio-checked-bg-image: $FormToggle-checked-bg-image !default;
+$Radio-value-label-padding-y: 6px !default;
+$Radio-value-label-padding-x: $Forms-padding-x !default;
+$Radio-border-thickness: $FormToggle-border-thickness !default;
+$Radio-rounded: false !default;
+$Radio-circle-margin: 2px !default;
+
+// validation
+// -----------------------------------------------------------------------------
+$Forms-validation: true !default;
+$Forms-validation-valid-feedback: false !default;
+$Forms-valid-color: $Forms-color !default;
+$Forms-invalid-color: #9d0b0b !default;
+$Forms-invalid-color-placeholder: $Forms-invalid-color !default;
+$Forms-invalid-color-border: $Forms-invalid-color !default;
+$Forms-invalid-color-label: $Forms-invalid-color !default;
+$Forms-valid-color: $Forms-color !default;
+$Forms-valid-color-border: green !default;
+$Forms-valid-color-icon: $Forms-valid-color-border !default;
+$Forms-validation-icons: false !default;
+$Forms-validation-icon-width: $Typography-font-size !default;
+$Forms-validation-icon-gutter-x: $Forms-padding !default;
+$Forms-validation-icon-invalid: "viewBox='0 0 24 24'><path fill='#{$Forms-invalid-color}' d='M 1.7050781 0 A 1.7043643 1.7056021 0 0 0 0.51953125 2.9316406 L 9.5898438 12.009766 L 0.51953125 21.087891 A 1.7045802 1.7058181 0 1 0 2.9296875 23.5 L 12 14.421875 L 21.072266 23.5 A 1.7045802 1.7058181 0 1 0 23.482422 21.087891 L 14.412109 12.009766 L 23.482422 2.9316406 A 1.7043643 1.7056021 0 0 0 22.244141 0.001953125 A 1.7043643 1.7056021 0 0 0 21.072266 0.51757812 L 12 9.5957031 L 2.9296875 0.51757812 A 1.7043643 1.7056021 0 0 0 1.7050781 0 z'" !default;
+$Forms-validation-icon-valid: "viewBox='0 0 14 14'><path fill='#{$Forms-valid-color}' d='M4.755 11.012l-4.55-4.55a.7.7 0 0 1 0-.99l.99-.99a.7.7 0 0 1 .99 0L5.25 7.547 11.815.982a.7.7 0 0 1 .99 0l.99.99a.7.7 0 0 1 0 .99l-8.05 8.05a.7.7 0 0 1-.99 0z'" !default;
+
+// formLabel extra
+// -----------------------------------------------------------------------------
+$FormsLabel-hint-color: #999 !default;
+
+// formIcon
+// -----------------------------------------------------------------------------
+$FormsIcon-size: 28px !default;

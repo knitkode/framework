@@ -1,0 +1,307 @@
+@import "bootstrap/mixins/breakpoints";
+@import "bootstrap/mixins/grid";
+@import "bootstrap/mixins/grid-framework";
+
+// placeholders for optimizations:
+%Row {
+  @include make-row();
+}
+
+%Col {
+  @include make-col-ready();
+}
+
+%ColNoGutter {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+//
+// Row
+//
+// Simple replacement mixin for bootstrap row class, it follows the same syntax:
+//
+// .row => @include Row()
+//
+// The .row class is any case available importing this grid as its small
+// footprint. This mixin might come handy anyway.
+//
+// -----------------------------------------------------------------------------
+@mixin Row() {
+  @include make-row();
+}
+
+//
+// Col
+//
+// Replacement mixin for bootstrap columns classes, it follows the same syntax:
+//
+// .col => @include Col()
+// .col-8 => @include Col(8)
+// .col-md-6 => @include Col(md, 6)
+// .col-lg-auto => @include Col(md, 6, auto)
+//
+// It also allows for a fourth boolean argument to undo the column padding:
+// @include Col(xl, 8, false)
+//
+// Last, it allows for a fifth argument to change the @media query from the
+// default `up` to `down` or `between`. The use of this is discouraged as it
+// might be not very clear the result.
+// @include Col(xl, 8, true, down)
+//
+// -----------------------------------------------------------------------------
+@mixin Col(
+  $breakpoint: "none",
+  $number: $Grid-columns,
+  $gutter: true,
+  $query: up
+) {
+  @extend %Col;
+  @if type-of($breakpoint) != number {
+  }
+
+  @if not $gutter {
+    @extend %ColNoGutter;
+  }
+
+  // if no breakpoint or number is passed we default to same as `.col`,
+  // called with the mixin @include Col(), no sub mixins needs to be used
+  @if $breakpoint == "none" {
+  }
+  // as `.col-auto` for "media-query-less" columns with @include Col(auto)
+  @else if $breakpoint == auto {
+    @include make-col-auto();
+  }
+  // as `.col-6` for "media-query-less" columns
+  @else if type-of($breakpoint) == number {
+    @include make-col($breakpoint);
+  }
+  // as `.col-md-6` for "media-queried" columns
+  @else if $query == up {
+    @include media-breakpoint-up($breakpoint) {
+      // as `.col-auto` for "media-queryied" columns
+      @if $number == auto {
+        @include make-col-auto();
+      } @else {
+        @include make-col($number);
+      }
+    }
+  } @else if $query == down {
+    @include media-breakpoint-down($breakpoint) {
+      // as `.col-auto` for "media-queryied" columns
+      @if $number == auto {
+        @include make-col-auto();
+      } @else {
+        @include make-col($number);
+      }
+    }
+  } @else if $query == between {
+    @include media-breakpoint-between($breakpoint) {
+      // as `.col-auto` for "media-queryied" columns
+      @if $number == auto {
+        @include make-col-auto();
+      } @else {
+        @include make-col($number);
+      }
+    }
+  }
+}
+
+//
+// Offset
+//
+// Replacement mixin for bootstrap offset classes, it follows the same syntax:
+//
+// .offset-8 => @include Offseet(8)
+// .offset-md-6 => @include Offseet(md, 6)
+//
+// Last, it allows for a fifth argument to change the @media query from the
+// default `up` to `down` or `between`. The use of this is discouraged as it
+// might be not very clear the result.
+// @include Offset(xl, 8, down)
+//
+// Note:
+// there must be some kind of bug with offseted cols, their padding does
+// not account for the padding of the cols offseted. So we try here to add a
+// dynamic" padding on the left based on the number of columns offseted
+//
+// -----------------------------------------------------------------------------
+@mixin Offset(
+  $breakpoint,
+  $number: $Grid-columns,
+  $query: up,
+  $compensate-gutter: false
+) {
+  @if type-of($breakpoint) == number {
+    $number: $breakpoint;
+  }
+
+  // as `.offset-6` for "media-query-less" offsets
+  @if type-of($breakpoint) == number {
+    @include make-col-offset($breakpoint);
+    @if $compensate-gutter {
+      padding-left: $paddingLeft;
+    }
+  } @else if $query == up {
+    @include media-breakpoint-up($breakpoint) {
+      @include make-col-offset($number);
+      @if $compensate-gutter {
+        padding-left: $paddingLeft;
+      }
+    }
+  } @else if $query == down {
+    @include media-breakpoint-down($breakpoint) {
+      @include make-col-offset($number);
+      @if $compensate-gutter {
+        padding-left: $paddingLeft;
+      }
+    }
+  } @else if $query == between {
+    @include media-breakpoint-between($breakpoint) {
+      @include make-col-offset($number);
+      @if $compensate-gutter {
+        padding-left: $paddingLeft;
+      }
+    }
+  } @else if $compensate-gutter {
+    $paddingLeft: ($Grid-gutter-half * $number) + $Grid-gutter-half;
+  }
+}
+
+//
+// Container
+//
+// Alias for bootstrap-like class .container{-xxl|xl|md|ecc.} You can pass a
+// custom gutter or it defaults to the global `$Grid-gutter`
+//
+// -----------------------------------------------------------------------------
+@mixin Container($breakpointOrValue, $gutter: $Grid-gutter) {
+  $maxWidth: map-get($Container-widths, $breakpointOrValue);
+
+  @if not $maxWidth {
+    $maxWidth: $breakpointOrValue;
+  }
+
+  max-width: $maxWidth;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: math.div($gutter, 2);
+  padding-right: math.div($gutter, 2);
+}
+
+//
+// Container-max
+//
+// Sets the max width to the given value, either a size value (px, %, em, etc.)
+// or a breakpoint specified in the SASS map $Container-widths (by default it
+// contains only the `xl` container)
+//
+// -----------------------------------------------------------------------------
+@mixin Container-max($breakpointOrValue) {
+  $maxWidth: map-get($Container-widths, $breakpointOrValue);
+
+  @if not $maxWidth {
+    $maxWidth: $breakpointOrValue;
+  }
+
+  max-width: $maxWidth;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+//
+// Container-eager
+//
+// It expands a container till the edges, remove the padding until it becomes
+// boxed, at the breakpoint specified it will re-get its lateral padding without
+// loosing the alignment with the rest of the grid.
+// This mixin is useful for images that expand until a maximum width on large
+// screens while being fullwidth to the edges on screens smaller than the
+// targeted element.
+//
+// -----------------------------------------------------------------------------
+@mixin Container-eager($breakpointOrValue) {
+  $breakpoint: map-get($Container-widths, $breakpointOrValue);
+
+  padding-left: 0;
+  padding-right: 0;
+
+  @if $breakpoint {
+    @media (min-width: $breakpoint - $Grid-gutter) {
+      padding-left: $Grid-gutter-half;
+      padding-right: $Grid-gutter-half;
+    }
+  } @else {
+    @media (min-width: $breakpointOrValue + $Grid-gutter) {
+      padding-left: $Grid-gutter-half;
+      padding-right: $Grid-gutter-half;
+    }
+  }
+}
+
+//
+// Container fullwidth
+//
+// Simply undoes the usual container negative margins
+//
+// -----------------------------------------------------------------------------
+@mixin Container-fullwidth() {
+  margin-left: -$Grid-gutter-half;
+  margin-right: -$Grid-gutter-half;
+}
+
+//
+// Container gutter
+//
+// Allows to tweak the scoped grid gutter. It must be use from a container
+// selector and it needs a common selector for all descendant columns.
+//
+// @example:
+// ```
+// .module\:container {
+//   @include Up(md) {
+//     @include Container-gutter($Grid-gutter-double, ".module\\:row", ".module\\:col")
+//   }
+// }
+//```
+//
+// -----------------------------------------------------------------------------
+@mixin Container-gutter($gutter, $row-selector: ".row", $col-selector: "> *") {
+  padding-left: math.div($gutter, 2);
+  padding-right: math.div($gutter, 2);
+
+  #{$row-selector} {
+    margin-left: -(math.div($gutter, 2));
+    margin-right: -(math.div($gutter, 2));
+  }
+  #{$col-selector} {
+    padding-left: math.div($gutter, 2);
+    padding-right: math.div($gutter, 2);
+  }
+}
+
+//
+// Row gutter
+//
+// Allows to tweak the scoped grid gutter. It must be use from a .row|%Row
+// selector and it needs a common selector for all descendant columns.
+//
+// @example:
+// ```
+// .module\:row {
+//   @include Up(md) {
+//     @include Row-gutter($Grid-gutter-double, ".module\\:col")
+//   }
+// }
+//```
+//
+// -----------------------------------------------------------------------------
+@mixin Row-gutter($gutter, $col-selector: "> *") {
+  margin-left: -(math.div($gutter, 2));
+  margin-right: -(math.div($gutter, 2));
+
+  #{$col-selector} {
+    padding-left: math.div($gutter, 2);
+    padding-right: math.div($gutter, 2);
+  }
+}

@@ -1,0 +1,15 @@
+$Zindex-Dialog: $Header-zindex + 1 !default;
+$Dialog-backdrop-bg: rgba(0, 0, 0, 0.5) !default;
+$Dialog-margin-y: $Grid-gutter !default;
+$Dialog-margin-x: $Grid-gutter-half !default;
+$Dialog-gutter-y: $Grid-gutter !default;
+$Dialog-gutter-x: $Grid-gutter-half !default;
+$Dialog-border-radius: $Border-radius !default;
+$Dialog-max-width: getLastValue($Container-widths) !default;
+$Dialog-bg: $Color-body-bg !default;
+$Dialog-box-shadow: 0 7px 20px 10px rgba(0, 0, 0, 0.2) !default;
+$Dialog-close-size: 30px !default;
+$Dialog-close-bg: transparent !default;
+$Dialog-close-color: inherit !default;
+$Dialog-close-bg--hover: $Dialog-close-bg !default;
+$Dialog-close-color--hover: $Dialog-close-color !default;

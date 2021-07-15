@@ -1,0 +1,35 @@
+//
+// @fileOverview
+//
+// Everything in this is always available in the global scope (using
+// `sass-resource-loader` in webpack). Note that here the order matters.
+//
+
+// Vendor mixins
+// -----------------------------------------------------------------------------
+// // $enable-responsive-font-sizes: true !default;
+// @import "vendor/rfs";
+// // $enable-deprecation-messages: false !default;
+// @import "vendor/sass-rem";
+
+// // Utils and Components mixins to make always available
+// // -----------------------------------------------------------------------------
+// @import "@knitkode/core-grid/mixins";
+// @import "@knitkode/core-responsive/mixins";
+// @import "@knitkode/core-typography/mixins";
+// @import "@knitkode/core-forms/mixins";
+// @import "@knitkode/core-media/mixins";
+// @import "@knitkode/core-buttons/mixins";
+// @import "@knitkode/core-dialog/mixins";
+
+// // Base common mixins to make always available
+// // -----------------------------------------------------------------------------
+// @import "mixins/fonts";
+// @import "mixins/overlay";
+// @import "mixins/ratio";
+// @import "mixins/spacing";
+// @import "mixins/svg";
+
+// // custom mixins import, not every project need them:
+// @import "@knitkode/core-glide/mixins";
+// @import "@knitkode/components-header/mixins";

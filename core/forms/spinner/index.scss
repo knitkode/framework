@@ -1,0 +1,74 @@
+@import "../variant/common";
+
+// spinner variables
+// -----------------------------------------------------------------------------
+$Spinner-padding-y: $Forms-padding-y !default;
+$Spinner-padding-x: math.div($Forms-padding-x, 2) !default;
+$Spinner-border-thickness: $FormToggle-border-thickness !default;
+$Spinner-border-color: $FormToggle-border-color !default;
+$Spinner-border-radius: $FormToggle-border-radius !default;
+$Spinner__control-width: 3em !default;
+$Spinner__btn-padding-x: $Forms-padding-x !default;
+$Spinner__btn-font-size: 2em !default;
+$Spinner__btn-min-width: 1.5em !default;
+$Spinner__btn-hover-bg: rgba(0, 0, 0, 0.05) !default;
+$Spinner__btn-hover-color: $Forms-color-border-focus !default;
+$Spinner__btn-hover-border-color: $Spinner__btn-hover-color !default;
+$Spinner__btn-disabled-color: rgba(0, 0, 0, 0.5) !default;
+
+.spinner {
+  &Wrap {
+    display: flex;
+  }
+
+  &Control {
+    @extend %formControl;
+    width: $Spinner__control-width;
+    padding: $Spinner-padding-y $Spinner-padding-x;
+    border: $Spinner-border-thickness solid $Spinner-border-color;
+    border-width: $Spinner-border-thickness 0;
+    border-radius: 0;
+    text-align: center;
+  }
+
+  &Btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: $Spinner__btn-min-width;
+    min-height: 100%;
+    border: $Spinner-border-thickness solid $Spinner-border-color;
+    font-size: $Spinner__btn-font-size;
+    user-select: none;
+
+    &.is-disabled {
+      @if $Spinner__btn-disabled-color != 1 {
+        color: $Spinner__btn-disabled-color;
+      }
+    }
+
+    &:not(.is-disabled) {
+      cursor: pointer;
+
+      &:hover {
+        background: $Spinner__btn-hover-bg;
+        color: $Spinner__btn-hover-color;
+        border-color: $Spinner__btn-hover-border-color;
+      }
+    }
+  }
+
+  &Inc {
+    @if $Spinner-border-radius {
+      border-top-right-radius: $Spinner-border-radius;
+      border-bottom-right-radius: $Spinner-border-radius;
+    }
+  }
+
+  &Dec {
+    @if $Spinner-border-radius {
+      border-top-left-radius: $Spinner-border-radius;
+      border-bottom-left-radius: $Spinner-border-radius;
+    }
+  }
+}

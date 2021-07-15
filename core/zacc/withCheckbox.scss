@@ -1,0 +1,11 @@
+// no-js support, maybe too convoluted selector
+[data-zacc-init="false"] {
+  > [data-zacc-input]:not(:checked) ~ [data-zacc-wrap] {
+    display: none;
+  }
+}
+
+// icon rotation
+[data-zacc-input]:checked ~ [data-zacc-head] .icon {
+  transform: rotate(180deg);
+}

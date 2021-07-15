@@ -1,0 +1,25 @@
+.formGroup {
+  display: flex;
+  align-items: center;
+  margin-bottom: $Forms-spacer-y;
+
+  &__prepend {
+    @if ($FormsGroup-padding-x) {
+      margin-right: $FormsGroup-padding-x;
+    }
+  }
+
+  &__main {
+    flex: 1;
+
+    .formRoot {
+      margin: 0;
+    }
+  }
+
+  &__append {
+    @if ($FormsGroup-padding-x) {
+      margin-left: $FormsGroup-padding-x;
+    }
+  }
+}

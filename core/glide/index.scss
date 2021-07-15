@@ -1,0 +1,83 @@
+// @import "variables";
+// @import "mixins";
+// don't import it, just copy the basic style and tweak it here below
+// @import "@glidejs/glide/src/assets/sass/glide.core";
+
+.glide {
+  position: relative;
+  width: 100%;
+
+  &__track {
+    overflow: hidden;
+
+    &.is-dragging {
+      user-select: none;
+    }
+  }
+
+  &__slides {
+    position: relative;
+    width: 100%;
+    list-style: none;
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+    touch-action: pan-Y;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    white-space: nowrap;
+    display: flex;
+    flex-wrap: nowrap;
+    will-change: transform;
+  }
+
+  &__slide {
+    width: 100%;
+    height: 100%;
+    flex-shrink: 0;
+    white-space: normal;
+    -webkit-touch-callout: none;
+    -webkit-tap-highlight-color: transparent;
+    // usually this class is on a `<ul>`, reset its margin
+    margin: 0;
+
+    a {
+      user-select: none;
+    }
+  }
+
+  &__arrows {
+    -webkit-touch-callout: none;
+    user-select: none;
+  }
+
+  &__bullets {
+    -webkit-touch-callout: none;
+    user-select: none;
+  }
+
+  &--rtl {
+    direction: rtl;
+  }
+
+  &--swipeable {
+    .glide__track {
+      cursor: grab;
+    }
+  }
+
+  &--mounted {
+    .glide__slide {
+      user-select: none;
+    }
+    .glide__controls {
+      visibility: visible;
+      pointer-events: all;
+    }
+  }
+
+  &__controls {
+    visibility: hidden;
+    pointer-events: none;
+  }
+}

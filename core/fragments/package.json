@@ -1,0 +1,20 @@
+{
+  "name": "@knitkode/core-fragments",
+  "version": "0.0.37",
+  "author": "KnitKode <knitkode@gmail.com> (https://knitkode.github.io)",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:knitkode/framework.git",
+    "directory": "core/fragments"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@knitkode/core-ajax": "file:../ajax",
+    "@knitkode/core-dom": "file:../dom",
+    "@knitkode/core-progress": "file:../progress"
+  },
+  "sideEffects": false
+}

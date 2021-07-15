@@ -1,0 +1,15 @@
+{
+  "name": "@knitkode/core-seo",
+  "version": "0.1.3",
+  "author": "KnitKode <knitkode@gmail.com> (https://knitkode.github.io)",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:knitkode/framework.git",
+    "directory": "core/seo"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "sideEffects": false
+}

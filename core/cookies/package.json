@@ -1,0 +1,22 @@
+{
+  "name": "@knitkode/core-cookies",
+  "version": "0.0.55",
+  "author": "KnitKode <knitkode@gmail.com> (https://knitkode.github.io)",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:knitkode/framework.git",
+    "directory": "core/cookies"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@knitkode/core-dom": "file:../dom",
+    "@knitkode/core-helpers": "file:../helpers"
+  },
+  "sideEffects": [
+    "**/*.scss",
+    "cookiebot/**"
+  ]
+}

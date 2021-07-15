@@ -1,0 +1,68 @@
+$Aos-enable-custom-delay: true !default;
+$Aos-enable-custom-duration: false !default;
+$Aos-attr: "aos" !default;
+$Aos-class-visible: "is-in" !default;
+$Aos-factor-min: 1 !default;
+$Aos-factor-max: 20 !default;
+$Aos-factor-step: 100 !default;
+
+// AOS: wrap all your AOS animations within this mixin!
+// -----------------------------------------------------------------------------
+@mixin Aos-init() {
+  @media screen {
+    html:not(.no-js) {
+      @content;
+    }
+  }
+}
+
+// AOS: reusable shortcut mixin
+// -----------------------------------------------------------------------------
+@mixin Aos-animation($name: "", $attr: $Aos-attr) {
+  [data-#{$attr}="#{$name}"] {
+    @content;
+  }
+}
+
+// AOS: visible
+// -----------------------------------------------------------------------------
+@mixin Aos-visible() {
+  &.#{$Aos-class-visible} {
+    @content;
+  }
+}
+
+// Animation: base duration/delay attribute styling (from AOS)
+// -----------------------------------------------------------------------------
+@if $Aos-enable-custom-duration or $Aos-enable-custom-delay {
+  [data-#{$Aos-attr}] {
+    @for $i from $Aos-factor-min through $Aos-factor-max {
+      @if $Aos-enable-custom-duration {
+        body[data-#{$Aos-attr}-duration="#{$i * $Aos-factor-step}"] &,
+        &[data-#{$Aos-attr}][data-#{$Aos-attr}-duration="#{$i * $Aos-factor-step}"] {
+          transition-duration: #{$i * $Aos-factor-step}ms;
+        }
+      }
+
+      @if $Aos-enable-custom-delay {
+        body[data-#{$Aos-attr}-delay="#{$i * $Aos-factor-step}"] &,
+        &[data-#{$Aos-attr}][data-#{$Aos-attr}-delay="#{$i * $Aos-factor-step}"] {
+          transition-delay: 0s;
+
+          &.#{$Aos-class-visible} {
+            transition-delay: #{$i * $Aos-factor-step}ms;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Animation: base data attribute styling (from AOS)
+// -----------------------------------------------------------------------------
+[data-#{$Aos-attr}] {
+  pointer-events: none;
+  &.#{$Aos-class-visible} {
+    pointer-events: auto;
+  }
+}

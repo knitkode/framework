@@ -1,0 +1,138 @@
+//
+// Object fit (with polyfill)
+//
+// @params {"contain" | "cover"} $value
+// @params {"contain" | "cover"} $postition
+//
+// -----------------------------------------------------------------------------
+@mixin object-fit($value, $position: false) {
+  $polyfill-string: "object-fit: #{$value};";
+
+  @if $position {
+    object-position: $position;
+    $polyfill-string: "#{$polyfill-string} object-position: #{$position}";
+  }
+
+  object-fit: $value;
+  // polyfill, @see https://github.com/fregante/object-fit-images#usage
+  font-family: $polyfill-string;
+}
+
+//
+// Media gutter
+//
+// @params {number} $gutter
+//
+// -----------------------------------------------------------------------------
+@mixin Media-gutter($gutter) {
+  .mediaCenterer {
+    top: $gutter;
+    right: $gutter;
+    bottom: $gutter;
+    left: $gutter;
+  }
+}
+
+//
+// Media constrain size
+//
+// @params {number} $width
+// @params {number} $height
+//
+// -----------------------------------------------------------------------------
+@mixin Media-constrainSize($width, $height) {
+  $hasBothSizes: false;
+  @if $width and $height {
+    $hasBothSizes: true;
+  }
+
+  .media {
+    @if $hasBothSizes {
+      min-width: $width;
+      min-height: $height;
+    } @else {
+      @if $width {
+        max-width: $width;
+      }
+      @if $height {
+        max-height: $height;
+      }
+    }
+  }
+
+  .mediaProportion {
+    // override inline style from the template, coming from server
+    @if $hasBothSizes {
+      padding-top: percentage(math.div($height, $width)) !important;
+    } @else {
+      padding-top: 0 !important;
+    }
+  }
+
+  @if not $hasBothSizes {
+    .mediaCenterer {
+      position: relative;
+      height: auto;
+    }
+  }
+
+  .mediaElement {
+    @if $width {
+      max-width: 100%;
+    }
+    @if $height {
+      max-height: 100%;
+    }
+  }
+}
+
+//
+// Imgself
+//
+// Markup:
+// ```
+// <div class="imgself">
+// {% partial "media/img"
+//   src=myimg | media_env
+//   alt=myalt
+//   classElement='imgselfFake'
+//   simple=true
+// %}
+// <span class="imgselfWrap">
+//   {% partial "media/img"
+//     src=myimg | media_env
+//     alt=myalt
+//     classElement='imgselfReal'
+//     immediate=true
+//     simple=true
+//   %}
+// </span>
+// ```
+// @see https://stackoverflow.com/a/10752040
+//
+// -----------------------------------------------------------------------------
+@mixin Imgself($width) {
+  overflow: hidden;
+  position: relative;
+  float: left;
+
+  .imgself {
+    &Fake {
+      float: left;
+      visibility: hidden;
+      width: auto;
+    }
+
+    &Wrap {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+    }
+
+    &Real {
+      width: $width;
+    }
+  }
+}

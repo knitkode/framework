@@ -1,0 +1,29 @@
+<div class="media--player{%- if classRoot %} {{ classRoot }}{% endif -%}">{#- -#}
+  <span class="mediaProportion" style="padding-top: {{ (height * 100) / width }}%"></span>{#- -#}
+  <div{{ ' ' -}}
+    class="mediaElement bg{%- if classBg %} {{ classBg }}{% endif -%}"
+    {%- if bgColor %} style="background-color:{{ bgColor }}"{% endif -%}
+  >{#- -#}
+  </div>{#- -#}
+  <video{{ ' ' -}}
+    data-setup="{}"{{ ' ' -}}
+    class="mediaElement player video-js"{{ ' ' -}}
+    title="{{ alt }}"{{ ' ' -}}
+    src="{{ video.src }}"{{ ' ' -}}
+    poster="{{ poster.src }}"
+    {%- if width %} width="{{ width }}"{% endif -%}
+    {%- if width %} height="{{ height }}"{% endif -%}
+    style="
+      {%- if bgColor %}background-color:{{ bgColor }}{% endif -%}
+      {%- if width and not fullwidth %}max-width:{{ width }}px;{% endif -%}
+      {%- if width and fixed %}width:{{ width }}px;max-width:{{ width }}px;{% endif -%}
+      {{- styles -}}
+    "
+    {%- if attrs %} {{ attrs | raw }}{% endif -%}
+  >
+    <source src="{{ video.src }}" type="video/mp4">{#- -#}
+    <p class="vjs-no-js">{#- -#}
+      To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="https://videojs.com/html5-video-support/" target="_blank" rel="noopener">supports HTML5 video</a>{#- -#}
+    </p>{#- -#}
+  </video>{#- -#}
+</div>{#- -#}

@@ -1,0 +1,42 @@
+//
+// @fileOverview
+//
+// Grid
+//
+// Reuse bootstrap grid but don't import it directly, just use its mixins
+// condensed in shortand formats like
+//
+// ```scss
+// @include Col(md, 6); // same as HTML class .col-md-6
+// @include Offset(md, 2); // same as HTML class .offset-md-2
+// ```
+// Provide also row and containers classes as they produce a limited amount of
+// CSS and provide a generic name for markup elements which might be hard to
+// name otherwise.
+// We import it in any case as the output is controlled by the SCSS variable
+// `$Grid-classes` which defaultts to `false` here.
+//
+
+@import "bootstrap/grid";
+
+%Container {
+  @include make-container($Grid-gutter);
+}
+
+// output helpers row and container classes only if the full Bootstrap's grid
+// framework is not enabled
+@if not $Grid-classes {
+  .row {
+    // as in Bootstrap
+    @extend %Row;
+  }
+}
+
+// simpler than Bootstrap, just outputs classes for containers fixed to their
+// given max width as defined in the `$Container-widths` SASS map
+@each $breakpoint, $width in $Container-widths {
+  .container-#{$breakpoint} {
+    @extend %Container;
+    max-width: $width;
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "name": "@knitkode/core-helpers",
+  "version": "0.0.48",
+  "author": "KnitKode <knitkode@gmail.com> (https://knitkode.github.io)",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:knitkode/framework.git",
+    "directory": "core/helpers"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@knitkode/core-data": "file:../data",
+    "@knitkode/core-dom": "file:../dom",
+    "@knitkode/core-forms": "file:../forms",
+    "date-fns": "^2.21.3",
+    "lodash.debounce": "^4.0.8",
+    "lodash.throttle": "^4.1.1"
+  },
+  "sideEffects": false
+}

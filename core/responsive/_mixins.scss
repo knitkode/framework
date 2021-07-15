@@ -1,0 +1,239 @@
+//
+// @file: Responsive design mixins
+//
+// Controls the responsive behaviour with @media queries
+// It contains easy named shortcuts to common use cases.
+// It reuses the logic of Bootstrap.
+//
+
+//
+// Up, shortcut for
+// `@media (min-width: $Breakpoint) {...}`
+//
+// @param {number | "sm" | "md" | "lg" | "xl" | "xxl"} $breakpoint
+// -----------------------------------------------------------------------------
+@mixin Up($breakpoint) {
+  @if type-of($breakpoint) == number {
+    @media (min-width: $breakpoint) {
+      @content;
+    }
+  } @else {
+    @include media-breakpoint-up($breakpoint) {
+      @content;
+    }
+  }
+}
+
+//
+// Down, shortcut for:
+// `@media (max-wdith: $Breakpoint) {...}`
+//
+// @param {number | "sm" | "md" | "lg" | "xl" | "xxl"} $breakpoint
+//
+// -----------------------------------------------------------------------------
+@mixin Down($breakpoint) {
+  @if type-of($breakpoint) == number {
+    @media (max-width: $breakpoint) {
+      @content;
+    }
+  } @else {
+    @include media-breakpoint-down($breakpoint) {
+      @content;
+    }
+  }
+}
+
+//
+// Between, shortcut for:
+// `@media (min-width: $Breakpoint and max-wdith: $Breakpoint) {...}`
+//
+// @param {number | "sm" | "md" | "lg" | "xl" | "xxl"} $breakpoint1
+// @param {number | "sm" | "md" | "lg" | "xl" | "xxl"} $breakpoint2
+//
+// -----------------------------------------------------------------------------
+@mixin Between($breakpoint1, $breakpoint2) {
+  @if type-of($breakpoint1) == number and type-of($breakpoint2) == number {
+    @media (min-width: $breakpoint1) and (max-width: $breakpoint2) {
+      @content;
+    }
+  } @else {
+    @include media-breakpoint-between($breakpoint1, $breakpoint2) {
+      @content;
+    }
+  }
+}
+
+//
+// Between, shortcut for:
+// `@media (min-width: $Breakpoint and max-wdith: $next-Breakpoint) {...}`
+//
+// @param {"sm" | "md" | "lg" | "xl" | "xxl"} $breakpoint
+//
+// -----------------------------------------------------------------------------
+@mixin Only($breakpoint) {
+  @include media-breakpoint-only($breakpoint) {
+    @content;
+  }
+}
+
+//
+// When layout is boxed (usually over `lg` screens)
+//
+// -----------------------------------------------------------------------------
+@mixin When-boxed($breakpoint: $Container-boxed-breakpoint) {
+  $width: map-get($Container-widths, $breakpoint);
+  // $breakpoint: $width + $Grid-gutter;
+  @media (min-width: $width) {
+    @content;
+  }
+}
+
+//
+// When layout is fluid (usually below `lg` screens)
+//
+// -----------------------------------------------------------------------------
+@mixin When-fluid($breakpoint: $Container-boxed-breakpoint) {
+  $width: map-get($Container-widths, $breakpoint);
+  // $breakpoint: $width + $Grid-gutter;
+  @media (max-width: $width - 0.02) {
+    @content;
+  }
+}
+
+//
+// Desktop (just an alias for `Up(lg)`)
+//
+// -----------------------------------------------------------------------------
+@mixin Desktop() {
+  @include Up(lg) {
+    @content;
+  }
+}
+
+//
+// Not desktop (just an alias for `Down(md)`)
+//
+// It is not the same as using `@include Mobile` as this also applies to tablets
+// and the breakpoints in between Desktop and Mobile. Many times is useful and
+// more readable to have this "negative" naming
+//
+// -----------------------------------------------------------------------------
+@mixin NotDesktop() {
+  @include Down(md) {
+    @content;
+  }
+}
+
+//
+// Mobile (just an alias for `Down(sm)`)
+//
+// -----------------------------------------------------------------------------
+@mixin Mobile() {
+  @include Down(sm) {
+    @content;
+  }
+}
+
+//
+// Not mobile (just an alias for `Up(md)`)
+//
+// It is not the same as using `@include Mobile` as this also applies to tablets
+// and the breakpoints in between Mobile and Desktop . Many times is useful and
+// more readable to have this "negative" naming
+//
+// -----------------------------------------------------------------------------
+@mixin NotMobile() {
+  @include Up(md) {
+    @content;
+  }
+}
+
+//
+// Mobile (just an alias for `Only(md)`)
+//
+// -----------------------------------------------------------------------------
+@mixin Tablet() {
+  @include Only(md) {
+    @content;
+  }
+}
+
+//
+// Block
+//
+// -----------------------------------------------------------------------------
+@mixin Block() {
+  display: block;
+  width: 100%;
+}
+
+//
+// Sticky footer
+//
+// It requires that the main content of the page is always wrapped in a `<main>`
+// element as previous siblinf of the `<footer>`
+//
+// -----------------------------------------------------------------------------
+@mixin StickyFooter() {
+  html,
+  body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+  }
+
+  main {
+    flex: 1;
+  }
+}
+
+//
+// Only show
+//
+// @param {CSSsize} $breakpoint Usually in px, like 340px, but it can accept
+//                              whatever valid CSS size
+// @param {string} [$breakpoint-className] It generates the class name suffix
+//
+// -----------------------------------------------------------------------------
+@mixin Only-show($breakpoint, $breakpoint-className: "custom") {
+  .only\: {
+    &down\: {
+      &#{$breakpoint-className} {
+        @media (min-width: $breakpoint) {
+          display: none !important;
+        }
+      }
+    }
+
+    &up\: {
+      &#{$breakpoint-className} {
+        @media (max-width: $breakpoint - 1) {
+          display: none !important;
+        }
+      }
+    }
+  }
+}
+
+///
+/// Sticky footer
+///
+// -----------------------------------------------------------------------------
+@mixin Sticky-footer($mainSelector: "main") {
+  html {
+    min-height: 100%;
+  }
+
+  html,
+  body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    overflow-x: hidden;
+  }
+
+  #{$mainSelector} {
+    flex: 1;
+  }
+}

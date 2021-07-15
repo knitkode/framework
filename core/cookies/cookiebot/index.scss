@@ -1,0 +1,144 @@
+@import "variables";
+
+#CybotCookiebotDialog {
+  position: fixed !important;
+  bottom: 0 !important;
+  top: auto !important;
+  left: 0 !important;
+  right: 0 !important;
+  box-shadow: $CookieBot-box-shadow !important;
+}
+
+// @see tpl https://gist.github.com/kuus/39dfe38c72452a716e278c7dbc143800
+#CybotCookiebotDialog,
+#CybotCookiebotDialog a,
+#CybotCookiebotDialog div,
+#CybotCookiebotDialogBodyContentTitle {
+  font-family: $CookieBot-font-family !important;
+}
+
+#CybotCookiebotDialogBodyContentTitle {
+  font-weight: $CookieBot-headings-font-weight !important;
+}
+
+#CybotCookiebotDialogBody,
+#CybotCookiebotDialogDetailBody {
+  padding-left: $CookieBot-wrap-gutter !important;
+  padding-right: $CookieBot-wrap-gutter !important;
+}
+
+#CybotCookiebotDialogPoweredbyLink {
+  margin-left: 0 !important;
+}
+
+#CybotCookiebotDialogBodyLevelButtons {
+  margin-left: 0 !important;
+}
+
+#CybotCookiebotDialogBodyLevelButtonsSelectPane,
+.CybotCookiebotDialogDetailBodyContentTab {
+  border-radius: 0 !important;
+}
+
+#CybotCookiebotDialogBodyLevelDetailsWrapper {
+  vertical-align: middle !important;
+  padding: 0 !important;
+  text-align: center !important;
+}
+
+.CybotCookiebotDialogBodyButton {
+  margin: $Grid-gutter-half 0 !important;
+  width: auto !important;
+  white-space: normal !important;
+  min-width: $CookieBot-btn-min-width !important;
+  color: $CookieBot-btn-default-color !important;
+  background-color: $CookieBot-btn-background !important;
+  border-color: $CookieBot-btn-border-color !important;
+  border-width: $CookieBot-btn-border-width-y $CookieBot-btn-border-width-x !important;
+  border-radius: $CookieBot-btn-border-radius !important;
+  font-size: $CookieBot-btn-font-size !important;
+  padding: $CookieBot-btn-padding-y $CookieBot-btn-padding-x !important;
+  text-transform: $CookieBot-btn-text-transform !important;
+  font-weight: $CookieBot-btn-font-weight !important;
+  line-height: inherit !important;
+
+  &:focus,
+  &:hover,
+  &:hover:focus,
+  &.focus,
+  &:active,
+  &.active,
+  &:active:focus,
+  &:active:hover {
+    outline: none !important;
+    box-shadow: none !important;
+    color: $CookieBot-btn-color-hover !important;
+    border-color: $CookieBot-btn-border-color-hover !important;
+    background: $CookieBot-btn-background-hover !important;
+  }
+
+  + .CybotCookiebotDialogBodyButton {
+    margin-left: $Grid-gutter-half !important;
+  }
+}
+
+#CybotCookiebotDialogBodyLevelButtonsSelectPane,
+#CybotCookiebotDialogBodyLevelDetailsWrapper {
+  border: 0 !important;
+  background-color: none !important;
+}
+
+#CybotCookiebotDialogBodyLevelButtonAcceptWrapper {
+  padding-bottom: math.div($CookieBot-spacer, 2) !important;
+}
+
+input[type="checkbox"].CybotCookiebotDialogBodyLevelButton {
+  & + label {
+    display: inline-flex !important;
+    align-items: center !important;
+    min-height: $CookieBot-checkbox-size !important;
+    padding: 0 !important;
+    // padding: 0 0 0 ($CookieBot-checkbox-size + 3) !important;
+    background-image: none !important;
+    color: $CookieBot-label-color !important;
+    font-weight: $CookieBot-label-font-weight !important;
+    font-size: $CookieBot-font-size-base;
+    margin: 0 math.div($CookieBot-checkbox-size, 2) 0 0;
+
+    &:before {
+      content: "" !important;
+      display: inline-block;
+      z-index: 1;
+      width: $CookieBot-checkbox-size;
+      height: $CookieBot-checkbox-size;
+      overflow: hidden;
+      border: $CookieBot-checkbox-border-width solid
+        $CookieBot-checkbox-border-color;
+      margin-right: 5px;
+    }
+  }
+
+  &:checked + label {
+    &:before {
+      background-color: $CookieBot-checkbox-checked-bg;
+    }
+    &:after {
+      content: "";
+      display: block;
+      z-index: 2;
+      position: absolute;
+      top: 50%;
+      margin-top: -(math.div(($CookieBot-checkbox-size -
+                ($CookieBot-checkbox-border-width * 2)), 2));
+      left: $CookieBot-checkbox-border-width;
+      width: (
+        $CookieBot-checkbox-size - ($CookieBot-checkbox-border-width * 2)
+      );
+      height: (
+        $CookieBot-checkbox-size - ($CookieBot-checkbox-border-width * 2)
+      );
+      @include Svg-bg($CookieBot-checkbox-checked-bg-image);
+      background-color: $CookieBot-checkbox-checked-bg;
+    }
+  }
+}

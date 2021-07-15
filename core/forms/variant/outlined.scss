@@ -1,0 +1,111 @@
+@import "filled";
+
+// Form element: root
+// -----------------------------------------------------------------------------
+%formRoot--outlined {
+  @extend %formRoot--filled;
+  margin-top: 0.5em; // leave space to the floating label
+
+  @if $Forms-validation {
+    &.invalid .formLabel {
+      color: $Forms-invalid-color-label;
+
+      ._start,
+      ._start:before,
+      ._end {
+        border-color: $Forms-invalid-color-border;
+      }
+    }
+  }
+}
+
+// Form element: underline
+// -----------------------------------------------------------------------------
+%formUnderline--outlined {
+  @extend %formUnderline--filled;
+}
+
+// Form element: label
+// -----------------------------------------------------------------------------
+%formLabel--outlined {
+  @extend %formLabel;
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 0; // reset native margin, as here the label is just a container
+
+  // input borders are set on the label generated inner containers/spacers
+  ._start,
+  ._start:before,
+  ._end {
+    border-style: solid;
+    border-color: $Forms-color-border;
+  }
+
+  ._start {
+    padding-left: $Forms-padding-x;
+    border-width: $Forms-border-thickness 0 $Forms-border-thickness
+      $Forms-border-thickness;
+    @if $Forms-border-radius {
+      border-radius: $Forms-border-radius 0 0 $Forms-border-radius;
+    }
+
+    &:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: $Forms-padding-x;
+      right: $Forms-padding-x;
+      border-width: $Forms-border-thickness 0;
+    }
+  }
+
+  ._middle {
+    position: relative;
+    z-index: 2;
+    transition: transform $Transition;
+    padding: $Forms-padding-y 0;
+  }
+
+  ._end {
+    flex: 1; // @rtl
+    padding-right: $Forms-padding-x;
+    border-width: $Forms-border-thickness $Forms-border-thickness
+      $Forms-border-thickness 0;
+    @if $Forms-border-radius {
+      border-radius: 0 $Forms-border-radius $Forms-border-radius 0;
+    }
+  }
+}
+
+// Form element: control
+// -----------------------------------------------------------------------------
+%formControl--outlined {
+  @extend %formControl;
+  z-index: 1;
+  margin: $Forms-border-thickness;
+  padding: $Forms-padding-y $Forms-padding-x;
+  background: $Forms-bg;
+  border: 0;
+  // reset native border and radius as the control here should be seamless
+  border-radius: 0;
+  -webkit-border-radius: 0;
+
+  &:focus ~ .formLabel,
+  // TODO: maybe I can just use `:placeholder-shown` and get rid of the JS
+  // part of the notempty solution
+  // @see https://css-tricks.com/almanac/selectors/p/placeholder-shown/
+  &.notempty ~ .formLabel {
+    ._start:before {
+      border-top: 0;
+    }
+    ._middle {
+      transform: translateY(-50%) scale(0.8);
+      pointer-events: none;
+    }
+  }
+}

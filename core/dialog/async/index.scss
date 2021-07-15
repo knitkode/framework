@@ -1,0 +1,6 @@
+.dialog {
+  &Loader {
+    @extend %OverlayLoader;
+    @include OverlaySpinner();
+  }
+}

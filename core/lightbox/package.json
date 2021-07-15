@@ -1,0 +1,23 @@
+{
+  "name": "@knitkode/core-lightbox",
+  "version": "0.0.75",
+  "author": "KnitKode <knitkode@gmail.com> (https://knitkode.github.io)",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:knitkode/framework.git",
+    "directory": "core/lightbox"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@knitkode/core-dialog": "file:../dialog",
+    "@knitkode/core-dom": "file:../dom",
+    "@knitkode/core-glide": "file:../glide",
+    "@knitkode/core-scroll": "file:../scroll"
+  },
+  "sideEffects": [
+    "**.scss"
+  ]
+}

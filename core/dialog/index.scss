@@ -1,0 +1,111 @@
+.dialog {
+  // Status: before js init
+  // ---------------------------------------------------------------------------
+  &:not(.has-init) {
+    display: none;
+  }
+
+  // Satus: is-prerendered
+  // ---------------------------------------------------------------------------
+  &.is-prerendered {
+    display: none;
+  }
+
+  // Status: is-in
+  // ---------------------------------------------------------------------------
+  &.is-in {
+    display: block;
+
+    .dialogBackdrop {
+      opacity: 1;
+      // box-shadow: inset 0 0 0 100vw rgba(0,0,0,.3);
+    }
+
+    .dialogWrap {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  // Element: backdrop
+  // ---------------------------------------------------------------------------
+  &Backdrop {
+    z-index: $Zindex-Dialog;
+    @extend %Overlay-fixed;
+    background: $Dialog-backdrop-bg;
+    transition: opacity $Transition;
+    opacity: 0;
+    // box-shadow: inset 0 0 0 0 $Dialog-backdrop-bg);
+    // transition: box-shadow $Transition;
+  }
+
+  // Element: cage
+  // ---------------------------------------------------------------------------
+  &Cage {
+    z-index: $Zindex-Dialog + 1;
+    @extend %Overlay-fixed;
+    overflow: auto;
+  }
+
+  // Element: centerer
+  // ---------------------------------------------------------------------------
+  &Centerer {
+    display: flex;
+    padding: $Dialog-margin-y $Dialog-margin-x;
+    max-width: 100%;
+    min-height: 100%;
+  }
+
+  // Element: wrap
+  // ---------------------------------------------------------------------------
+  &Wrap {
+    max-width: $Dialog-max-width;
+    margin: auto;
+    position: relative;
+    transform: scale(0.8);
+    transition: transform $Transition, opacity $Transition;
+    opacity: 0;
+  }
+
+  // Element: content
+  // ---------------------------------------------------------------------------
+  &Content {
+    padding: $Dialog-gutter-y $Dialog-gutter-x;
+    background: $Dialog-bg;
+    min-width: 200px;
+    min-height: 100px;
+    position: relative;
+    border-radius: $Dialog-border-radius;
+    box-shadow: $Dialog-box-shadow;
+  }
+
+  // Element: close
+  // ---------------------------------------------------------------------------
+  &Close {
+    // @extend %Btn-action;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: $Grid-gutter-half;
+    cursor: pointer;
+
+    &:hover .icon {
+      @if $Dialog-close-bg--hover != $Dialog-close-bg {
+        background: $Dialog-close-bg--hover;
+      }
+      @if $Dialog-close-color--hover != $Dialog-close-color {
+        fill: $Dialog-close-color--hover;
+      }
+    }
+
+    .icon {
+      font-size: $Dialog-close-size;
+      @if $Dialog-close-bg != transparent {
+        background: $Dialog-close-bg;
+      }
+      @if $Dialog-close-color != inherit {
+        fill: $Dialog-close-color;
+      }
+    }
+  }
+}

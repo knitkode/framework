@@ -1,0 +1,22 @@
+{
+  "name": "@knitkode/core-dropdown",
+  "version": "0.0.63",
+  "author": "KnitKode <knitkode@gmail.com> (https://knitkode.github.io)",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:knitkode/framework.git",
+    "directory": "core/dropdown"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@knitkode/core-detect": "file:../detect",
+    "@knitkode/core-dom": "file:../dom",
+    "@knitkode/core-scroll": "file:../scroll"
+  },
+  "sideEffects": [
+    "**/*.scss"
+  ]
+}

@@ -1,0 +1,42 @@
+//
+// Dropdown flyout hover controlled
+//
+// make the dropdown work on hover only when header is uncollapsed and js
+// has not kicked in. After that js will control this behaviour
+//
+// -----------------------------------------------------------------------------
+@mixin Dropdown-flyout-hover-controlled($namespace: "Dropdown") {
+  .no-js .#{$namespace}\:.dropdown:hover > .dropdownFlyout {
+    display: block;
+  }
+  .js .#{$namespace}\:flyout.is-in {
+    display: block;
+  }
+}
+
+//
+// Dropdown flyout in (status mixin)
+//
+// @param {string} [$namespace='Dropdown'] The class name namespace (without `:`)
+//
+// -----------------------------------------------------------------------------
+@mixin Dropdown-flyout-in($namespace: "Dropdown") {
+  .#{$namespace}\:input:checked ~ .dropdownFlyout,
+  .#{$namespace}\:.is-in .dropdownFlyout {
+    @content;
+  }
+}
+
+//
+// Dropdown toggle active (status mixin)
+//
+// @param {string} [$namespace='Dropdown'] The class name namespace (without `:`)
+//
+// -----------------------------------------------------------------------------
+@mixin Dropdown-toggle-active($namespace: "Dropdown") {
+  .no-js .#{$namespace}\:dropdown:hover > .dropdownToggle,
+  .#{$namespace}\:input:checked + .dropdownToggle,
+  .#{$namespace}\:.is-in .dropdownToggle {
+    @content;
+  }
+}

@@ -1,0 +1,6 @@
+<button type="submit" class="btn{% if classRoot %} {{ classRoot }}{% endif %}{% if classElement %} {{ classElement }}{% endif %}{% if attrs %} {{ attrs | raw }}{% endif %}">
+  {{- label -}}
+  <span class="on-loading:show">{# -#}
+    {%- partial "progress/circular" size=24 -%}
+  </span>{# -#}
+</button>{# -#}

@@ -1,0 +1,13 @@
+{% set _s = size ? size : 48 -%}
+{% set _color = color ? color : '#a2a1a1' -%}
+{% set _thickness = thickness ? thickness : 1 -%}
+<svg class="progress progressCircular"
+  {%- if center %} style="margin-left: -{{ _s / 2 }}px; margin-top: -{{ _s / 2 }}px" {% endif -%}
+  width="{{ _s }}px" height="{{ _s }}px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {{ _s }} {{ _s }}" preserveAspectRatio="xMidYMid">{# -#}
+  <circle class="progressShape progressCircularCircle"{{ ' ' -}}
+    cx="{{ _s / 2}}" cy="{{ _s / 2}}" r="{{ _s / 3 }}" stroke-dasharray="{{ _s / 2 }} {{ _s / 2 }}" transform="rotate(88.7411 {{ _s }} {{ _s }})"{{ ' ' -}}
+    stroke="{{ _color }}" fill="none" stroke-linecap="round" stroke-width="{{ _thickness }}">{# -#}
+    <animateTransform values="0 {{ _s / 2 }} {{ _s / 2 }};360 {{ _s / 2 }} {{ _s / 2 }}"{{ ' ' -}}
+      attributeName="transform" type="rotate" calcMode="linear" keyTimes="0;1" dur="1s"  begin="0s" repeatCount="indefinite"></animateTransform>{# -#}
+  </circle>{# -#}
+</svg>{# -#}

@@ -1,0 +1,39 @@
+// @import "../mixins";
+
+.dialogVideo {
+  @include Dialog-close-position(outside, right);
+
+  .dialog {
+    &Centerer {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      @include Mobile() {
+        padding: 0;
+      }
+    }
+
+    &Wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+    }
+
+    &Content {
+      padding: 0;
+    }
+
+    &Loader {
+      display: none;
+    }
+  }
+
+  .video {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    background: transparent;
+  }
+}

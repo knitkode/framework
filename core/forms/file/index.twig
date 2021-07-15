@@ -1,0 +1,26 @@
+<label class="file formRoot{% if classRoot %} {{ classRoot }}{% endif %}{% if error %} invalid{% endif %}">{# -#}
+  <span class="formBox">
+    <span class="formUnderline"></span>
+    {%- if icon -%}
+      {% partial "icon" glyph=icon %}
+    {%- endif -%}
+    <span class="formTexts">
+      <input{{ ' ' -}}
+        class="formControl{% if classElement %} {{ classElement }}{% endif %}"{{ ' ' -}}
+        type="{{ type | default('file') }}"{{ ' ' -}}
+        id="{{ id | default('input-'~name) }}"{{ ' ' -}}
+        name="{{ name }}"
+        {%- if placeholder %} placeholder="{{ placeholder }}"{%- endif -%}
+        {%- if required %} required{%- endif -%}
+        {%- if attrs %} {{ attrs | raw }}{%- endif -%}
+      >{# -#}
+      {%- if label -%}
+        <span class="formLabel">
+          {{- label | raw -}}
+        </span>
+      {%- endif -%}
+      <span class="fileName"></span>{# -#}
+    </span>
+  </span>{# -#}
+  {%- if error -%}<div class="formFeedback">{{ error }}</div>{%- endif -%}
+</label>{# -#}

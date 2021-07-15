@@ -1,0 +1,36 @@
+$Expander-transition-timing-function: $Transition-timing-function !default;
+$Expander-icon: true !default;
+$Expander-icon-rotation: -90deg !default;
+
+[expander-body] {
+  overflow: hidden;
+  transition-timing-function: $Expander-transition-timing-function;
+}
+
+@if $Expander-icon {
+  // icon rotation
+  [expander="true"] .icon {
+    transform: rotate($Expander-icon-rotation);
+  }
+}
+
+// read more message toggling
+[expander-expandable="false"] [expander-toggle],
+[expander="true"] [expander-more],
+[expander="false"] [expander-less] {
+  display: none;
+}
+
+[expander-toggle] {
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
+
+  @if $Expander-icon {
+    .icon {
+      transition: transform $Transition;
+    }
+  }
+}

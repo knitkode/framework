@@ -1,0 +1,25 @@
+@import "../variant/material";
+
+.input {
+  @extend %formRoot--material;
+
+  .formBox {
+    @extend %formBox--material;
+  }
+
+  .formLabel {
+    @extend %formLabel--material;
+  }
+
+  .formUnderline {
+    @extend %formUnderline--material;
+  }
+
+  .formControl {
+    @extend %formControl--material;
+  }
+
+  .formFeedback {
+    @extend %formFeedback;
+  }
+}

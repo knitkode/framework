@@ -1,0 +1,39 @@
+$escaped-characters: (("<", "%3c"), (">", "%3e"), ("#", "%23"));
+
+//
+// SVG background
+//
+// Quick way to use a simple svg shape as a background
+// -----------------------------------------------------------------------------
+@mixin Svg-bg($content, $important: false) {
+  $_important: null;
+  @if $important {
+    $_important: !important;
+  }
+  background-image: escape-svg(
+      url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' #{$content}/></svg>")
+    )
+    $_important;
+}
+
+//
+// SVG arrow
+//
+// creates an SVG background squared shape with a centered arrow of the given
+// thickness and colour
+//
+// Respective code in JS:
+// var $t = .2;
+// var $s = 8;
+// var $sh = $s / 2;
+// `M${$s / 3} 0l${$s / 2} ${$s / 2}-${$s / 2} ${$s / 2}-${$t}-${$t} ${$sh - $t}-${$sh - $t}-${$sh - $t}-${$sh - $t}z`
+// -----------------------------------------------------------------------------
+@mixin Svg-arrow($color: "#00000", $thickness: 0.2, $rotation: 0, $size: 8) {
+  $t: $thickness;
+  $s: $size;
+  $sh: math.div($s, 2);
+
+  @include Svg-bg(
+    "viewBox='0 0 #{$s} #{$s}'><path fill='#{$color}' d='M#{math.div($s,3)} 0l#{$sh} #{$sh}-#{$sh} #{$sh}-#{$t}-#{$t} #{$sh - $t}-#{$sh - $t}-#{$sh - $t}-#{$sh - $t}z' transform='rotate(#{$rotation} #{$sh} #{$sh})'></path>"
+  );
+}

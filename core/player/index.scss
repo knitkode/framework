@@ -1,0 +1,73 @@
+//
+// Media: player
+//
+
+@import "variables";
+// @import "mixins";
+@import "vendor";
+
+// Tweaks to the media wrapper (which keeps proportions...)
+// -----------------------------------------------------------------------------
+.media--player {
+  position: relative;
+
+  .mediaElement,
+  .mediaElement.player {
+    @extend %Overlay;
+    overflow: visible;
+    background: $Media-bg;
+  }
+}
+
+// Default custom tweaks
+// -----------------------------------------------------------------------------
+.vjs {
+  // Big play button
+  // ---------------------------------------------------------------------------
+  &-big-play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    &:hover {
+      cursor: pointer;
+    }
+    &:before {
+      transition: box-shadow $Transition;
+    }
+
+    .vjs-playing & {
+      display: none;
+    }
+  }
+
+  // Remove focus outline on video element
+  // ---------------------------------------------------------------------------
+  &-tech {
+    outline: none !important;
+  }
+
+  // Controls: LIVE button (hide it by default)
+  // ---------------------------------------------------------------------------
+  &-seek-to-live-control {
+    display: none !important;
+  }
+
+  // Change default videojs poster background-color to match `media` styling
+  // ---------------------------------------------------------------------------
+  &-poster {
+    background-color: $Media-bg !important;
+  }
+
+  // Change default spinner thickness to match `progress` styling
+  // ---------------------------------------------------------------------------
+  &-loading-spinner {
+    border-width: $Progress-circular-thickness;
+
+    &:before,
+    &:after {
+      margin: -$Progress-circular-thickness;
+    }
+  }
+}

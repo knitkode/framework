@@ -1,0 +1,15 @@
+{
+  "name": "@knitkode/core-data",
+  "version": "0.0.9",
+  "author": "KnitKode <knitkode@gmail.com> (https://knitkode.github.io)",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:knitkode/framework.git",
+    "directory": "core/data"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "sideEffects": false
+}

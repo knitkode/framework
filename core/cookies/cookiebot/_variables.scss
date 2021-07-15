@@ -1,0 +1,41 @@
+$CookieBot-wrap-gutter: $Grid-gutter-half !default;
+$CookieBot-spacer: $Spacer !default;
+$CookieBot-font-family: $Typography-font-base !default;
+$CookieBot-headings-font-weight: $Typography-headings-font-weight !default;
+$CookieBot-box-shadow: 0 0 20px -5px rgba(0, 0, 0, 0.3) !default;
+
+$CookieBot-checkbox-size: 14px !default;
+// $CookieBot-checkbox-size: max($FormToggle-size * 0.7, 14px) !default;
+$CookieBot-checkbox-border-width: $FormToggle-border-thickness !default;
+$CookieBot-checkbox-border-color: $Color-body !default;
+// $CookieBot-checkbox-border-color: $FormToggle-border-color !default;
+$CookieBot-checkbox-checked-bg: #fff !default;
+// $CookieBot-checkbox-checked-bg: $FormToggle-checked-bg !default;
+$CookieBot-checkbox-checked-color: $Color-body !default;
+// $CookieBot-checkbox-checked-color: $FormToggle-checked-color !default;
+$CookieBot-checkbox-checked-bg-image: "viewBox='0 0 24 24'><path fill='#{$CookieBot-checkbox-checked-color}' d='m21 6.285l-11.16 12.733-6.84-6.018 1.319-1.49 5.341 4.686 9.865-11.196 1.475 1.285z'" !default;
+// $CookieBot-checkbox-checked-bg-image: $FormToggle-checked-bg-image !default;
+
+$CookieBot-label-color: $Color-body !default;
+$CookieBot-label-font-weight: 400 !default;
+$CookieBot-font-size-base: 12px !default;
+
+$CookieBot-btn-min-width: 120px !default;
+$CookieBot-btn-default-color: $Color-body !default;
+$CookieBot-btn-border-color: $Buttons-border-color !default;
+$CookieBot-btn-border-radius: $Buttons-border-radius !default;
+$CookieBot-btn-border-width: $Buttons-border-thickness !default;
+$CookieBot-btn-border-width-y: $CookieBot-btn-border-width !default;
+$CookieBot-btn-border-width-x: $CookieBot-btn-border-width !default;
+$CookieBot-btn-font-size: 12px !default;
+// $CookieBot-btn-font-size: max($Typography-font-size * 0.8, 12px) !default;
+$CookieBot-btn-padding-y: 8px !default;
+// $CookieBot-btn-padding-y: max($Buttons-padding-y * 0.6, 8px) !default;
+$CookieBot-btn-padding-x: 32px !default;
+// $CookieBot-btn-padding-x: max($Buttons-padding-x * 0.6, 32px) !default;
+$CookieBot-btn-text-transform: $Buttons-text-transform !default;
+$CookieBot-btn-font-weight: $Buttons-font-weight !default;
+$CookieBot-btn-color-hover: $Color-body !default;
+$CookieBot-btn-background: transparent !default;
+$CookieBot-btn-background-hover: transparent !default;
+$CookieBot-btn-border-color-hover: darken($Buttons-border-color, 5%) !default;

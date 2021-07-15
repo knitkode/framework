@@ -1,0 +1,20 @@
+{
+  "name": "@knitkode/core-ajax",
+  "version": "0.0.44",
+  "author": "KnitKode <knitkode@gmail.com> (https://knitkode.github.io)",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:knitkode/framework.git",
+    "directory": "core/ajax"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@knitkode/core-helpers": "file:../helpers",
+    "@knitkode/core-polyfills": "file:../polyfills",
+    "loadjs": "^4.2.0"
+  },
+  "sideEffects": false
+}

@@ -1,0 +1,35 @@
+// Player custom variables:
+// -----------------------------------------------------------------------------
+$Player-big-play-button-icon: "play" !default;
+$Player-primary-fg: #fff !default;
+$Player-primary-bg: #2b333f !default;
+$Player-primary-transparency: 0.7 !default;
+$Player-secondary-bg: lighten($Player-primary-bg, 33%) !default;
+$Player-secondary-transparency: 0.5 !default;
+$Player-font-family: $Typography-font-sans !default;
+
+//
+// Player vendor variables (videojs)
+// -----------------------------------------------------------------------------
+
+// Text, icons, hover states
+$primary-foreground-color: $Player-primary-fg;
+
+// Control backgrounds (control bar, big play, menus)
+$primary-background-color: $Player-primary-bg;
+$primary-background-transparency: $Player-primary-transparency;
+
+// Hover states, slider backgrounds
+$secondary-background-color: $Player-secondary-bg;
+$secondary-background-transparency: $Player-secondary-transparency;
+
+// Avoiding helvetica: issue #376
+$text-font-family: $Player-font-family;
+
+// Using the '--' naming for component-specific styles
+// $big-play-button--border-size: 0.06666em !default;
+// $big-play-button--width: 3em !default;
+// $big-play-button--line-height: 1.5em !default;
+// $big-play-button--height: $big-play-button--line-height +
+//   ($big-play-button--border-size * 2) !default;
+// $big-play-button--transparency: 0.8 !default;

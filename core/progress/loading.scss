@@ -1,0 +1,15 @@
+.on-loading\: {
+  &show {
+    display: none;
+
+    .is-loading & {
+      display: unset;
+    }
+  }
+
+  &hide {
+    .is-loading & {
+      display: none;
+    }
+  }
+}

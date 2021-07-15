@@ -1,0 +1,14 @@
+// the 'optional' "sublabel"
+.formLabel {
+  span,
+  a {
+    @if $Forms-label-font-size {
+      font-size: $Forms-label-font-size - 2;
+    } @else {
+      font-size: $Typography-font-size - 2;
+    }
+
+    color: $FormsLabel-hint-color;
+    // opacity: .6;
+  }
+}

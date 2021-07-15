@@ -1,0 +1,49 @@
+$Swiper-navigation-width: 42px !default;
+$Swiper-navigation-height: $Swiper-navigation-width !default;
+$Swiper-navigation-border-radius: $Border-radius !default;
+$Swiper-navigation-bg: #fff !default;
+$Swiper-navigation-bg-hover: darken($Swiper-navigation-bg, 10%) !default;
+$Swiper-navigation-border-width: 1px !default;
+$Swiper-navigation-border-color: #ccc !default;
+
+.swiper-navigation {
+  z-index: 1;
+  position: absolute;
+  top: 50%;
+  margin-top: -(math.div($Swiper-navigation-height, 2));
+  width: $Swiper-navigation-width;
+  height: $Swiper-navigation-height;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  border-radius: $Swiper-navigation-border-radius;
+  border: solid $Swiper-navigation-border-width $Swiper-navigation-border-color;
+  background-color: $Swiper-navigation-bg;
+  cursor: pointer;
+
+  .swiper-container-initialized & {
+    display: flex;
+  }
+
+  &:hover {
+    background-color: $Swiper-navigation-bg-hover;
+  }
+
+  &.is-prev {
+    left: 0;
+  }
+
+  &.is-next {
+    right: 0;
+  }
+
+  &.swiper-button-disabled {
+    visibility: hidden;
+  }
+
+  .icon {
+    position: relative;
+    width: 1.1em;
+    height: 1.1em;
+  }
+}

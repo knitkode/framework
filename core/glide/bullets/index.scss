@@ -1,0 +1,61 @@
+// @import "../variables";
+// @import "../mixins";
+
+.glide {
+  // the following mixin should be used on each single .glide usage, within the
+  // .glide class name
+  // @include Glide-bullets-position(bottom, center);
+
+  &__bullets {
+    list-style: none;
+    display: block;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    font-size: $Glide__bullet-size; // Safari fix
+  }
+
+  &__bullet {
+    display: inline-block;
+    position: relative;
+    border: 0;
+    background: transparent;
+    margin: $Glide__bullet-spacer-y $Glide__bullet-spacer-x;
+    height: $Glide__bullet-clickable-height;
+    width: $Glide__bullet-clickable-width;
+    outline: none;
+    color: transparent;
+    cursor: pointer;
+    opacity: $Glide-opacity;
+
+    &:hover,
+    &:focus {
+      outline: none;
+      opacity: $Glide-opacity--hover;
+    }
+
+    &:before {
+      content: "";
+      position: absolute;
+      width: $Glide__bullet-size;
+      height: $Glide__bullet-size;
+      top: 50%;
+      left: 50%;
+      margin-top: -(math.div($Glide__bullet-size, 2));
+      margin-left: -(math.div($Glide__bullet-size, 2));
+      border-radius: 100%;
+      @if $Glide__bullet-border {
+        border-width: $Glide__bullet-border-width;
+        border-style: solid;
+      }
+    }
+
+    &.is-active:before {
+      opacity: $Glide-opacity--active;
+    }
+  }
+
+  @include Glide-bullets-color();
+  @include Glide-bullets-color--hover();
+  @include Glide-bullets-color--active();
+}

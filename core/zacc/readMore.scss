@@ -1,0 +1,5 @@
+// read more message toggling
+[data-zacc-input]:checked ~ [data-zacc-head] [data-zacc-more],
+[data-zacc-input]:not(:checked) ~ [data-zacc-head] [data-zacc-less] {
+  display: none;
+}

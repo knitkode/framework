@@ -1,0 +1,29 @@
+{#- width : x_left_top = height : ? -#}
+{% set compensationY = (height * x_left_top) / width -%}
+{% set totalHeight = compensationY + height -%}
+{% set totalWidth = width + x_left_top -%}
+{% set clipPathId = 'clip-path'~loop.index -%}
+{% set clipPolygonId = 'clip-polygon'~loop.index -%}
+<svg{{ ' ' -}}
+  class="media media--svg"{{ ' ' -}}
+  width="{{ totalWidth }}"{{ ' ' -}}
+  height="{{ totalHeight }}"{{ ' ' -}}
+  viewBox="0 0 {{ totalWidth }} {{ totalHeight }}"{{ ' ' -}}
+  preserveAspectRatio="xMidYMin meet"{# -#}
+>{# -#}
+  <clipPath id="{{ clipPathId }}" clipPathUnits="userSpaceOnUse">{# -#}
+    <polygon{{ ' ' -}}
+      id="{{ clipPolygonId }}"{{ ' ' -}}
+      points="{{ x_left_top }},0 {{ totalWidth }},0 {{ totalWidth }},{{ totalHeight }} {{ 0 }},{{ totalHeight }}"{# -#}
+    />{# -#}
+  </clipPath>{# -#}
+  <image{{ ' ' -}}
+    class="mediaElement"{{ ' ' -}}
+    width="{{ width }}"{{ ' ' -}}
+    height="{{ height }}"{{ ' ' -}}
+    x="{{ x_left_top }}"{{ ' ' -}}
+    y="0"{{ ' ' -}}
+    clip-path="url(#{{ clipPathId }})"{{ ' ' -}}
+    xlink:href="{{ src }}"{# -#}
+  />{# -#}
+</svg>{# -#}

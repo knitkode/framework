@@ -1,0 +1,13 @@
+.only\: {
+  &mobile {
+    @include NotMobile() {
+      display: none !important;
+    }
+  }
+
+  &desktop {
+    @include NotDesktop() {
+      display: none !important;
+    }
+  }
+}

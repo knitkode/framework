@@ -1,0 +1,28 @@
+{
+  "name": "@knitkode/core-scss",
+  "version": "0.0.94",
+  "author": "KnitKode <knitkode@gmail.com> (https://knitkode.github.io)",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:knitkode/framework.git",
+    "directory": "core/scss"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@knitkode/components-header": "file:../../components/Header",
+    "@knitkode/core-buttons": "file:../buttons",
+    "@knitkode/core-dialog": "file:../dialog",
+    "@knitkode/core-forms": "file:../forms",
+    "@knitkode/core-glide": "file:../glide",
+    "@knitkode/core-grid": "file:../grid",
+    "@knitkode/core-media": "file:../media",
+    "@knitkode/core-responsive": "file:../responsive",
+    "@knitkode/core-typography": "file:../typography"
+  },
+  "sideEffects": [
+    "**.scss"
+  ]
+}

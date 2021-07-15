@@ -1,0 +1,17 @@
+@import "variables";
+
+// handle inner double lines
+.rangeHandle {
+  &:after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 25%;
+    left: 30%;
+    height: 50%;
+    width: 40%;
+    border-style: solid;
+    border-color: $Range__handle-border-color;
+    border-width: 0 $Range__handle-border * 2;
+  }
+}

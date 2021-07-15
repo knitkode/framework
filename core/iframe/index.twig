@@ -1,0 +1,13 @@
+<div class="media media--iframe">{# -#}
+  <span class="mediaProportion" style="padding-top: {{ (height * 100) / width }}%"></span>{# -#}
+  <iframe{{ ' ' -}}
+    {%- if lazy %}data-src="{{ src }}" {% else %}src="{{ src }}" {% endif -%}
+    class="mediaElement iframe {% if lazy %}lazy{% endif %}"
+    width="{{ width }}"{{ ' ' -}}
+    height="{{ height }}"{{ ' ' -}}
+    frameborder="0"{{ ' ' -}}
+    style="border:0"{{ ' ' -}}
+    allowfullscreen{# -#}
+  ></iframe>{# -#}
+  {%- partial "progress/circular" center=true size=progress | default(42) -%}
+</div>

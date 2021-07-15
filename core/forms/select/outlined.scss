@@ -1,0 +1,31 @@
+@import "../variant/outlined";
+
+.select {
+  @extend %formRoot--outlined;
+
+  .formBox {
+    @extend %formBox;
+  }
+
+  .formLabel {
+    @extend %formLabel--outlined;
+  }
+
+  .formUnderline {
+    @extend %formUnderline--outlined;
+  }
+
+  .formControl {
+    @extend %formControl--outlined;
+
+    &:not(:focus) {
+      position: relative;
+      z-index: 1;
+      background: transparent;
+    }
+  }
+
+  .formFeedback {
+    @extend %formFeedback;
+  }
+}

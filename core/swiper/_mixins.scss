@@ -1,0 +1,55 @@
+//
+// Swiper grid row
+//
+// This allows to undo a grid layout once swiper has initialised, so that the
+// visual appearance of the JavaScript powered carousel s the same as the CSS
+// only row with columns, and the passage between the two is seamless.
+// To achieve this we also need to match the responsive `breakpoint` swiper
+// settings to the grid behaviour dictated by the CSS styling
+//
+// -----------------------------------------------------------------------------
+@mixin Swiper-gridRow($selector: ".swiper-wrapper") {
+  .swiper-container-initialized #{$selector} {
+    overflow: unset;
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+//
+// Swiper grid col
+//
+// -----------------------------------------------------------------------------
+@mixin Swiper-gridCol($selector: ".col-class", $special: false) {
+  .swiper-container-initialized #{$selector} {
+    flex: unset;
+    flex-shrink: 0;
+    max-width: none;
+    padding: 0;
+  }
+}
+
+//
+// Swiper arrows on edges of container down (breakpoint)
+//
+// @param {"sm" | "md" | "lg" | "xl" | "xxl"} [$breakpoint="sm"]
+//
+// -----------------------------------------------------------------------------
+@mixin Swiper-arrowsOnEdgesOfContainer-down($breakpoint: sm) {
+  @include Down($breakpoint) {
+    .swiper-container {
+      margin-left: -$Grid-gutter-half;
+      margin-right: -$Grid-gutter-half;
+    }
+    .swiper-wrapper {
+      margin-left: $Grid-gutter-half;
+      margin-right: $Grid-gutter-half;
+    }
+    // .swiper-navigation--next {
+    //   right: -$Grid-gutter-half;
+    // }
+    // .swiper-navigation--prev {
+    //   left: -$Grid-gutter-half;
+    // }
+  }
+}

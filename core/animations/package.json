@@ -1,0 +1,21 @@
+{
+  "name": "@knitkode/core-animations",
+  "version": "0.0.65",
+  "author": "KnitKode <knitkode@gmail.com> (https://knitkode.github.io)",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:knitkode/framework.git",
+    "directory": "core/animations"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@knitkode/core-dom": "file:../dom",
+    "@knitkode/core-helpers": "file:../helpers",
+    "@knitkode/core-scroll": "file:../scroll",
+    "gsap": "^3.5.1"
+  },
+  "sideEffects": false
+}

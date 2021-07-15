@@ -1,0 +1,18 @@
+{%- if seo.meta_title -%}
+  <title>{{ seo.meta_title }}</title>
+{% endif -%}
+{%- if seo.meta_description -%}
+  <meta name="description" content="{{ seo.meta_description }}">
+{% endif -%}
+{#- print even if empty -#}
+<meta name="keywords" content="{{ seo.meta_keywords }}">
+{%- if seo.follow != "nofollow" and (seo.og_title or seo.meta_title) -%}
+  <meta property="og:title" content="{{ seo.og_title ? seo.og_title : seo.meta_title }}">
+{% endif -%}
+{%- if seo.og_desc or seo.meta_description -%}
+  <meta property="og:description" content="{{ seo.og_desc ? seo.og_desc : seo.meta_description }}">
+{% endif -%}
+{%- if seo.og_img -%}
+  <meta property="og:image" content="{{ seo.og_img | media }}">
+{% endif -%}
+<meta name="robots" content="{{ seo.index }}, {{ seo.follow }}">

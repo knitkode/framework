@@ -1,0 +1,95 @@
+@import "../variant/common";
+
+.radio {
+  display: flex;
+  flex-wrap: wrap;
+
+  @include Up(sm) {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  @if $Forms-validation {
+    &.invalid .radioLabel {
+      color: $Forms-invalid-color-label;
+    }
+  }
+
+  // Radio outer label
+  // always stack the label above the choices
+  // ---------------------------------------------------------------------------
+  &Label {
+    margin: 0 $Forms-padding-x 0 0;
+    flex-shrink: 0;
+    min-width: 100%;
+    margin: 0 0 $Radio-value-label-padding-y 0;
+  }
+
+  // Radio toggle wrap
+  // the .label acts here as the .formRoot of an `<input>` field
+  // move the form spacer margin bottom here so that when the radio don't fit in
+  // one line they get consistent spacing
+  // ---------------------------------------------------------------------------
+  .formToggle {
+    margin-bottom: $Forms-spacer-y;
+    margin-right: $Grid-gutter-half; // 4px is 'cause of the inline display
+
+    > .label {
+      padding: $Forms-padding-y math.div($Forms-padding-x, 2);
+      border: $Forms-border-thickness solid $Forms-color-border;
+      background: $Forms-bg;
+      @if $Forms-border-radius {
+        border-radius: $Forms-border-radius;
+      }
+    }
+
+    input:focus ~ .label {
+      border-color: $Forms-color-border-focus;
+    }
+
+    // Radio toggle can get a custom border-radius (often it's a circle)
+    @if $Radio-rounded {
+      .dfn {
+        border-radius: 100%;
+      }
+    }
+
+    &Label {
+      padding: 0 math.div($Forms-padding-x, 2);
+    }
+  }
+
+  // Radio state: checked
+  // ---------------------------------------------------------------------------
+  @if $Radio-rounded {
+    input:checked ~ .label .dfn:after {
+      background: $FormToggle-checked-color;
+      border-radius: 100%;
+      margin: $Radio-circle-margin;
+    }
+  } @else {
+    input:checked ~ .label .dfn {
+      @include Svg-bg($Radio-checked-bg-image);
+    }
+  }
+
+  // Radio optional validation
+  // ---------------------------------------------------------------------------
+  @if $Forms-validation {
+    // by default it includes invalid highlighting
+    &.invalid .label {
+      border-color: $Forms-invalid-color-border;
+    }
+
+    // optionally you can include valid highlighting too
+    @if $Forms-validation-valid-feedback {
+      input:checked ~ .label {
+        border-color: $Forms-valid-color-border;
+        @if $Forms-valid-color != $Forms-color {
+          color: $Forms-valid-color;
+        }
+      }
+    }
+  }
+}

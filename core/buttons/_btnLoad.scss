@@ -1,0 +1,26 @@
+//
+// Button with loading state
+//
+
+.btnLoad {
+  [data-show-on-loading] {
+    display: none;
+  }
+  [data-hide-on-loading] {
+    display: block;
+  }
+
+  .is-loading & {
+    [data-show-on-loading] {
+      display: block;
+    }
+    [data-hide-on-loading] {
+      display: none;
+    }
+  }
+
+  .progress {
+    position: relative;
+    top: -2px;
+  }
+}

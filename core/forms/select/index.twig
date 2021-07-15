@@ -1,0 +1,31 @@
+<div class="select formRoot{% if classRoot %} {{ classRoot }}{% endif %}{% if error %} invalid{% endif %}">{# -#}
+  <div class="formBox">{# -#}
+    <select{{ ' ' -}}
+      class="formControl{% if classElement %} {{ classElement }}{% endif %}"{{ ' ' -}}
+      name="{{ name }}"{{ ' ' -}}
+      id="{{ id | default('input-'~name) }}"
+      {%- if required %} required{% endif -%}
+      {%- if attrs %} {{ attrs | raw }}{% endif -%}
+    >
+      {%- if placeholder -%}
+        <option value="" disabled>{{ placeholder }}</option>
+      {%- elseif not disallowEmpty -%}
+        <option value=""></option>
+      {%- endif -%}
+      {%- for option in options -%}
+        {%- if option.value != "" -%}
+          <option{{ ' ' -}}
+            value="{{ option.value }}"{# -#}
+            {{- option.value == default ? ' selected' : '' -}}
+            {%- if option.alphacode %} data-alphacode="{{ option.alphacode }}"{% endif -%}
+          >{{ option.key }}</option>
+        {%- endif -%}
+      {%- endfor -%}
+    </select>{# -#}
+    <span class="formUnderline"></span>
+    {%- if label -%}
+      <label for="{{ name }}" class="formLabel">{{ label }}</label>
+    {%- endif -%}
+    {%- if comment -%}<p class="formFeedback">{{ comment }}</p>{%- endif -%}
+  </div>{# -#}
+</div>{# -#}

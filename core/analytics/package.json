@@ -1,0 +1,20 @@
+{
+  "name": "@knitkode/core-analytics",
+  "version": "0.1.43",
+  "author": "KnitKode <knitkode@gmail.com> (https://knitkode.github.io)",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:knitkode/framework.git",
+    "directory": "core/analytics"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@knitkode/core-dom": "file:../dom",
+    "@knitkode/core-helpers": "file:../helpers",
+    "@knitkode/core-scroll": "file:../scroll"
+  },
+  "sideEffects": false
+}

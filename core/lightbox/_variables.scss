@@ -1,0 +1,9 @@
+$Lightbox-bg: $Dialog-bg !default;
+$Lightbox-max-width: $Dialog-max-width !default;
+$Lightbox-arrow-size: $Dialog-close-size !default;
+$Lightbox-arrows-color: $Color-body !default;
+$Lightbox-footer-bg: $Lightbox-bg !default;
+$Lightbox-footer-padding: ($Grid-gutter * 0.75) $Grid-gutter-half $Grid-gutter !default;
+$Lightbox-backdrop-bg: rgba(255, 255, 255, 0.85) !default;
+$Lightbox-close-position-frame: outside !default;
+$Lightbox-close-position-horizontal: right !default;

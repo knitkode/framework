@@ -1,0 +1,92 @@
+//
+// Overlay
+//
+// Shortcut for a common scenario where the current element totally covers its
+// parent holder (which need position relative/absolute/fixed)
+// -----------------------------------------------------------------------------
+@mixin Overlay($opacity: false, $position: absolute) {
+  position: $position;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  @if ($opacity != false) {
+    opacity: $opacity;
+  }
+}
+
+//
+// Overlay loader
+//
+// Elements with visibility hidden do not get events, so we can leave the
+// overlay positioned absolutely on top and animate it through a simple class
+// on a parent. In this way we avoid using setTimeouts and events listeners
+// on the transition in order to animate its entrance in tandem with display
+// block/none.
+//
+// @see https://stackoverflow.com/questions/5659563/css-is-a-hidden-object-clickable
+// @see https://stackoverflow.com/questions/3331353/transitions-on-the-css-display-property
+// -----------------------------------------------------------------------------
+@mixin OverlayLoader(
+  $zIndex: 11,
+  $bg: rgba(255, 255, 255, 0.4),
+  $duration: 0.4s
+) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  visibility: hidden;
+  z-index: $zIndex;
+  background: $bg;
+  cursor: wait;
+  @extend %Overlay;
+  opacity: 0;
+  transition: opacity $duration $Transition-timing-function,
+    visibility $duration $Transition-timing-function;
+
+  .is-loading & {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+//
+// Overlay spinner
+//
+// Spinner pseudo elements to inlcude in an Overlay
+// -----------------------------------------------------------------------------
+@mixin OverlaySpinner(
+  $size: $Progress-circular-size,
+  $thickness: $Progress-circular-thickness,
+  $bg: $Progress-circular-bg,
+  $fg: $Progress-circular-fg,
+  $speed: 3,
+  $anim: rotate
+) {
+  &:before,
+  &:after {
+    content: "";
+    z-index: 1;
+    position: absolute;
+    width: $size;
+    height: $size;
+    top: 50%;
+    left: 50%;
+    margin-top: -(math.div($size, 2));
+    margin-left: -(math.div($size, 2));
+    border-radius: 50%;
+    border: $thickness solid transparent;
+  }
+
+  &:before {
+    border-color: $bg;
+    border-bottom-color: transparent;
+    animation: #{$speed}s $anim cubic-bezier(0.8, 0.4, 0.2, 0.4) infinite;
+  }
+
+  &:after {
+    border-top-color: $fg;
+    animation: #{math.div($speed, 2)}s $anim cubic-bezier(0.4, 0.2, 0.4, 0.8)
+      infinite;
+  }
+}

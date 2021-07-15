@@ -1,0 +1,4 @@
+repo=.
+serial=True
+current_group=knitkode-framework-projects
+group=knitkode-framework-projects, ../framework-laravel-test

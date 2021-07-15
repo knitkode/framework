@@ -1,0 +1,106 @@
+//
+// @fileOverview
+//
+// Everything in this is always available in the global scope (using
+// `sass-resource-loader` in webpack). Note that here the order matters.
+//
+
+// Vendor needed variables
+// -----------------------------------------------------------------------------
+$enable-responsive-font-sizes: true !default;
+$enable-deprecation-messages: false !default;
+
+// Optimization
+// -----------------------------------------------------------------------------
+$Optimization-font-swap: true !default;
+
+// Colors
+// -----------------------------------------------------------------------------
+$Colors: (
+  white: #ffffff,
+  black: #000000,
+  blue: #0000ee,
+) !default;
+$Color-body: Color(black) !default;
+$Color-body-bg: Color(white) !default;
+$Color-links: Color(blue) !default;
+$Color-links-hover: darken($Color-links, 15%) !default;
+$Color-headings: null !default;
+
+// Devices
+// -----------------------------------------------------------------------------
+$Devices: (mobile, tablet, desktop) !default;
+
+// Zindex
+// -----------------------------------------------------------------------------
+$Zindex-fixed: 1030 !default;
+$Zindex-modal-backdrop: 1040 !default;
+$Zindex-modal: 1050 !default;
+
+// Source paths and URLS
+// urls are set by a build script or must be set in the specific project, they
+// cannot be guessed here
+// -----------------------------------------------------------------------------
+// $URL_FONTS: false !default;
+// $URL_IMAGES: false !default;
+$SRC_FONTS: "../fonts" !default;
+$SRC_IMAGES: "../images" !default;
+$SRC_SVGICONS: "../svgicons" !default;
+
+// Shadow
+// -----------------------------------------------------------------------------
+$Shadow-size: 50px !default;
+$Shadow-color: rgba(0, 0, 0, 0.32) !default;
+$Shadow: 0 0 $Shadow-size $Shadow-color !default;
+
+// Spacing
+// -----------------------------------------------------------------------------
+$Spacer: 1rem;
+$Spacing: (
+  mobile: (
+    sm: 10px,
+    md: 37px,
+    lg: 80px,
+  ),
+  tablet: (
+    sm: 14px,
+    md: 42px,
+    lg: 105px,
+  ),
+  desktop: (
+    sm: 17px,
+    md: 47px,
+    lg: 130px,
+  ),
+) !default;
+
+// Transition
+// -----------------------------------------------------------------------------
+$Transition-duration: 0.18s !default;
+$Transition-timing-function: ease !default;
+$Transition-timing-function-bezier: cubic-bezier(0.4, 0.27, 0.4, 1.01) !default;
+$Transition: $Transition-duration $Transition-timing-function !default;
+
+// Consistent styling variables
+// -----------------------------------------------------------------------------
+$Border-radius: 0 !default;
+
+// Vendor like features enablers
+// -----------------------------------------------------------------------------
+$enable-responsive-font-sizes: true !default;
+$enable-deprecation-messages: false !default;
+
+// // Utils and Components to make them always available
+// // -----------------------------------------------------------------------------
+// @import "@knitkode/core-typography/variables";
+// @import "@knitkode/core-grid/variables";
+// @import "@knitkode/core-buttons/variables";
+// @import "@knitkode/core-forms/variables";
+// @import "@knitkode/core-media/variables";
+// @import "@knitkode/core-progress/variables";
+
+// // custom variables import, not every project need them:
+// @import "@knitkode/core-glide/variables";
+// @import "@knitkode/components-header/variables";
+// @import "@knitkode/components-hamburger/variables";
+// @import "@knitkode/core-dialog/variables";

@@ -1,0 +1,191 @@
+//
+// Component: Lightbox
+//
+@import "../variables";
+
+.lightbox {
+  // @include Dialog-always-expanded();
+  @include Dialog-close-position(
+    $Lightbox-close-position-frame,
+    $Lightbox-close-position-horizontal
+  );
+
+  // Extends: dialog
+  // ---------------------------------------------------------------------------
+  .dialog {
+    &Backdrop {
+      background: $Lightbox-backdrop-bg;
+    }
+
+    &Cage.glide {
+      // force CSS scoping to override glide relative position
+      position: fixed;
+      // force scrollbar tobe visible to avoid content jumping left and right
+      overflow-y: scroll;
+    }
+
+    &Wrap {
+      width: 100%;
+      @if $Lightbox-max-width != $Dialog-max-width {
+        max-width: $Lightbox-max-width;
+      }
+
+      @include Mobile() {
+        // this lets the arrows stack just below the image
+        margin: 0;
+      }
+    }
+
+    &Centerer {
+      flex-direction: column-reverse;
+      @include Mobile() {
+        padding: 0;
+        // this vertically aligns the content + the arrows on mobile
+        justify-content: center;
+      }
+    }
+
+    &Content {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      padding: 0;
+      @if $Lightbox-bg != $Dialog-bg {
+        background: $Lightbox-bg;
+      }
+    }
+  }
+
+  // TODO: FIXED_VIDEPORT_VARIANT: start
+  // these comments were to make the lightbox always fit in the viewport
+  // without scroll
+  // .dialogCage,
+  // .dialogCenterer {
+  //   height: 100%;
+  // }
+  // &Content {
+  //   height: auto;
+  //   background: transparent;
+  //   box-shadow: none;
+  // }
+  // .glide__slide {
+  //   // box-shadow: $Dialog-box-shadow;
+  // }
+  // .img {
+  //   width: auto;
+  //   max-height: 100%;
+  //   max-width: 100%;
+  //   box-shadow: $Dialog-box-shadow;
+  // }
+  // &Slider { // override
+  //   height: auto;
+  // }
+  // TODO: FIXED_VIDEPORT_VARIANT: end
+
+  // Element: placeholder (shown on open, before the slider is ready)
+  // ---------------------------------------------------------------------------
+  &Placeholder {
+    position: relative;
+    z-index: 2; // put on top of the underlying spinner
+    transition: opacity 0.4s $Transition-timing-function;
+    // @extend %Overlay;
+    // the following will make js calculate tha "natural" dialog content
+    // dimensions based on the opening slide, then the autoHeight of glide
+    // will kick in and this cover will be hidden
+    max-width: 100%;
+    height: auto;
+  }
+
+  // Element: slider
+  // ---------------------------------------------------------------------------
+  &Slider {
+    position: relative;
+    height: 100%;
+    @include OverlaySpinner();
+  }
+
+  // Status: ready
+  // ---------------------------------------------------------------------------
+  &.is-ready {
+    .lightboxPlaceholder {
+      @extend %Overlay;
+      opacity: 0;
+    }
+
+    .glide__track {
+      position: relative;
+      visibility: visible;
+    }
+  }
+
+  // Subcomponents tweaks: glide
+  // ---------------------------------------------------------------------------
+  .glide__track {
+    z-index: 3; // put on top of the placeholder
+    @extend %Overlay;
+    visibility: hidden;
+  }
+
+  .glide__slides {
+    max-height: 100%;
+  }
+
+  @include Glide-arrows-overlay();
+
+  .glide__arrow:not(.is-disabled) {
+    pointer-events: all;
+  }
+  .glide__arrow {
+    @include Glide-arrow-svgicon($Lightbox-arrow-size, $Lightbox-arrows-color);
+    @include Mobile() {
+      position: relative;
+    }
+    @include NotMobile() {
+      &.is-prev {
+        transform: translateX(-100%);
+      }
+      &.is-next {
+        transform: translateX(100%);
+      }
+    }
+  }
+
+  // Element: arrows
+  // ---------------------------------------------------------------------------
+  &Arrows {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    pointer-events: none;
+    // smooth the padding applied to compensate for the lack or presence of the
+    // scrollbar
+    transition: padding-right 0.2s linear;
+    @include NotMobile() {
+      position: fixed;
+    }
+
+    &Container {
+      position: relative;
+      max-width: $Lightbox-max-width;
+      margin: 0 auto;
+      width: 100%;
+      height: 100%;
+      @include Mobile() {
+        display: flex;
+        padding: 30px;
+        justify-content: space-evenly;
+      }
+    }
+  }
+
+  // Element: footer
+  // ---------------------------------------------------------------------------
+  &Footer {
+    padding: $Lightbox-footer-padding;
+    text-align: center;
+    @if $Lightbox-footer-bg != $Lightbox-bg {
+      background: $Lightbox-footer-bg;
+    }
+  }
+}

@@ -1,0 +1,12 @@
+// disabled state for checkboxes and radios
+.formToggle {
+  .formControl[disabled] {
+    + .label .dfn {
+      background: $FormToggle-disabled-bg;
+    }
+    + .label .formToggleLabel {
+      opacity: $FormToggle-disabled-opacity;
+      cursor: default;
+    }
+  }
+}

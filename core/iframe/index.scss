@@ -1,0 +1,10 @@
+//
+// Media: Iframe
+//
+
+.media--iframe {
+  .mediaElement {
+    @extend %Overlay;
+    overflow: visible;
+  }
+}

@@ -1,0 +1,62 @@
+<div id="{{ id | default('lightbox-' ~ random(1,99999)) }}" class="dialog lightbox is-prerendered">
+  <div class="dialogBackdrop"></div>
+  <div class="dialogCage glide" data-dialog-close>
+    <div class="dialogCenterer" data-dialog-close>
+      {% block arrows %}
+        <div class="lightboxArrows">
+          <div class="lightboxArrowsContainer" data-glide-el="controls">
+            <button class="glide__arrow is-prev" data-glide-dir="<">
+              {% block arrowPrev %}{% partial "icon" glyph='arrow_left-thin' %}{% endblock %}
+            </button>
+            <button class="glide__arrow is-next" data-glide-dir=">">
+              {% block arrowNext %}{% partial "icon" glyph='arrow_right-thin' %}{% endblock %}
+            </button>
+          </div>
+        </div>
+      {% endblock arrows %}
+      <div class="dialogWrap">
+        {% block close %}
+        <div class="dialogClose" data-dialog-close>
+          {% partial "icon" glyph=closeIcon | default('close') class='js-noclick' %}
+        </div>
+        {% endblock close %}
+        <div class="dialogContent">
+          <div class="lightboxSlider">
+            <img class="lightboxPlaceholder" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==">
+            <div class="glide__track" data-glide-el="track">
+              <div class="glide__slides">
+                {% for slide in slides -%}
+                  {% block slide -%}
+                    <div class="lightboxSlide glide__slide">
+                      {%- set lightboxImg = img(slide.img_gallery, 'media', slideWidth, slideHeight, {mode: slideMode }) -%}
+                      {%- partial "media/img"
+                        classElement='lightboxImg'
+                        img=lightboxImg
+                        alt=slide.alt_gallery
+                        fullwidth=true
+                        fit='contain'
+                        width=lightboxImg.src | imageWidth
+                        height=lightboxImg.src | imageHeight
+                        simple=true
+                      %}
+                      {%- block slide_foot %}{% endblock -%}
+                    </div>
+                  {%- endblock slide -%}
+                {%- endfor %}
+              </div>
+            </div>
+          </div>
+          {# @see https://stackoverflow.com/a/13806784/1938970 #}
+          {% if block('footer') is defined %}
+            {% set footer = block('footer') %}
+            {% if footer is not empty %}
+              <div class="lightboxFooter">
+                {{ footer | raw }}
+              </div>
+            {% endif %}
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

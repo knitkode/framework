@@ -1,0 +1,26 @@
+<div class="radio formRoot{% if classRoot %} {{ classRoot }}{% endif %}{% if error %} invalid{% endif %}">
+  {%- if label -%}
+    <label class="radioLabel">
+      {{- label | raw }}{% if required %}*{% endif -%}
+    </label>
+  {%- endif -%}
+  {%- for option in options -%}
+    <div class="formToggle">{# -#}
+      <input{{ ' ' -}}
+        class="formControl"{{ ' ' -}}
+        type="{{ type|default('radio')}}"{{ ' ' -}}
+        id="{{ id ? id~'-'~loop.index : 'input-'~name~'-'~loop.index }}"{{ ' ' -}}
+        name="{{ name }}"{{ ' ' -}}
+        value="{{ option.value }}"
+        {{- default is defined and option.value == default ? 'checked' : '' -}}
+        {%- if required %} required{% endif -%}
+        {%- if attrs %} {{ attrs | raw }}{% endif -%}
+      >{# -#}
+      <label class="label" for="{{ id ? id~'-'~loop.index : 'input-'~name~'-'~loop.index }}">{# -#}
+        <dfn class="dfn></dfn>{# -#}
+        <span class="formToggleLabel radioValue">{{ option.key | raw }}</span>{# -#}
+      </label>{# -#}
+    </div>
+  {%- endfor -%}
+  {%- if error %}<div class="formFeedback">{{ error }}</div>{% endif -%}
+</div>{# -#}

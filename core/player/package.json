@@ -1,0 +1,21 @@
+{
+  "name": "@knitkode/core-player",
+  "version": "0.0.14",
+  "author": "KnitKode <knitkode@gmail.com> (https://knitkode.github.io)",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:knitkode/framework.git",
+    "directory": "core/player"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@types/video.js": "7.3.17",
+    "video.js": "7.11.8"
+  },
+  "sideEffects": [
+    "**.scss"
+  ]
+}

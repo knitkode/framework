@@ -1,0 +1,43 @@
+//
+// Dialog close button position
+//
+// @param {"inside" | "outside"} $inOrOut
+// @param {"right" | "center" | "left"} $horizontal
+//
+// -----------------------------------------------------------------------------
+@mixin Dialog-close-position($inOrOut: outside, $horizontal: right) {
+  .dialogClose {
+    $transforms: null;
+    @if $inOrOut == outside {
+      $transforms: #{$transforms} translateY(-100%);
+    }
+    @if $horizontal == center {
+      right: 50%;
+      $transforms: #{$transforms} translateX(50%);
+      transform: $transforms;
+    } @else if $horizontal == left {
+      right: 100%;
+      $transforms: #{$transforms} translateX(100%);
+      transform: $transforms;
+    } @else {
+      transform: $transforms;
+    }
+  }
+}
+
+//
+// Dialog always expanded, it expands the content until its max-width (it will
+// loose the vertical centering)
+//
+// -----------------------------------------------------------------------------
+@mixin Dialog-always-expanded() {
+  &Wrap {
+    flex: 1;
+    margin: 0 auto;
+  }
+
+  &Content {
+    min-height: 100%;
+    padding: 0;
+  }
+}

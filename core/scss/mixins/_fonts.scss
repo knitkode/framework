@@ -1,0 +1,60 @@
+//
+// Font face shortcut mixin
+//
+// @see https://gist.github.com/jonathantneal/d0460e5c2d5d7f9bc5e6
+// Usage:
+// ```
+// @include Font-face(FontName, "FontName-medium", normal, normal, ttf eot woff woff2);
+// @include Font-face(Luckyfont, "Luckyfont-regular", normal, normal, ttf woff woff2);
+// ```
+// -----------------------------------------------------------------------------
+@mixin Font-face(
+  $name,
+  $path: "",
+  $weight: normal,
+  $style: normal,
+  $exts: woff2 woff ttf,
+  $basePath: $SRC_FONTS,
+  // $baseUrl: $URL_FONTS
+) {
+  $src: null;
+
+  $extmods: (
+    eot: "?",
+    svg: "#" + str-replace($name, " ", "_"),
+  );
+
+  $formats: (
+    otf: "opentype",
+    ttf: "truetype",
+  );
+
+  $base: $basePath;
+  // @if ($baseUrl) {
+  //   $base: $baseUrl;
+  // }
+
+  @each $ext in $exts {
+    $extmod: if(
+      map-has-key($extmods, $ext),
+      $ext + map-get($extmods, $ext),
+      $ext
+    );
+    $format: if(map-has-key($formats, $ext), map-get($formats, $ext), $ext);
+    $src: append(
+      $src,
+      url(quote($base + "/" + $path + "." + $extmod)) format(quote($format)),
+      comma
+    );
+  }
+
+  @font-face {
+    font-family: quote($name);
+    font-style: $style;
+    font-weight: $weight;
+    @if $Optimization-font-swap {
+      font-display: swap;
+    }
+    src: $src;
+  }
+}

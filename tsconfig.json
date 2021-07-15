@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "checkJs": true,
+    "allowJs": true,
+    "noEmit": true,
+    "moduleResolution": "node",
+    "module": "esnext",
+    "target": "es2015",
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": false
+  }
+}

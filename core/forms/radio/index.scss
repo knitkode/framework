@@ -1,0 +1,55 @@
+@import "../variant/common";
+
+.radio {
+  margin-bottom: $Forms-spacer-y;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+
+  @if $Forms-validation {
+    &.invalid .radioLabel {
+      color: $Forms-invalid-color-label;
+    }
+  }
+
+  // Radio outer label
+  // ---------------------------------------------------------------------------
+  &Label {
+    margin: 0 $Forms-padding-x 0 0;
+    flex-shrink: 0;
+
+    // stack by default on mobile, separating the label form the options
+    @include Down(sm) {
+      min-width: 100%;
+      margin: 0 0 $Radio-value-label-padding-y 0;
+    }
+  }
+
+  .formToggleLabel {
+    padding: $Radio-value-label-padding-y
+      ($Radio-value-label-padding-x + $Forms-padding-x)
+      $Radio-value-label-padding-y $Radio-value-label-padding-x;
+  }
+
+  // Radio toggle can get a custom border-radius (often it's a circle)
+  // ---------------------------------------------------------------------------
+  @if $Radio-rounded {
+    .formToggle .dfn {
+      border-radius: 100%;
+    }
+  }
+
+  // Radio state: checked
+  // ---------------------------------------------------------------------------
+  @if $Radio-rounded {
+    input:checked ~ .label .dfn:after {
+      background: $FormToggle-checked-color;
+      border-radius: 100%;
+      margin: $Radio-circle-margin;
+    }
+  } @else {
+    input:checked ~ .label .dfn {
+      @include Svg-bg($Radio-checked-bg-image);
+    }
+  }
+}

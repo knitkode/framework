@@ -1,0 +1,14 @@
+@import "../variant/minimal";
+
+.select {
+  @extend %select;
+  @extend %formRoot--minimal;
+
+  .formUnderline {
+    @extend %formUnderline--minimal;
+  }
+
+  .formControl {
+    @extend %formControl--minimal;
+  }
+}

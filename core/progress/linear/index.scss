@@ -1,0 +1,42 @@
+$ProgressLinear-bg: $input-border-color;
+$ProgressLinear-fg: $input-btn-focus-color;
+$ProgressLinear-duration: 4s;
+$ProgressLinear-height: 3px;
+
+.progressLinear {
+  position: absolute;
+  bottom: -($input-border-width * 2);
+  right: 0;
+  left: 0;
+  height: $ProgressLinear-height;
+  border-radius: 0 0 $input-border-radius $input-border-radius;
+  overflow: hidden;
+  background: $ProgressLinear-fg;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: -130%;
+    width: 100%;
+    height: 100%;
+    background: $ProgressLinear-bg;
+    animation: progressBar $ProgressLinear-duration linear infinite;
+  }
+}
+
+@keyframes progressBar {
+  0% {
+    left: -130%;
+    background: $ProgressLinear-bg;
+  }
+  50% {
+    left: 130%;
+    background: $ProgressLinear-bg;
+  }
+  51% {
+    background: $ProgressLinear-fg;
+  }
+  100% {
+    background: $ProgressLinear-fg;
+  }
+}

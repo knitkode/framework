@@ -1,0 +1,67 @@
+//
+// Media: image by default
+//
+
+.media {
+  display: flex;
+  position: relative;
+  // height: 100%;
+  overflow: hidden;
+  background: $Media-bg;
+  user-select: none;
+
+  .progress {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    // negative margin-left and margin-top are set inline in the partial
+  }
+
+  &Proportion {
+    position: relative;
+    display: block;
+  }
+
+  &Centerer {
+    @extend %Overlay;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &Element {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: opacity 0.3s ease-in-out;
+
+    // TODO: maybe?
+    // @see https://css-tricks.com/the-blur-up-technique-for-loading-background-images/
+    // filter: blur(5px);
+
+    &.lazy {
+      // no-js support is done via `<noscript>` tag in the media/img template
+      // opacity: 0;
+    }
+
+    &.lazy-success {
+      opacity: 1;
+      // filter: blur(0);
+    }
+  }
+}
+
+// state success/error, hide progress
+.lazy-success + .progress,
+.lazy-error + .progress,
+.no-js .lazy + .progress {
+  display: none;
+}
+
+.fit-cover {
+  @include object-fit(cover);
+}
+
+.fit-contain {
+  @include object-fit(contain);
+}

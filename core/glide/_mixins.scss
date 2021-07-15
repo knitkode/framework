@@ -1,0 +1,350 @@
+//
+// Row variation, better pre-initialization support
+//
+// @param {boolean} [$undoPaddings=false]
+//
+// -----------------------------------------------------------------------------
+@mixin Glide-row($undoPaddings: false) {
+  .glide__slides {
+    display: flex;
+    flex-wrap: nowrap;
+    width: auto;
+    margin-left: -$Grid-gutter-half;
+    margin-right: -$Grid-gutter-half;
+    min-width: 100%;
+  }
+
+  .glide__slide {
+    @include make-col-ready();
+    // @extend %Col;
+  }
+
+  @include Glide-unrow($undoPaddings);
+}
+
+//
+// Undo row/col behaviour once glide js has kicked in
+// class applied on the root `.glide` element.
+//
+// @param {boolean} [$undoPaddings=false]
+//
+// -----------------------------------------------------------------------------
+@mixin Glide-unrow($undoPaddings: false) {
+  &.glide--mounted {
+    @if $undoPaddings {
+      .glide__slides {
+        margin-left: 0;
+        margin-right: 0;
+      }
+    }
+
+    .glide__slide {
+      flex: unset !important;
+      max-width: none !important;
+      @if $undoPaddings {
+        padding-right: 0;
+        padding-left: 0;
+      }
+    }
+  }
+}
+
+//
+// Glide arrow base
+//
+// -----------------------------------------------------------------------------
+@mixin Glide-arrow-base() {
+  border: none;
+  outline: none;
+  opacity: $Glide-opacity;
+  background: none;
+
+  &:not(.is-disabled) {
+    cursor: pointer;
+  }
+
+  &:hover,
+  &:focus {
+    outline: none;
+    opacity: $Glide-opacity--hover;
+  }
+
+  &.is-disabled {
+    opacity: $Glide-opacity--disabled;
+  }
+}
+
+//
+// Glide arrow svgicon
+//
+// @param {number} $size
+// @param {string} $color
+//
+// -----------------------------------------------------------------------------
+@mixin Glide-arrow-svgicon(
+  $size: $Glide__arrow-icon-size,
+  $color: $Glide__arrow-color
+) {
+  @include Glide-arrow-base();
+
+  .icon {
+    font-size: $size;
+    @if $color {
+      color: $color;
+    }
+  }
+}
+
+//
+// Glide arrow (styles a single arrow, from the .glide__arrow class)
+//
+// @param {number} $rotation Arrow's rotation (for prev/next horizontal/vertical)
+// @param {Object} $opts
+// @param {string} $opts["color"]
+// @param {string} $opts["color-hover"]
+// @param {string} $opts["bg"]
+// @param {string} $opts["bg-hover"]
+// @param {number} $opts["thickness"]
+// @param {number} $opts["size"]
+//
+// -----------------------------------------------------------------------------
+@mixin Glide-arrow($rotation, $opts: ()) {
+  $opts: withDefaults(
+    $opts,
+    (
+      color: $Glide__arrow-color,
+      color-hover: $Glide__arrow-color-hover,
+      bg: $Glide__arrow-bg,
+      bg-hover: $Glide__arrow-bg-hover,
+      thickness: $Glide__arrow-thickness,
+      size: 8,
+    )
+  );
+  $color: map-get($opts, color);
+  $color-hover: map-get($opts, color-hover);
+  $bg: map-get($opts, bg);
+  $bg-hover: map-get($opts, bg-hover);
+  $thickness: map-get($opts, thickness);
+  $size: map-get($opts, size);
+
+  @include Svg-arrow($color, $thickness, $rotation, $size);
+  @if $bg != transparent {
+    background-color: $bg;
+  }
+
+  &:hover {
+    @if $color-hover != $color {
+      @include Svg-arrow($color-hover, $thickness, $rotation, $size);
+    }
+    @if $bg-hover != $bg {
+      background-color: $bg-hover;
+    }
+  }
+}
+
+//
+// Glide arrows (styles all descendant arrows at once)
+//
+// @param {Object} $opts
+// @param {string} $opts["color"]
+// @param {string} $opts["color-hover"]
+// @param {string} $opts["bg"]
+// @param {string} $opts["bg-hover"]
+// @param {number} $opts["thickness"]
+// @param {number} $opts["size"]
+//
+// -----------------------------------------------------------------------------
+@mixin Glide-arrows($opts: ()) {
+  .glide__arrow.is-prev {
+    @include Glide-arrow(180, $opts);
+  }
+  .glide__arrow.is-next {
+    @include Glide-arrow(0, $opts);
+  }
+}
+
+//
+// Glide arrows hide before mounted
+//
+// -----------------------------------------------------------------------------
+@mixin Glide-arrows-hide-before-mounted() {
+  .glide__arrows {
+    visibility: hidden;
+  }
+  &.glide--mounted .glide__arrows {
+    visibility: visible;
+  }
+}
+
+//
+// Glide arrows overlay
+//
+// @param {'absolute' | 'fixed'} $position
+//
+// -----------------------------------------------------------------------------
+@mixin Glide-arrows-overlay($position: absolute) {
+  .glide__arrow {
+    z-index: 1;
+    position: $position;
+    top: 0;
+    bottom: 0;
+
+    &.is-prev {
+      left: $Glide__arrow-spacer-x;
+      [dir="rtl"] & {
+        left: auto;
+        right: $Glide__arrow-spacer-x;
+      }
+    }
+
+    &.is-next {
+      right: $Glide__arrow-spacer-x;
+
+      [dir="rtl"] & {
+        left: $Glide__arrow-spacer-x;
+        right: auto;
+      }
+    }
+  }
+}
+
+//
+// Glide bullets colour
+//
+// @param {string} $bg
+// @param {string} $border Border's color
+//
+// -----------------------------------------------------------------------------
+@mixin Glide-bullets-color(
+  $bg: $Glide__bullet-bg,
+  $border: $Glide__bullet-border-color
+) {
+  .glide__bullet:before {
+    background: $bg;
+    @if $Glide__bullet-border {
+      border-color: $border;
+    }
+  }
+}
+
+//
+// Glide bullets colour (hover)
+//
+// with the default glide variables value this outputs nothing, as the hover
+// state relies by default on the opacity value $Glide-opacity--hover
+//
+// @param {string} $bg
+// @param {string} $border Border's color
+//
+// -----------------------------------------------------------------------------
+@mixin Glide-bullets-color--hover(
+  $bg: $Glide__bullet-bg--hover,
+  $border: $Glide__bullet-border-color--hover
+) {
+  @if $bg {
+    .glide__bullet:hover:before {
+      background: $bg;
+      @if $Glide__bullet-border {
+        border-color: $border;
+      }
+    }
+  }
+}
+
+//
+// Glide bullets colour (active)
+//
+// @param {string} $bg
+// @param {string} $border Border's color
+// @param {string} [$activeClass="is-active"]
+//
+// -----------------------------------------------------------------------------
+@mixin Glide-bullets-color--active(
+  $bg: $Glide__bullet-bg--active,
+  $border: $Glide__bullet-border-color--active,
+  $activeClass: "is-active"
+) {
+  .glide__bullet.#{$activeClass}:before {
+    $optionalImportant: "";
+    @if $activeClass != "is-active" {
+      $optionalImportant: " !important";
+    }
+    background: $bg#{$optionalImportant};
+    @if $Glide__bullet-border {
+      border-color: $border#{$optionalImportant};
+    }
+  }
+}
+
+//
+// Glide bullets position
+//
+// @param {'bottom' | 'top'} [$vertical='bottom']
+// @param {'left' | 'center' | 'right'} [$align='center']
+// @param {booelan} [$overlay=false]
+//
+// -----------------------------------------------------------------------------
+@mixin Glide-bullets-position(
+  $vertical: bottom,
+  $align: center,
+  $overlay: false
+) {
+  @if not $overlay {
+    margin-#{$vertical}: (
+      $Glide__bullet-clickable-height + ($Glide__bullet-spacer-y * 2)
+    );
+  }
+
+  .glide__bullets {
+    @if $overlay {
+      position: absolute;
+      #{$vertical}: 0;
+      @if $align == left {
+        left: 0;
+      }
+      @if $align == right {
+        right: 0;
+      }
+    } @else {
+      #{$vertical}: -(
+          $Glide__bullet-clickable-height + $Glide__bullet-spacer-y
+        );
+    }
+  }
+
+  @include Glide-bullets-align($align);
+}
+
+//
+// Glide bullets align
+//
+// @param {'left' | 'center' | 'right'} [$align='center']
+//
+// -----------------------------------------------------------------------------
+@mixin Glide-bullets-align($align: center) {
+  .glide__bullets {
+    text-align: #{$align};
+  }
+}
+
+//
+// Glide bullets hide before mounted
+//
+// -----------------------------------------------------------------------------
+@mixin Glide-bullets-hide-before-mounted() {
+  .glide__bullet {
+    visibility: hidden;
+  }
+  &.glide--mounted .glide__bullet {
+    visibility: visible;
+  }
+}
+
+//
+// Glide controls hide before mounted
+//
+// -----------------------------------------------------------------------------
+@mixin Glide-controls-hide-before-mounted() {
+  @include Glide-arrows-hide-before-mounted();
+  @include Glide-bullets-hide-before-mounted();
+}

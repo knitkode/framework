@@ -1,0 +1,254 @@
+@import "variables";
+
+$_Range__tip-tot-height: $Range__tip-arrow + $Range__tip-offset +
+  $Range__tip-font-size + $Range__tip-padding-y;
+$_Range__handle-extra-height: math.div(
+  $Range__handle-height - $Range__track-height,
+  2
+);
+
+.range {
+  &Container {
+    margin: 0 math.div($Range__handle-width, 2);
+    padding-bottom: $_Range__handle-extra-height + $_Range__tip-tot-height;
+    padding-top: $_Range__handle-extra-height;
+    cursor: pointer;
+    // width: 100%;
+
+    &.is-disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    &.focus {
+      .rangeHandle {
+        border: 1px solid #74b9ff;
+      }
+    }
+
+    &.rangeMultiple {
+      &.range--combinedTip {
+        .rangeHandle {
+          .rangeTip {
+            opacity: 0;
+          }
+        }
+      }
+
+      .rangeHandle {
+        &:nth-child(1) {
+          left: 0;
+          transform: translate3d(-50%, -50%, 0);
+        }
+
+        &:nth-child(2) {
+          right: 0;
+        }
+      }
+    }
+
+    &.range--combinedTip {
+      &.dragging,
+      &.rangeTips--visible {
+        .rangeProgress > .rangeTip {
+          display: block;
+        }
+      }
+    }
+
+    &.dragging,
+    &.rangeTips--visible {
+      &.rangeTips {
+        .rangeHandle {
+          .rangeTip {
+            display: block;
+          }
+        }
+      }
+    }
+  }
+
+  // Range input
+  // ---------------------------------------------------------------------------
+  &Input {
+    position: absolute;
+    overflow: hidden;
+    clip: rect(0px, 0px, 0px, 0px);
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0 none;
+
+    // this fakes an outline dotted border, don't know the idea behind it...
+    // &:focus {
+    //   & + .rangeTrack {
+    //     .rangeHandle {
+    //       &::after {
+    //         position: absolute;
+    //         width: $Range__handle-width;
+    //         height: $Range__handle-height;
+    //         bottom: -$Range__handle-border;
+    //         right: -$Range__handle-border;
+    //         outline: 1px dotted #000;
+    //         content: "";
+    //       }
+    //     }
+    //   }
+    // }
+  }
+
+  // Range track
+  // ---------------------------------------------------------------------------
+  &Track {
+    width: 100%;
+    height: $Range__track-height;
+    background-color: $Range__track-bg;
+    position: relative;
+    border-radius: math.div($Range__track-height, 2);
+  }
+
+  // Range progress bar
+  // ---------------------------------------------------------------------------
+  &Progress {
+    height: $Range__track-height;
+    width: 100%;
+    background-color: $Range__progress-bg;
+    position: absolute;
+    left: 0;
+    top: 0;
+    border-radius: math.div($Range__track-height, 2);
+    transform-origin: 0 0 0;
+
+    & > .rangeTip {
+      display: none;
+      z-index: 11;
+      @if $Range__tip-position == top {
+        top: auto;
+        bottom: calc(
+          100% +
+            #{($Range__handle-height - $Range__track-height) /
+            2} +
+            #{$Range__tip-offset +
+            $Range__tip-arrow}
+        );
+      } @else {
+        bottom: auto;
+        top: calc(
+          100% +
+            #{($Range__handle-height - $Range__track-height) /
+            2} +
+            #{$Range__tip-offset +
+            $Range__tip-arrow}
+        );
+      }
+    }
+  }
+
+  // Range handle
+  // ---------------------------------------------------------------------------
+  &Handle {
+    box-sizing: border-box;
+    width: $Range__handle-width;
+    height: $Range__handle-height;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translate3d(50%, -50%, 0);
+    border: $Range__handle-border solid $Range__handle-border-color;
+    border-radius: $Range__handle-border-radius;
+    background-color: $Range__handle-bg;
+
+    &:focus {
+      outline: none;
+
+      // this fakes an outline dotted border, don't know the idea behind it...
+      // &::after {
+      //   position: absolute;
+      //   width: $Range__handle-width;
+      //   height: $Range__handle-height;
+      //   bottom: -$Range__handle-border;
+      //   right: -$Range__handle-border;
+      //   outline: 1px dotted #000;
+      //   content: "";
+      // }
+    }
+
+    &.active {
+      z-index: 10;
+    }
+
+    .rangeTip {
+      display: none;
+    }
+  }
+
+  // Range tip
+  // ---------------------------------------------------------------------------
+  &Tip {
+    position: absolute;
+    right: 50%;
+    transform: translate3d(50%, 0, 0);
+    text-align: center;
+    white-space: nowrap;
+    line-height: 1;
+    padding: $Range__tip-padding-y $Range__tip-padding-x;
+    background-color: $Range__tip-bg;
+    border-radius: $Range__tip-radius;
+    font-size: $Range__tip-font-size;
+    color: $Range__tip-color;
+    @if $Range__tip-position == top {
+      bottom: calc(
+        100% +
+          #{$Range__handle-border} +
+          #{$Range__tip-arrow} +
+          #{$Range__tip-offset}
+      );
+    } @else {
+      top: calc(
+        100% +
+          #{$Range__handle-border} +
+          #{$Range__tip-arrow} +
+          #{$Range__tip-offset}
+      );
+    }
+    @if $Range__tip-font-weight != inherit {
+      font-weight: $Range__tip-weight;
+    }
+
+    @if $Range__tip-arrow > 0 {
+      // tip arrow
+      &::before {
+        width: 0;
+        height: 0;
+        border-width: $Range__tip-arrow $Range__tip-arrow 0 $Range__tip-arrow;
+        border-style: solid;
+        border-color: $Range__tip-bg transparent transparent transparent;
+        position: absolute;
+        left: 50%;
+        top: 100%;
+        transform: translate3d(-50%, 0, 0);
+        content: "";
+      }
+    }
+  }
+
+  // Range buffers
+  // ---------------------------------------------------------------------------
+  &Buffers {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+  }
+
+  // Range buffers
+  // ---------------------------------------------------------------------------
+  &Buffer {
+    position: absolute;
+    background-color: $Range__buffer-bg;
+    border-radius: 4px;
+    height: 100%;
+  }
+}

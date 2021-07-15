@@ -1,0 +1,19 @@
+{
+  "name": "@knitkode/core-transitions",
+  "version": "0.0.21",
+  "author": "KnitKode <knitkode@gmail.com> (https://knitkode.github.io)",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:knitkode/framework.git",
+    "directory": "core/transitions"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@knitkode/core-dom": "file:../dom",
+    "gsap": "^3.6.1"
+  },
+  "sideEffects": false
+}

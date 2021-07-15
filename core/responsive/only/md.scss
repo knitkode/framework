@@ -1,0 +1,17 @@
+.only\: {
+  &down\: {
+    &md {
+      @include Up(md) {
+        display: none !important;
+      }
+    }
+  }
+
+  &up\: {
+    &md {
+      @include Down(sm) {
+        display: none !important;
+      }
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "name": "@knitkode/core-reboot",
+  "version": "0.0.7",
+  "author": "KnitKode <knitkode@gmail.com> (https://knitkode.github.io)",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:knitkode/framework.git",
+    "directory": "core/reboot"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "sideEffects": [
+    "**.scss"
+  ]
+}

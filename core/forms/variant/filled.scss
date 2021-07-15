@@ -1,0 +1,115 @@
+@import "common";
+
+$underline-x-compensation-on-border-radius: $Forms-border-radius * 0.75;
+// check because it might results to 0 and break `calc(...)`
+@if $underline-x-compensation-on-border-radius == 0 {
+  $underline-x-compensation-on-border-radius: 0px;
+}
+
+// Form element: box
+// -----------------------------------------------------------------------------
+%formBox--filled {
+  @extend %formBox;
+  position: relative;
+}
+
+// Form element: root
+// -----------------------------------------------------------------------------
+%formRoot--filled {
+  @extend %formRoot;
+
+  // optional validation
+  @if $Forms-validation {
+    // by default it includes invalid highlighting
+    &.invalid .formControl {
+      border-color: $Forms-invalid-color-border;
+    }
+    &.invalid .formUnderline {
+      background: $Forms-invalid-color-border;
+      @if $Forms-border-radius {
+        width: calc(100% - #{$underline-x-compensation-on-border-radius * 2});
+      } @else {
+        width: 100%;
+      }
+    }
+
+    // optionally you can include valid highlighting too
+    @if $Forms-validation-valid-feedback {
+      &.valid .formControl {
+        border-color: $Forms-valid-color-border;
+        @if $Forms-valid-color != $Forms-color {
+          color: $Forms-valid-color;
+        }
+      }
+      @if $Forms-validation-icons and $Forms-valid-color-icon {
+        &.valid .formIcon {
+          fill: $Forms-valid-color-icon;
+        }
+      }
+      &.valid .formUnderline {
+        background: $Forms-valid-color-border;
+        @if $Forms-border-radius {
+          width: calc(100% - #{$underline-x-compensation-on-border-radius * 2});
+        } @else {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+// Form element: underline
+// -----------------------------------------------------------------------------
+%formUnderline--filled {
+  position: absolute;
+  bottom: 0;
+  height: $Forms-border-thickness-focus;
+  background: $Forms-color-border-focus;
+  transition: width $Transition;
+  width: 0;
+  @if $Forms-border-radius {
+    left: $underline-x-compensation-on-border-radius; // @rtl
+  } @else {
+    left: 0; // @rtl
+  }
+
+  .formControl:focus + & {
+    @if $Forms-border-radius {
+      width: calc(100% - #{$underline-x-compensation-on-border-radius * 2});
+    } @else {
+      width: 100%;
+    }
+  }
+}
+
+// Form element: label
+// -----------------------------------------------------------------------------
+%formLabel--filled {
+  @extend %formLabel;
+  margin: 0 0 $Forms-label-spacer-bottom 0;
+  @if $Forms-validation {
+    .invalid & {
+      color: $Forms-invalid-color-label;
+    }
+  }
+}
+
+// Form element: control
+// -----------------------------------------------------------------------------
+%formControl--filled {
+  @extend %formControl;
+  width: 100%;
+  background: $Forms-bg;
+  padding: $Forms-padding-y $Forms-padding-x;
+  border: $Forms-border-thickness solid $Forms-color-border;
+  border-radius: $Forms-border-radius;
+  -webkit-border-radius: $Forms-border-radius;
+
+  &:hover {
+    outline: none;
+  }
+  &:focus {
+    outline: none;
+    border-color: $Forms-color-border-focus;
+  }
+}

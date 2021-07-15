@@ -1,0 +1,68 @@
+// @see https://github.com/video.js/video.js/blob/master/src/css/video-js.scss
+@import "video.js/src/css/variables";
+@import "video.js/src/css/private-variables";
+@import "video.js/src/css/utilities";
+
+@import "videojs-font/scss/icons";
+
+@import "video.js/src/css/components/layout";
+// @import "video.js/src/css/components/big-play"; // customized entirely
+@import "video.js/src/css/components/button";
+// @import "video.js/src/css/components/close-button";
+// @import "video.js/src/css/components/modal-dialog";
+
+// @import "video.js/src/css/components/menu/menu";
+// @import "video.js/src/css/components/menu/menu-popup";
+// @import "video.js/src/css/components/menu/menu-inline";
+
+@import "video.js/src/css/components/control-bar";
+@import "video.js/src/css/components/control";
+@import "video.js/src/css/components/control-spacer";
+
+@import "video.js/src/css/components/progress";
+@import "video.js/src/css/components/slider";
+
+@import "video.js/src/css/components/volume";
+
+@import "video.js/src/css/components/poster";
+// @import "video.js/src/css/components/live";
+@import "video.js/src/css/components/time";
+@import "video.js/src/css/components/play-pause";
+@import "video.js/src/css/components/text-track";
+@import "video.js/src/css/components/picture-in-picture";
+@import "video.js/src/css/components/fullscreen";
+// @import "video.js/src/css/components/playback-rate";
+@import "video.js/src/css/components/error";
+@import "video.js/src/css/components/loading";
+// @import "video.js/src/css/components/captions";
+// @import "video.js/src/css/components/chapters";
+// @import "video.js/src/css/components/descriptions";
+// @import "video.js/src/css/components/subtitles";
+// @import "video.js/src/css/components/subs-caps";
+@import "video.js/src/css/components/audio";
+// @import "video.js/src/css/components/adaptive";
+// @import "video.js/src/css/components/captions-settings";
+
+// @import "video.js/src/css/print";
+
+.vjs-resize-manager {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  z-index: -1000;
+}
+
+// The rule is needed for :focus-visible polyfill
+.js-focus-visible .video-js *:focus:not(.focus-visible) {
+  outline: none;
+  background: none;
+}
+
+.video-js *:focus:not(:focus-visible),
+.video-js .vjs-menu *:focus:not(:focus-visible) {
+  outline: none;
+  background: none;
+}

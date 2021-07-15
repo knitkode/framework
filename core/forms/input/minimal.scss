@@ -1,0 +1,21 @@
+@import "../variant/minimal";
+
+.input {
+  @extend %formRoot--minimal;
+
+  .formBox {
+    @extend %formBox;
+  }
+
+  .formUnderline {
+    @extend %formUnderline--minimal;
+  }
+
+  .formControl {
+    @extend %formControl--minimal;
+  }
+
+  .formFeedback {
+    @extend %formFeedback;
+  }
+}

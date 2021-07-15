@@ -1,0 +1,69 @@
+$CookiesBanner-bg: $Color-body-bg !default;
+$CookiesBanner-padding-top: $Grid-gutter * 0.75;
+$CookiesBanner-padding-top--xs: $Grid-gutter-half;
+$CookiesBanner-padding-bottom: $Grid-gutter * 0.75;
+$CookiesBanner-padding-bottom--xs: $Grid-gutter-half;
+$CookiesBanner-padding-left: $Grid-gutter-double;
+$CookiesBanner-padding-left--xs: $Grid-gutter-half;
+$CookiesBanner-padding-right: $Grid-gutter-double;
+$CookiesBanner-padding-right--xs: $Grid-gutter-half;
+$CookiesBanner-color: $Color-body !default;
+$CookiesBanner-text-size: 14px !default;
+$CookiesBanner-transition-time: 0.5s !default;
+
+.cookies {
+  z-index: $Zindex-modal + 10;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  transform: translateY(100%);
+  transition: transform $CookiesBanner-transition-time
+    $Transition-timing-function;
+
+  &.is-in {
+    transform: translateY(0);
+  }
+
+  &Container {
+    @include Down(xs) {
+      padding: 0;
+    }
+  }
+
+  &Inner {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: $CookiesBanner-padding-top--xs $CookiesBanner-padding-right--xs
+      $CookiesBanner-padding-bottom--xs $CookiesBanner-padding-left--xs;
+    background: $CookiesBanner-bg;
+    color: $CookiesBanner-color;
+    @include Up(sm) {
+      flex-direction: row;
+      padding: $CookiesBanner-padding-top $CookiesBanner-padding-right
+        $CookiesBanner-padding-bottom $CookiesBanner-padding-left;
+    }
+  }
+
+  &Text {
+    flex: 1;
+    font-size: $CookiesBanner-text-size;
+
+    a {
+      color: $CookiesBanner-color;
+
+      &:hover {
+        color: $CookiesBanner-color;
+      }
+    }
+  }
+
+  &Actions {
+    padding-left: $CookiesBanner-padding-left;
+    text-align: right;
+    @include Down(xs) {
+      margin-left: auto;
+    }
+  }
+}

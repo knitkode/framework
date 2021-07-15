@@ -1,0 +1,106 @@
+//
+// Typography
+//
+// -----------------------------------------------------------------------------
+@mixin Typography(
+  $component: "p",
+  $variant: "regular",
+  $dictionary: $Typography
+) {
+  @if ($variant == "uppercase") {
+    text-transform: uppercase;
+  }
+  @include Typography-size($component, $variant, $dictionary);
+  @include Typography-line-height($component, $variant, $dictionary);
+}
+
+//
+// Typography size based on given dictionary
+//
+// -----------------------------------------------------------------------------
+@mixin Typography-size(
+  $component: "p",
+  $variant: "regular",
+  $dictionary: $Typography
+) {
+  $font-size-px: map-find($dictionary, $component, $variant, "fontSize");
+  // reuse the responsive-font-size mixin that comes with Bootstrap 4.3
+  @include font-size(map-find($dictionary, $component, $variant, "fontSize"));
+}
+
+//
+// Typography line-height based on given dictionary
+//
+// -----------------------------------------------------------------------------
+@mixin Typography-line-height(
+  $component: "p",
+  $variant: "regular",
+  $dictionary: $Typography
+) {
+  $font-size-px: strip-unit(
+    map-find($dictionary, $component, $variant, "fontSize")
+  );
+  $line-height-px: strip-unit(
+    map-find($dictionary, $component, $variant, "lineHeight")
+  );
+  $line-height: math.div($line-height-px, $font-size-px);
+
+  line-height: #{$line-height}em;
+}
+
+//
+// Shortcut that groups together the atomic typography placeholders/mixins
+//
+// -----------------------------------------------------------------------------
+@mixin Title($component, $variant: "regular", $fontWeight: bold) {
+  @extend %Headings;
+  @include Typography($component, $variant);
+  font-weight: $fontWeight;
+  word-break: break-word;
+  margin: 0;
+}
+
+//
+// Text multi-purpose utility
+//
+// -----------------------------------------------------------------------------
+@mixin Text($keys, $fontWeight: false, $fontStyle: false) {
+  @include Typography($keys);
+  margin: 0;
+  @if $fontWeight {
+    font-weight: $fontWeight;
+  }
+  @if $fontStyle {
+    font-style: $fontStyle;
+
+    // reduce letter spacing on italic texts (title likes, e.g. News titles)
+    @if $fontStyle == italic {
+      letter-spacing: 0.05em;
+    }
+  }
+}
+
+//
+// Typography hide, CSS image replacement
+// @see as Bootstrap's one
+//
+// -----------------------------------------------------------------------------
+@mixin Typography-hide($ignore-warning: false) {
+  // stylelint-disable-next-line font-family-no-missing-generic-family-keyword
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+
+//
+// Typography ellipsis, (Requires inline-block or block for proper styling)
+// @see as Bootstrap's one
+//
+// -----------------------------------------------------------------------------
+@mixin Typography-ellipsis() {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

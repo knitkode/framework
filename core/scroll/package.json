@@ -1,0 +1,25 @@
+{
+  "name": "@knitkode/core-scroll",
+  "version": "0.0.62",
+  "author": "KnitKode <knitkode@gmail.com> (https://knitkode.github.io)",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:knitkode/framework.git",
+    "directory": "core/scroll"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@knitkode/core-detect": "file:../detect",
+    "@knitkode/core-dom": "file:../dom",
+    "@knitkode/core-helpers": "file:../helpers",
+    "@knitkode/core-polyfills": "file:../polyfills",
+    "@terwanerik/scrolltrigger": "1.0.5",
+    "aos": "3.0.0-beta.6",
+    "eases-jsnext": "1.0.10",
+    "scrollmagic": "^2.0.8"
+  },
+  "sideEffects": false
+}

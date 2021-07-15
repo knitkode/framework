@@ -1,0 +1,11 @@
+// no-js support, maybe too convoluted selector
+[data-zacc-init="false"] {
+  > [aria-expanded="false"] + [data-zacc-wrap] {
+    display: none;
+  }
+}
+
+// icon rotation
+[data-zacc-init] [aria-expanded="true"] .icon {
+  transform: rotate(180deg);
+}

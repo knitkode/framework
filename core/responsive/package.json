@@ -1,0 +1,21 @@
+{
+  "name": "@knitkode/core-responsive",
+  "version": "0.0.23",
+  "author": "KnitKode <knitkode@gmail.com> (https://knitkode.github.io)",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:knitkode/framework.git",
+    "directory": "core/responsive"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@knitkode/core-dom": "file:../dom"
+  },
+  "sideEffects": [
+    "block/**",
+    "only/**"
+  ]
+}

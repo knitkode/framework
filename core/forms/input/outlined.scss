@@ -1,0 +1,25 @@
+@import "../variant/outlined";
+
+.file {
+  @extend %formRoot--outlined;
+
+  .formBox {
+    @extend %formBox;
+  }
+
+  .formLabel {
+    @extend %formLabel--outlined;
+  }
+
+  .formUnderline {
+    @extend %formUnderline--outlined;
+  }
+
+  .formControl {
+    @extend %formControl--outlined;
+  }
+
+  .formFeedback {
+    @extend %formFeedback;
+  }
+}
