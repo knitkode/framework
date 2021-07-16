@@ -39,7 +39,7 @@ export function convertUTCDateToLocalDate(date: Date) {
 export function autoConvertToLocalDates(
   attr = "datelocal",
   format?: string,
-  dateFnsFormatOptions?: Parameters<dateFns["format"]>[2]
+  dateFnsFormatOptions?: Parameters<import("date-fns").format>[2]
 ) {
   const selector = `[data-${attr}]`;
 

@@ -12,7 +12,8 @@
     "access": "public"
   },
   "dependencies": {
-    "lodash.debounce": "^4.0.8"
+    "@knitkode/core-helpers": "file:../helpers"
   },
-  "sideEffects": false
+  "sideEffects": false,
+  "main": "./index.ts"
 }

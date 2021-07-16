@@ -1,7 +1,5 @@
-export { default as debounce } from "lodash.debounce";
-export { default as throttle } from "lodash.throttle";
 export * from "./data";
-export * from "./interface";
+export * from "./debounce";
 export * from "./location";
 export * from "./type";
 

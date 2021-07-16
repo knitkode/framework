@@ -5,13 +5,13 @@ import sucrase from "@rollup/plugin-sucrase";
 import { terser } from "rollup-plugin-terser";
 
 export default {
-  input: "index.ts",
+  input: "./core/core/index.ts",
   output: {
     // file: 'bundle.js',
-    dir: "dist",
+    dir: "./core/core/dist",
     format: "cjs",
   },
-  external: ["lodash.debounce", "lodash.throttle"],
+  external: [],
   plugins: [
     // nodeResolve(),
     scss(),
@@ -19,7 +19,7 @@ export default {
       extensions: [".js", ".ts"],
     }),
     sucrase({
-      exclude: ["node_modules/**"],
+      // exclude: ["node_modules/**"],
       transforms: ["typescript"],
     }),
     // typescript({

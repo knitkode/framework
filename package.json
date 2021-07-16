@@ -10,6 +10,8 @@
   "scripts": {
     "postinstall": "npx lerna bootstrap && husky install",
     "start": "npm run watch-docs",
+    "build": "rollup --config ./core/core/rollup.config.js",
+    "build:all": "npx lerna exec -- npm run build",
     "watch-docs": "cd docs && npm start",
     "publish": "npx lerna publish",
     "link": "npx lerna exec -- npm link && npx lerna exec -- rm -rf ./package-lock.json",

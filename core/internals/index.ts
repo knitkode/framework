@@ -1,5 +1,5 @@
 import { $, getDataAttr } from "@knitkode/core-dom";
-import { isFunction, isString } from "./type";
+import { isFunction, isString } from "@knitkode/core-helpers";
 
 /**
  * The DOM element to use as the root container, usually the "starting point" of

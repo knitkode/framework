@@ -14,4 +14,3 @@ export { listen, unlisten, listenOnce } from "./listen";
 export { listenLoaded } from "./listenLoaded";
 export { listenResize } from "./listenResize";
 export { listenScroll } from "./listenScroll";
-export { throttle } from "./throttle";

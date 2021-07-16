@@ -1,4 +1,4 @@
-import debounce, { DebounceSettings } from "lodash.debounce";
+import { debounce, DebounceSettings } from "@knitkode/core-helpers";
 import { on, off } from "./helpers";
 
 /**
@@ -8,9 +8,10 @@ import { on, off } from "./helpers";
  */
 export function listenResize(
   handler: EventHandlerNonNull,
+  debounceWait?: number,
   debounceOptions?: DebounceSettings
 ) {
-  const resizeHandler = debounce(handler, debounceOptions);
+  const resizeHandler = debounce(handler, debounceWait, debounceOptions);
 
   on(window, "resize", resizeHandler);
 

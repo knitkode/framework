@@ -1,4 +1,4 @@
-import debounce, { DebounceSettings } from "lodash.debounce";
+import { debounce, DebounceSettings } from "@knitkode/core-helpers";
 import { on, off } from "./helpers";
 
 /**
@@ -8,9 +8,10 @@ import { on, off } from "./helpers";
  */
 export function listenScroll(
   handler: EventHandlerNonNull,
+  debounceWait?: number,
   debounceOptions?: DebounceSettings
 ) {
-  const scrollHandler = debounce(handler, debounceOptions);
+  const scrollHandler = debounce(handler, debounceWait, debounceOptions);
 
   on(window, "scroll", scrollHandler, {
     capture: true,

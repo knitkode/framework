@@ -7,8 +7,8 @@ import {
   setVendorCSS,
   emitEvent,
 } from "@knitkode/core-dom";
-import { isFunction, isString } from "@knitkode/core-helpers/type";
-import { Defer } from "@knitkode/core-helpers/interface";
+import { isFunction, isString } from "@knitkode/core-helpers";
+import { Defer } from "@knitkode/core-internals";
 import scrollLock, { fillGapsOf } from "@knitkode/core-scroll/lock";
 import { attrClose } from "./helpers";
 import "./index.scss";

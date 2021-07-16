@@ -15,6 +15,7 @@
     "@knitkode/core-dom": "file:../dom",
     "@knitkode/core-helpers": "file:../helpers",
     "@knitkode/core-icon": "file:../icon",
+    "@knitkode/core-internals": "file:../internals",
     "@knitkode/core-scroll": "file:../scroll"
   },
   "sideEffects": [
