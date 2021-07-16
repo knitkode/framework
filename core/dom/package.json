@@ -11,9 +11,9 @@
   "publishConfig": {
     "access": "public"
   },
+  "main": "./index.js",
   "dependencies": {
     "@knitkode/core-helpers": "file:../helpers"
   },
-  "sideEffects": false,
-  "main": "./index.ts"
+  "sideEffects": false
 }

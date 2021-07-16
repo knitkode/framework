@@ -10,7 +10,7 @@
  * Date: 2017-07-09
  */
 
-import { mergeObjects } from "@knitkode/core-helpers";
+import { mergeObjects, isArray } from "@knitkode/core-helpers";
 
 function isInt(n) {
   return Number(n) === n && n % 1 === 0;
@@ -189,7 +189,7 @@ class Trigger {
    */
   _toggleClass() {
     if (this.visible) {
-      if (Array.isArray(this.toggle.class.in)) {
+      if (isArray(this.toggle.class.in)) {
         this.toggle.class.in.each((className) => {
           this.element.classList.add(className);
         });
@@ -197,7 +197,7 @@ class Trigger {
         this.element.classList.add(this.toggle.class.in);
       }
 
-      if (Array.isArray(this.toggle.class.out)) {
+      if (isArray(this.toggle.class.out)) {
         this.toggle.class.out.each((className) => {
           this.element.classList.remove(className);
         });
@@ -208,7 +208,7 @@ class Trigger {
       return;
     }
 
-    if (Array.isArray(this.toggle.class.in)) {
+    if (isArray(this.toggle.class.in)) {
       this.toggle.class.in.each((className) => {
         this.element.classList.remove(className);
       });
@@ -216,7 +216,7 @@ class Trigger {
       this.element.classList.remove(this.toggle.class.in);
     }
 
-    if (Array.isArray(this.toggle.class.out)) {
+    if (isArray(this.toggle.class.out)) {
       this.toggle.class.out.each((className) => {
         this.element.classList.add(className);
       });
@@ -321,7 +321,7 @@ class TriggerCollection {
    */
   search(element) {
     const found = this.triggers.filter((trigger) => {
-      if (element instanceof NodeList || Array.isArray(element)) {
+      if (element instanceof NodeList || isArray(element)) {
         let hit = false;
 
         element.each((el) => {
@@ -781,18 +781,14 @@ export class ScrollTrigger {
       return this;
     }
 
-    if (
-      Array.isArray(objects) &&
-      objects.length &&
-      objects[0] instanceof Trigger
-    ) {
+    if (isArray(objects) && objects.length && objects[0] instanceof Trigger) {
       this.collection.add(objects);
 
       return this;
     }
 
     if (
-      Array.isArray(objects) &&
+      isArray(objects) &&
       objects.length &&
       objects[0] instanceof HTMLElement
     ) {
@@ -821,11 +817,7 @@ export class ScrollTrigger {
       return this;
     }
 
-    if (
-      Array.isArray(objects) &&
-      objects.length &&
-      objects[0] instanceof Trigger
-    ) {
+    if (isArray(objects) && objects.length && objects[0] instanceof Trigger) {
       this.collection.remove(objects);
 
       return this;
@@ -838,7 +830,7 @@ export class ScrollTrigger {
     }
 
     if (
-      Array.isArray(objects) &&
+      isArray(objects) &&
       objects.length &&
       objects[0] instanceof HTMLElement
     ) {
@@ -853,11 +845,7 @@ export class ScrollTrigger {
       return this;
     }
 
-    if (
-      Array.isArray(objects) &&
-      objects.length &&
-      objects[0] instanceof Trigger
-    ) {
+    if (isArray(objects) && objects.length && objects[0] instanceof Trigger) {
       this.collection.remove(objects);
 
       return this;

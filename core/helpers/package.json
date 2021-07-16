@@ -11,6 +11,7 @@
   "publishConfig": {
     "access": "public"
   },
+  "main": "./index.js",
   "dependencies": {
     "@knitkode/core-data": "file:../data"
   },

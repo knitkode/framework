@@ -12,9 +12,6 @@
     "access": "public"
   },
   "main": "./index.js",
-  "scripts": {
-    "prepublish": "cd ../../ && npm run build"
-  },
   "types": "./index.d.ts",
   "dependencies": {
     "@knitkode/core-ajax": "file:../ajax",

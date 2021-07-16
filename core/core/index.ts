@@ -6,7 +6,7 @@
 // // export * from "@knitkode/core-buttons";
 // export * from "@knitkode/core-collapsable";
 // export * from "@knitkode/core-cookies";
-// export * from "@knitkode/core-data";
+export * from "@knitkode/core-data";
 // export * from "@knitkode/core-datetime";
 // export * from "@knitkode/core-detect";
 // export * from "@knitkode/core-dialog";
@@ -17,7 +17,7 @@ export * from "@knitkode/core-dom";
 // export * from "@knitkode/core-fragments";
 // export * from "@knitkode/core-glide";
 // // export * from "@knitkode/core-grid";
-// // export * from "@knitkode/core-helpers";
+export * from "@knitkode/core-helpers";
 // export * from "@knitkode/core-icon";
 // export * from "@knitkode/core-iframe";
 // export * from "@knitkode/core-img";
