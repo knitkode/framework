@@ -1,5 +1,5 @@
-import ScrollTrigger from "@terwanerik/scrolltrigger";
 import { isFunction } from "@knitkode/core-helpers/type";
+import { ScrollTrigger } from "./scrollTrigger";
 
 /**
  * Singleton ScrollTrigger instance

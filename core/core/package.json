@@ -11,8 +11,9 @@
   "publishConfig": {
     "access": "public"
   },
+  "main": "./index.js",
   "scripts": {
-    "build": "rollup --config"
+    "prepublish": "cd ../../ && npm run build"
   },
   "types": "./index.d.ts",
   "dependencies": {

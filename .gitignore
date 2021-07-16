@@ -5,6 +5,9 @@ components/
 docs/
 workflow/
 
+# published files to npm
+index.js
+
 ### Stable ###
 node_modules
 .tmp
